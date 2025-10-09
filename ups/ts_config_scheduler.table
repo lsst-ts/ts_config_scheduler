@@ -1,0 +1,7 @@
+# eups is just used to set $TS_CONFIG_..._DIR
+# and set up packages for unit testing
+setupOptional(ts_observing)
+setupOptional(ts_fbs_utils)
+setupOptional(ts_externalscripts)
+setupOptional(ts_standscripts)
+
