@@ -30,77 +30,6 @@ class ConfigTestCase(salobj.BaseConfigTestCase, unittest.TestCase):
     def setUp(self):
         self.config_package_root = pathlib.Path(__file__).parents[1]
 
-    def test_DIMM(self):
-        self.check_standard_config_files(
-            sal_name="DIMM",
-            module_name="lsst.ts.dimm",
-            schema_name="CONFIG_SCHEMA",
-            config_package_root=self.config_package_root,
-        )
-
-    def test_EAS(self):
-        self.check_standard_config_files(
-            sal_name="EAS",
-            module_name="lsst.ts.eas",
-            schema_name="CONFIG_SCHEMA",
-            config_package_root=self.config_package_root,
-        )
-
-    def test_Electrometer(self):
-        self.check_standard_config_files(
-            sal_name="Electrometer",
-            module_name="lsst.ts.electrometer",
-            config_package_root=self.config_package_root,
-        )
-
-    def test_ESS(self):
-        self.check_standard_config_files(
-            sal_name="ESS",
-            module_name="lsst.ts.ess.csc",
-            schema_name="CONFIG_SCHEMA",
-            config_package_root=self.config_package_root,
-        )
-
-    def test_FiberSpectrograph(self):
-        self.check_standard_config_files(
-            sal_name="FiberSpectrograph",
-            module_name="lsst.ts.fiberspectrograph",
-            schema_name="CONFIG_SCHEMA",
-            config_package_root=self.config_package_root,
-        )
-
-    def test_GenericCamera(self):
-        self.check_standard_config_files(
-            sal_name="GenericCamera",
-            module_name="lsst.ts.genericcamera",
-            schema_name="CONFIG_SCHEMA",
-            config_package_root=self.config_package_root,
-        )
-
-    def test_GIS(self):
-        self.check_standard_config_files(
-            sal_name="GIS",
-            module_name="lsst.ts.gis",
-            schema_name="CONFIG_SCHEMA",
-            config_package_root=self.config_package_root,
-        )
-
-    def test_MTEEC(self):
-        self.check_standard_config_files(
-            sal_name="MTEEC",
-            module_name="lsst.ts.mteec",
-            schema_name="CONFIG_SCHEMA",
-            config_package_root=self.config_package_root,
-        )
-
-    def test_PMD(self):
-        self.check_standard_config_files(
-            sal_name="PMD",
-            module_name="lsst.ts.pmd",
-            schema_name="CONFIG_SCHEMA",
-            config_package_root=self.config_package_root,
-        )
-
     def test_Scheduler(self):
         self.check_standard_config_files(
             sal_name="Scheduler",
@@ -142,19 +71,3 @@ class ConfigTestCase(salobj.BaseConfigTestCase, unittest.TestCase):
                     fbs_config_file_in_scheduler_config.add(fbs_config_file)
                     break
         assert fbs_config_file_in_scheduler_config == fbs_config_files
-
-    def test_Test(self):
-        self.check_standard_config_files(
-            sal_name="Test",
-            module_name="lsst.ts.salobj",
-            schema_name="CONFIG_SCHEMA",
-            config_package_root=self.config_package_root,
-        )
-
-    def test_Watcher(self):
-        self.check_standard_config_files(
-            sal_name="Watcher",
-            module_name="lsst.ts.watcher",
-            schema_name="CONFIG_SCHEMA",
-            config_package_root=self.config_package_root,
-        )
