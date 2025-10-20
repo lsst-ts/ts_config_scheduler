@@ -81,7 +81,7 @@ maintel:
     stop_tracking_observing_script_name: maintel/stop_tracking.py
   feature_scheduler_driver_configuration:
     observation_database_name: /home/saluser/rubin_sim_data/fbs_observation_database_maintel.sql
-    scheduler_config: /net/obs-env/auto_base_packages/ts_config_ocs/Scheduler/feature_scheduler/maintel/fbs_config_image_survey.py
+    scheduler_config: /net/obs-env/auto_base_packages/ts_config_scheduler/Scheduler/feature_scheduler/maintel/fbs_config_image_survey.py
   telemetry:
     efd_name: summit_efd
     streams:
@@ -144,7 +144,7 @@ ocs:
     stop_tracking_observing_script_name: maintel/stop_tracking.py
   feature_scheduler_driver_configuration:
     observation_database_name: /home/saluser/rubin_sim_data/fbs_observation_database_ocs.sql
-    scheduler_config: /net/obs-env/auto_base_packages/ts_config_ocs/Scheduler/feature_scheduler/fbs_config_test_anytime_survey.py
+    scheduler_config: /net/obs-env/auto_base_packages/ts_config_scheduler/Scheduler/feature_scheduler/fbs_config_test_anytime_survey.py
   telemetry:
     efd_name: summit_efd
     streams:
