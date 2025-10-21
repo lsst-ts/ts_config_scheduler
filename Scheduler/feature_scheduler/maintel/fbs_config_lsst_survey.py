@@ -377,13 +377,13 @@ def get_scheduler(
         f"Configured {len(surveys)} tiers of surveys in the baseline configuration."
     )
 
-    return (nside, scheduler)
+    return nside, scheduler
 
 
 if __name__ == "config":
-    (nside, scheduler) = get_scheduler()
+    nside, scheduler = get_scheduler()
 
 
 if __name__ == "__main__":
     # This is only here as a way to save the DDF npz array to disk.
-    (nside, scheduler) = get_scheduler(save_ddf_array=True)
+    nside, scheduler = get_scheduler(save_ddf_array=True)

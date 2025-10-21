@@ -219,13 +219,13 @@ def get_scheduler() -> tuple[int, CoreScheduler]:
         f"Configured {len(surveys)} tiers of surveys in the baseline configuration."
     )
 
-    return (nside, scheduler)
+    return nside, scheduler
 
 
 if __name__ == "config":
-    (nside, scheduler) = get_scheduler()
+    nside, scheduler = get_scheduler()
 
 
 if __name__ == "__main__":
     # This doesn't really serve a purpose for this config, because no DDFs
-    (nside, scheduler) = get_scheduler()
+    nside, scheduler = get_scheduler()

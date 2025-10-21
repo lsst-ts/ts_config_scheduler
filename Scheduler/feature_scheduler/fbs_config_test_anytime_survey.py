@@ -153,12 +153,9 @@ def gen_greedy_surveys(
     return surveys
 
 
-if __name__ == "config":
+def get_scheduler() -> tuple[CoreScheduler, int]:
     nside = 32
-    per_night = True  # Dither DDF per night
     seed = 42
-
-    camera_ddf_rot_limit = 75.0
 
     observatory = ModelObservatory(nside=nside, mjd_start=MJD_START)
     observatory.sky_model.load_length = 3
@@ -182,3 +179,8 @@ if __name__ == "config":
     )
     surveys = [[cwfs], greedy]
     scheduler = CoreScheduler(surveys, nside=nside)
+    return nside, scheduler
+
+
+if __name__ == "config":
+    nside, scheduler = get_scheduler()
