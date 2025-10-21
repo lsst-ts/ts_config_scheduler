@@ -193,7 +193,7 @@ maintel:
         - z
         filter_unmounted:
         - u
-        readout_time: 2.0
+        readout_time: 3.0
         shutter_time: 1.0
       dome:
         altitude_accel: 0.875
