@@ -5,7 +5,7 @@
   "constraints": [],
   "scripts": [
     {
-      "name": "maintel/setup_whitelight_flats.py",
+      "name": "maintel/setup_calsys_flats.py",
       "standard": false,
       "parameters": {
         "sequence_name": "whitelight_i_source"
@@ -20,7 +20,7 @@
       }
     },
     {
-      "name": "maintel/take_whitelight_flats_lsstcam.py",
+      "name": "maintel/take_calsys_flats_lsstcam.py",
       "standard": false,
       "parameters": {
         "sequence_names": [
@@ -37,7 +37,7 @@
       }
     },
     {
-      "name": "maintel/take_whitelight_flats_lsstcam.py",
+      "name": "maintel/take_calsys_flats_lsstcam.py",
       "standard": false,
       "parameters": {
         "sequence_names": [
@@ -54,7 +54,7 @@
       }
     },
     {
-      "name": "maintel/take_whitelight_flats_lsstcam.py",
+      "name": "maintel/take_calsys_flats_lsstcam.py",
       "standard": false,
       "parameters": {
         "sequence_names": [
@@ -71,7 +71,7 @@
       }
     },
     {
-      "name": "maintel/take_whitelight_flats_lsstcam.py",
+      "name": "maintel/take_calsys_flats_lsstcam.py",
       "standard": false,
       "parameters": {
         "sequence_names": [
@@ -88,7 +88,7 @@
       }
     },
     {
-      "name": "maintel/take_whitelight_flats_lsstcam.py",
+      "name": "maintel/take_calsys_flats_lsstcam.py",
       "standard": false,
       "parameters": {
         "sequence_names": [
@@ -105,7 +105,7 @@
       }
     },
     {
-      "name": "maintel/take_whitelight_flats_lsstcam.py",
+      "name": "maintel/take_calsys_flats_lsstcam.py",
       "standard": false,
       "parameters": {
         "sequence_names": [
@@ -122,7 +122,7 @@
       }
     },
     {
-      "name": "maintel/take_whitelight_flats_lsstcam.py",
+      "name": "maintel/take_calsys_flats_lsstcam.py",
       "standard": false,
       "parameters": {
         "sequence_names": [
@@ -139,7 +139,7 @@
       }
     },
     {
-      "name": "maintel/take_whitelight_flats_lsstcam.py",
+      "name": "maintel/take_calsys_flats_lsstcam.py",
       "standard": false,
       "parameters": {
         "sequence_names": [
@@ -156,7 +156,7 @@
       }
     },
     {
-      "name": "maintel/take_whitelight_flats_lsstcam.py",
+      "name": "maintel/take_calsys_flats_lsstcam.py",
       "standard": false,
       "parameters": {
         "sequence_names": [
@@ -173,7 +173,7 @@
       }
     },
     {
-      "name": "maintel/take_whitelight_flats_lsstcam.py",
+      "name": "maintel/take_calsys_flats_lsstcam.py",
       "standard": false,
       "parameters": {
         "sequence_names": [

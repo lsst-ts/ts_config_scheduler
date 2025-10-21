@@ -5,7 +5,7 @@
   "constraints": [],
   "scripts": [
     {
-      "name": "maintel/setup_whitelight_flats.py",
+      "name": "maintel/setup_calsys_flats.py",
       "standard": false,
       "parameters": {
         "sequence_name": "$sequence_name"
