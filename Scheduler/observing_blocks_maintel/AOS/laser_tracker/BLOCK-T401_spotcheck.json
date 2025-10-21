@@ -12,6 +12,8 @@
                 "rot_tel": -80,
                 "ignore": [
                     "mtdome",
+                    "mthexapod_1",
+                    "mthexapod_2",
                     "mtmount",
                     "mtdometrajectory"
                 ]
@@ -35,6 +37,8 @@
                 "rot_tel": -20,
                 "ignore": [
                     "mtdome",
+                    "mthexapod_1",
+                    "mthexapod_2",
                     "mtmount",
                     "mtdometrajectory"
                 ]
@@ -58,6 +62,8 @@
                 "rot_tel": 20,
                 "ignore": [
                     "mtdome",
+                    "mthexapod_1",
+                    "mthexapod_2",
                     "mtmount",
                     "mtdometrajectory"
                 ]
@@ -81,6 +87,8 @@
                 "rot_tel": 80,
                 "ignore": [
                     "mtdome",
+                    "mthexapod_1",
+                    "mthexapod_2",
                     "mtmount",
                     "mtdometrajectory"
                 ]
