@@ -23,7 +23,7 @@ maintel:
           - 90.0
         tel_optics_cl_delay:
           - 0.0
-          - 36.0
+          - 30000.0
   driver_configuration:
     parameters:
       night_boundary: -10.0

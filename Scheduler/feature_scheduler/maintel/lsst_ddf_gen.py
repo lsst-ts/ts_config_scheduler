@@ -284,7 +284,7 @@ def gen_ddf_surveys(
     science_program: str = SCIENCE_PROGRAM,
     shadow_minutes: float = 30,
     save: bool = True,
-    save_filename: str = "ddf_array.npz",
+    save_filename: str = "ts_ddf_array.npz",
     save_path: str = None,
     safety_mask_params: dict | None = None,
 ) -> list[ScriptedSurvey]:
