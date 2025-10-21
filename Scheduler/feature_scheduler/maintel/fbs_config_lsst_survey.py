@@ -62,8 +62,8 @@ def get_scheduler(save_ddf_array=False) -> tuple[int, CoreScheduler]:
         "max_az_sunrise": 290,
     }
 
-    # General parameters for standard pairs
-    camera_rot_limits = (-80.0, 80.0)
+    # General parameters for standard pairs (-80/80 default)
+    camera_rot_limits = (-60.0, 60.0)
     pair_time = 33
     # Adjust these as the expected timing updates.
     # -- sets the expected time and number of pointings in a 'blob'.
@@ -82,7 +82,7 @@ def get_scheduler(save_ddf_array=False) -> tuple[int, CoreScheduler]:
     fwhm_template_max = 1.3
 
     # Parameters for  DDF dithers
-    camera_ddf_rot_limit = 75  # Rotator limit for DDF (degrees)
+    camera_ddf_rot_limit = 55  # Rotator limit for DDF (degrees) .. 75
     camera_ddf_rot_per_visit = 3.0  # small rotation per visit (degrees)
     max_dither = 0.2  # Max radial dither for DDF (degrees)
     per_night = False  # Dither DDF per night (True) or per visit (False)
@@ -174,11 +174,9 @@ def get_scheduler(save_ddf_array=False) -> tuple[int, CoreScheduler]:
     single_ddf_dither_detailer = detailers.DitherDetailer(
         per_night=per_night, max_dither=max_dither
     )
-    # Undo this once fix in rubin_scheduler gets to the summit (3.18.1?).
-    # dither_detailer = detailers.SplitDetailer(
-    #     single_ddf_dither_detailer, detailers.EuclidDitherDetailer(per_night=per_night)
-    #)
-    dither_detailer = single_ddf_dither_detailer
+    dither_detailer = detailers.SplitDetailer(
+        single_ddf_dither_detailer, detailers.EuclidDitherDetailer(per_night=per_night)
+    )
     ddf_detailers = [
         detailers.CameraSmallRotPerObservationListDetailer(
             min_rot=-camera_ddf_rot_limit,
@@ -342,14 +340,15 @@ def get_scheduler(save_ddf_array=False) -> tuple[int, CoreScheduler]:
 
     # Arrange the surveys in tiers.
     surveys = [
-        toos,
-        roman_micro,
-        ddfs,
+        # Disabled surveys to minimize slews over 9 deg
+        # toos,
+        # roman_micro,
+        # ddfs,
         template_surveys,
-        long_gaps,
+        # long_gaps,
         blobs,
         twi_blobs,
-        neo_micro,
+        # neo_micro,
         greedy,
     ]
 
