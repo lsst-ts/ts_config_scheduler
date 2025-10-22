@@ -71,8 +71,8 @@ def get_scheduler(
         "nside": nside,
         "wind_speed_maximum": 40,
         "time_to_sunrise": 3.0,
-        "min_az_sunrise": 120,
-        "max_az_sunrise": 290,
+        "min_az_sunrise": 150,
+        "max_az_sunrise": 250,
     }
 
     # General parameters for standard pairs (-80/80 default)
