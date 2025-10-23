@@ -16,7 +16,7 @@ from rubin_scheduler.scheduler.utils import (
 from rubin_scheduler.site_models import Almanac
 from rubin_scheduler.utils import SURVEY_START_MJD
 
-sys.path.append(str(Path(__file__).parent))
+sys.path.append(str(Path(Path(__file__).parent.parent.parent, "ddf_gen")))
 from lsst_ddf_gen import gen_ddf_surveys  # noqa #402
 
 __all__ = ("get_scheduler",)
