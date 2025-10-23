@@ -1,4 +1,4 @@
-# This file is part of ts_config_ocs.
+# This file is part of ts_config_scheduler.
 #
 # Developed for Vera C. Rubin Observatory Telescope and Site Systems.
 # This product includes software developed by the LSST Project
@@ -59,3 +59,15 @@ def test_feature_scheduler_configurations(fbs_config: list[str]) -> None:
 
 def test_all_fbs_configurations_in_use() -> None:
     """Test that all fbs configrations are in use."""
+
+
+def write_fbs_config_to_disk() -> None:
+    """Write the ts_ddf_array.npz file."""
+
+    fbs_config = "Scheduler/feature_scheduler/maintel/fbs_config_lsst_survey.py"
+    spec = importlib.util.spec_from_file_location("config", fbs_config)
+    conf = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(conf)
+
+    nside, scheduler = conf.get_scheduler(save_ddf_array=True)
+    assert isinstance(nside, int)
