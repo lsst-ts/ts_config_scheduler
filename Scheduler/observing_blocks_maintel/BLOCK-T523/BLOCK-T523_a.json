@@ -9,10 +9,12 @@
             "parameters": {
                 "data": [["TunableLaser", "ENABLED"],
                         ["LEDProjector", "ENABLED"],
-                        ["Electrometer:103", "ENABLED"],
+                        ["FiberSpectrograph:101","ENABLED"],
+                        ["FiberSpectrograph:102","ENABLED"],
                         ["LinearStage:101", "ENABLED"],
                         ["LinearStage:102", "ENABLED"],
                         ["LinearStage:103", "ENABLED"],
+                        ["LinearStage:104", "ENABLED"],
                         ["MTReflector", "ENABLED"]]
             }
         },
@@ -33,6 +35,6 @@
             }
         }
     ],
-     "configuration_schema": "$schema: http://json-schema.org/draft-07/schema#\ntitle: BLOCK-T523_a configuration\ndescription: Configuration for BLOCK-T523_a.\ntype: object\nproperties:\n  ignore:\n    description: Name of the CSCs we want to ignore\n    type: array\n    default: ['LinearStage:104','CBP','Electrometer:101','Electrometer:102','FiberSpectrograph:101','FiberSpectrograph:102']\n"
+     "configuration_schema": "$schema: http://json-schema.org/draft-07/schema#\ntitle: BLOCK-T523_a configuration\ndescription: Configuration for BLOCK-T523_a.\ntype: object\nproperties:\n  ignore:\n    description: Name of the CSCs we want to ignore\n    type: array\n    default: ['Electrometer:103','CBP','Electrometer:101','Electrometer:102']\n"
 }
 
