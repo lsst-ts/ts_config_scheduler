@@ -301,11 +301,12 @@ def get_scheduler() -> tuple[int, CoreScheduler]:
 
     # Define the alternate twilight (and other short time period)
     # short 15minute pairs
-    twi_blobs = lsst_surveys.generate_twi_blobs(
+    short_blobs = lsst_surveys.generate_short_blobs(
         footprints=footprints,
         nside=nside,
         exptime=exptime,
         nexp=nexp,
+        pair_time=15.0,
         repeat_weight=0,
         night_pattern=reverse_ei_night_pattern,
         science_program=science_program,
@@ -337,8 +338,8 @@ def get_scheduler() -> tuple[int, CoreScheduler]:
             per_night=per_night,
             camera_ddf_rot_limit=camera_ddf_rot_limit,
             camera_ddf_rot_per_visit=camera_ddf_rot_per_visit,
-            exptime=exptime,
-            nexp=nexp,
+            exptimes=exptime,
+            nexps=nexp,
             science_program=science_program,
             safety_mask_params=safety_mask_params,
         ),
@@ -348,8 +349,8 @@ def get_scheduler() -> tuple[int, CoreScheduler]:
             per_night=per_night,
             camera_ddf_rot_limit=camera_ddf_rot_limit,
             camera_ddf_rot_per_visit=camera_ddf_rot_per_visit,
-            exptime=exptime,
-            nexp=nexp,
+            exptimes=exptime,
+            nexps=nexp,
             science_program=science_program,
             safety_mask_params=safety_mask_params,
         ),
@@ -408,7 +409,7 @@ def get_scheduler() -> tuple[int, CoreScheduler]:
         template_surveys,
         long_gaps,
         blobs,
-        twi_blobs,
+        short_blobs,
         neo_micro,
         greedy,
     ]
