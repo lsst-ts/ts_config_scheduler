@@ -1,4 +1,4 @@
-# This file is part of ts_config_ocs.
+# This file is part of ts_config_scheduler.
 #
 # Developed for Vera C. Rubin Observatory Telescope and Site Systems.
 # This product includes software developed by the LSST Project
@@ -19,6 +19,10 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
+import os
+import subprocess
+from pathlib import Path
+
 import pytest
 from rubin_scheduler.data import DEFAULT_DATA_URL, data_dict, download_rubin_data
 
@@ -30,7 +34,16 @@ def retrieve_rubin_data():
         dirs=None,
         print_versions_only=False,
         update=True,
-        force=True,
+        force=False,
         url_base=DEFAULT_DATA_URL,
         tdqm_disable=True,
     )
+    ddf_gen_path = Path(__file__).parent.parent / "Scheduler" / "ddf_gen"
+    assert ddf_gen_path.exists()
+    print(f"Calculate ddf pre-computed files: {ddf_gen_path}:")
+    for ddf_gen in ddf_gen_path.glob("*.py"):
+        print(f"- {ddf_gen}")
+        if not os.access(ddf_gen, os.X_OK):
+            print(f"Skipping non-executable {ddf_gen}.")
+            continue
+        subprocess.run([str(ddf_gen)])
