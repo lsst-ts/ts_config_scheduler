@@ -1,28 +1,43 @@
-__all__ = ("define_ddf_seq", "gen_ddf_surveys")
+#!/usr/bin/env python3
+# This file is part of ts_config_scheduler.
+#
+# Developed for Vera C. Rubin Observatory Telescope and Site Systems.
+# This product includes software developed by the LSST Project
+# (https://www.lsst.org).
+# See the COPYRIGHT file at the top-level directory of this distribution
+# for details of code ownership.
+#
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
+__all__ = ("define_ddf_seq", "gen_ddf_presched_observations")
 
 import copy
-import logging
-import os
+import hashlib
 from pathlib import Path
 
 import lsst.ts.fbs.utils.maintel.lsst_ddf_presched as ddf_presched
 import numpy as np
 import pandas as pd
-import rubin_scheduler.scheduler.detailers as detailers
 from lsst.ts.fbs.utils.maintel.lsst_surveys import (
     EXPTIME,
     NEXP,
     SCIENCE_PROGRAM,
     U_EXPTIME,
     U_NEXP,
-    safety_masks,
 )
 from rubin_scheduler.data import get_data_dir
-from rubin_scheduler.scheduler.surveys import ScriptedSurvey
-from rubin_scheduler.scheduler.utils import ScheduledObservationArray
-from rubin_scheduler.utils import DEFAULT_NSIDE, SURVEY_START_MJD
-
-logger = logging.getLogger(__name__)
+from rubin_scheduler.utils import SURVEY_START_MJD
 
 
 def define_ddf_seq() -> pd.DataFrame:
@@ -273,29 +288,21 @@ def define_ddf_seq() -> pd.DataFrame:
     return result
 
 
-def gen_ddf_surveys(
-    detailer_list: list[detailers.BaseDetailer] | None = None,
-    nside: int = DEFAULT_NSIDE,
+def gen_ddf_presched_observations(
     expt: dict | None = None,
     nexp: dict | None = None,
     survey_start: float = SURVEY_START_MJD,
     survey_length: int = 10,
     survey_name: str = "deep drilling",
     science_program: str = SCIENCE_PROGRAM,
-    shadow_minutes: float = 30,
-    save: bool = True,
     save_filename: str = "ts_ddf_array.npz",
     save_path: str = None,
-    safety_mask_params: dict | None = None,
-) -> list[ScriptedSurvey]:
+    additional_hash_files: list[str] = [],
+) -> None:
     """Generate surveys for DDF observations.
 
     Parameters
     ----------
-    detailer_list : `list` [ `rubin_scheduler.scheduler.Detailer` ]
-        Detailers for DDFs. Default None.
-    nside : `int`
-        Nside for the survey. Used for mask basis functions.
     expt : `dict`  { `str` : `float` } or None
         Exposure time for DDF visits.
         Default of None uses defaults of EXPTIME/U_EXPTIME.
@@ -309,35 +316,11 @@ def gen_ddf_surveys(
         In years.
     science_program : `str`
         Name of the science program for the Survey.
-    shadow_minutes : `float`
-        The expected length of time for a series of DDF visits
-        to execute. Masks area on the sky which will enter unobservable
-        regions within shadow_minutes.
-    save : `bool`
-        Save the resulting ddf array for faster restore next time run.
     save_filename : `str`
         Filename of the saved ddf array.
     save_path : `str`
         Path to saved DDF file. If none, uses get_data_dir to look for it.
-    safety_mask_params : `dict` or None
-        A dictionary of additional kwargs to ass to the standard safety masks.
-
-    Returns
-    -------
-    ddf_surveys : `list` [ `ScriptedSurvey` ]
-        A list of Scripted surveys configured with pre-scheduled DDF visits.
     """
-    if safety_mask_params is None:
-        safety_mask_params = {}
-        safety_mask_params["nside"] = nside
-    else:
-        safety_mask_params = copy.deepcopy(safety_mask_params)
-    if (
-        "shadow_minutes" not in safety_mask_params
-        or safety_mask_params["shadow_minutes"] < shadow_minutes
-    ):
-        safety_mask_params["shadow_minutes"] = shadow_minutes
-
     if expt is None:
         expt = {
             "u": U_EXPTIME,
@@ -350,76 +333,43 @@ def gen_ddf_surveys(
     if nexp is None:
         nexp = {"u": U_NEXP, "g": NEXP, "r": NEXP, "i": NEXP, "z": NEXP, "y": NEXP}
 
-    # Potential pre-computed obs_array:
     if save_path is None:
         save_path = Path(get_data_dir(), "scheduler")
     # Potetial pre-computed obs_array:
-    pre_comp_file = Path(save_path, save_filename)
+    root, ext = save_filename.rsplit(".", maxsplit=1)
 
     # Hash of the files that define the DDF sequences, to identify
     # if the saved file comes from the same sources.
-    hash_digest = ddf_presched.calculate_checksum([__file__, ddf_presched.__file__])
-    passed_kwargs = {
-        "expt": expt,
-        "nexp": nexp,
-        "survey_start": survey_start,
-        "survey_length": survey_length,
-        "science_program": science_program,
-    }
+    hash_files = additional_hash_files + [__file__, ddf_presched.__file__]
+    print(f'hash files: {", ".join(hash_files)}')
+    hash_digest = ddf_presched.calculate_checksum(hash_files)
+    hash_object = hashlib.sha256()
+    hash_object.update(hash_digest)
+    hex_digest = hash_object.hexdigest()[:7]
+    pre_comp_file = Path(save_path, f"{root}_{hex_digest}.{ext}")
+    if pre_comp_file.exists():
+        print(f"Pre computed DDF file {pre_comp_file} already exists. Skipping...")
+        return
+    print(f"Generating DDF array: {hex_digest}")
+    ddf_dataframe = define_ddf_seq()
 
-    # Always try to load the pre-computed data.
-    obs_array = None
-    if os.path.exists(pre_comp_file):
-        loaded = np.load(pre_comp_file, allow_pickle=True)
-        if loaded["hash_digest"] == hash_digest:
-            # Check that all the kwargs match
-            kwargs_match = True
-            for key in passed_kwargs:
-                if passed_kwargs[key] != loaded[key]:
-                    kwargs_match = False
-
-            if kwargs_match:
-                logger.info("Loading DDF array from %s" % pre_comp_file)
-                obs_array_loaded = loaded["obs_array"]
-                # Convert back to a full ScheduledObservationArray?
-                obs_array = ScheduledObservationArray(obs_array_loaded.size)
-                for key in obs_array_loaded.dtype.names:
-                    obs_array[key] = obs_array_loaded[key]
-        loaded.close()
-
-    if obs_array is None:
-        logger.info("Generating DDF array")
-        ddf_dataframe = define_ddf_seq()
-
-        obs_array = ddf_presched.generate_ddf_scheduled_obs(
-            ddf_dataframe,
-            expt=expt,
-            nsnaps=nexp,
-            survey_start_mjd=survey_start,
-            survey_length=survey_length,
-            science_program=science_program,
-        )
-        # Save computation for later
-        if save:
-            logger.info("Saving DDF array to %s" % pre_comp_file)
-            np.savez(
-                pre_comp_file,
-                obs_array=obs_array.view(np.ndarray),
-                hash_digest=hash_digest,
-                expt=expt,
-                nexp=nexp,
-                survey_start=survey_start,
-                survey_length=survey_length,
-                science_program=science_program,
-            )
-
-    survey1 = ScriptedSurvey(
-        safety_masks(**safety_mask_params),
-        nside=nside,
-        detailers=detailer_list,
-        survey_name=survey_name,
-        before_twi_check=False,
+    obs_array = ddf_presched.generate_ddf_scheduled_obs(
+        ddf_dataframe,
+        expt=expt,
+        nsnaps=nexp,
+        survey_start_mjd=survey_start,
+        survey_length=survey_length,
+        science_program=science_program,
     )
-    survey1.set_script(obs_array)
 
-    return [survey1]
+    print(f"Saving DDF array to {pre_comp_file}.")
+    np.savez(
+        pre_comp_file,
+        obs_array=obs_array.view(np.ndarray),
+        hash_digest=hash_digest,
+        expt=expt,
+        nexp=nexp,
+        survey_start=survey_start,
+        survey_length=survey_length,
+        science_program=science_program,
+    )
