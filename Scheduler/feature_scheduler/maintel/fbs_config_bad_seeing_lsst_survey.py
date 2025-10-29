@@ -1,44 +1,54 @@
-import logging
-import sys
-from pathlib import Path
+# This file is part of ts_config_scheduler.
+#
+# Developed for Vera C. Rubin Observatory Telescope and Site Systems.
+# This product includes software developed by the LSST Project
+# (https://www.lsst.org).
+# See the COPYRIGHT file at the top-level directory of this distribution
+# for details of code ownership.
+#
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
+__all__ = ("get_scheduler",)
+
+import copy
+import hashlib
+import os
+import pathlib
 
 import lsst.ts.fbs.utils.maintel.lsst_surveys as lsst_surveys
 import lsst.ts.fbs.utils.maintel.roman_surveys as roman_surveys
 import lsst.ts.fbs.utils.maintel.too_surveys as too_surveys
 import numpy as np
 import rubin_scheduler.scheduler.detailers as detailers
+from lsst.ts.fbs.utils.maintel.lsst_surveys import safety_masks
+from rubin_scheduler.data import get_data_dir
 from rubin_scheduler.scheduler.schedulers import CoreScheduler
+from rubin_scheduler.scheduler.surveys import ScriptedSurvey
 from rubin_scheduler.scheduler.utils import (
     CurrentAreaMap,
     Footprint,
+    ScheduledObservationArray,
     make_rolling_footprints,
 )
 from rubin_scheduler.site_models import Almanac
 from rubin_scheduler.utils import SURVEY_START_MJD
 
-sys.path.append(str(Path(Path(__file__).parent.parent.parent, "ddf_gen")))
-from lsst_ddf_gen import gen_ddf_surveys  # noqa #402
 
-__all__ = ("get_scheduler",)
-
-logger = logging.getLogger(__name__)
-
-
-def get_scheduler(
-    save_ddf_array=False, save_ddf_array_path=None
-) -> tuple[int, CoreScheduler]:
+def get_scheduler() -> tuple[int, CoreScheduler]:
     """Construct the LSST survey scheduler.
 
     The parameters are not accessible when calling as 'config'.
-
-    Parameters
-    ----------
-    save_ddf_array : `bool`
-        Whether or not to save the ddf array to disk, if it needs to be
-        recalculated.
-    save_ddf_array_path : `str` or None
-        The directory in which to find or save the ddf_array.
-        The ddf_array file will be called `ddf_array
 
     Returns
     -------
@@ -74,6 +84,9 @@ def get_scheduler(
         "min_az_sunrise": 150,
         "max_az_sunrise": 250,
     }
+
+    safety_mask_params_ddf = copy.deepcopy(safety_mask_params)
+    safety_mask_params_ddf["shadow_minutes"] = 30
 
     # General parameters for standard pairs (-80/80 default)
     camera_rot_limits = (-60.0, 60.0)
@@ -181,48 +194,82 @@ def get_scheduler(
         safety_mask_params=safety_mask_params,
     )
 
-    # DDF survey detailers
-    u_detailer = detailers.BandNexp(bandname="u", nexp=u_nexp, exptime=u_exptime)
-    # Single pointing dither detailer
-    single_ddf_dither_detailer = detailers.DitherDetailer(
-        per_night=per_night, max_dither=max_dither
+    # Define the DDF surveys
+    ddfs = None
+    # This hash is provided by the script that
+    # generates the pre-computed data. Execute it and paste
+    # the provided value here.
+    expected_hex_digest = "12705e0"
+    pre_comp_file = (
+        pathlib.Path(get_data_dir())
+        / "scheduler"
+        / f"ts_ddf_array_{expected_hex_digest}.npz"
     )
-    dither_detailer = detailers.SplitDetailer(
-        single_ddf_dither_detailer, detailers.EuclidDitherDetailer(per_night=per_night)
-    )
-    ddf_detailers = [
+    if os.path.exists(pre_comp_file):
+        loaded = np.load(pre_comp_file, allow_pickle=True)
+        hash_object = hashlib.sha256()
+        hash_object.update(loaded["hash_digest"])
+        hex_digest = hash_object.hexdigest()[:7]
+        if hex_digest == expected_hex_digest:
+            obs_array_loaded = loaded["obs_array"]
+            obs_array = ScheduledObservationArray(obs_array_loaded.size)
+            for key in obs_array_loaded.dtype.names:
+                obs_array[key] = obs_array_loaded[key]
+        else:
+            raise RuntimeError(
+                f"Provided hash {expected_hex_digest} does not match loaded file hash {hex_digest}. "
+                "Reach out for support so they can help you generate the correct file."
+            )
+        loaded.close()
+    else:
+        raise RuntimeError(
+            f"Pre-computed DDF files {pre_comp_file} not available. "
+            "Reach out for support so they can help execute the script "
+            "that will generate this file before proceeding."
+        )
+
+    # Parameters for  DDF dithers
+    camera_ddf_rot_limit = 55  # Rotator limit for DDF (degrees) .. 75
+    camera_ddf_rot_per_visit = 3.0  # small rotation per visit (degrees)
+    max_dither = 0.2  # Max radial dither for DDF (degrees)
+    per_night = False  # Dither DDF per night (True) or per visit (False)
+
+    band_expt = {
+        "u": u_exptime,
+        "g": exptime,
+        "r": exptime,
+        "i": exptime,
+        "z": exptime,
+        "y": exptime,
+    }
+    band_nexp = {"u": u_nexp, "g": nexp, "r": nexp, "i": nexp, "z": nexp, "y": nexp}
+    u_nexp = band_nexp["u"]
+    u_exptime = band_expt["u"]
+
+    detailer_list = [
         detailers.CameraSmallRotPerObservationListDetailer(
             min_rot=-camera_ddf_rot_limit,
             max_rot=camera_ddf_rot_limit,
             per_visit_rot=camera_ddf_rot_per_visit,
         ),
-        dither_detailer,
-        u_detailer,
+        detailers.SplitDetailer(
+            detailers.DitherDetailer(per_night=per_night, max_dither=max_dither),
+            detailers.EuclidDitherDetailer(per_night=per_night),
+        ),
+        detailers.BandNexp(bandname="u", nexp=u_nexp, exptime=u_exptime),
         detailers.BandSortDetailer(),
         detailers.LabelRegionsAndDDFs(),
         detailers.TruncatePreTwiDetailer(),
     ]
-    # Define the DDF surveys
-    ddfs = gen_ddf_surveys(
-        detailer_list=ddf_detailers,
-        nside=nside,
-        expt={
-            "u": u_exptime,
-            "g": exptime,
-            "r": exptime,
-            "i": exptime,
-            "z": exptime,
-            "y": exptime,
-        },
-        nexp={"u": u_nexp, "g": nexp, "r": nexp, "i": nexp, "z": nexp, "y": nexp},
-        survey_start=survey_start_mjd,
-        science_program=science_program,
-        shadow_minutes=30,
-        save=save_ddf_array,
-        save_path=save_ddf_array_path,
-        safety_mask_params=safety_mask_params,
-    )
 
+    survey1 = ScriptedSurvey(
+        safety_masks(**safety_mask_params_ddf),
+        nside=nside,
+        detailers=detailer_list,
+        survey_name="deep drilling",
+        before_twi_check=False,
+    )
+    survey1.set_script(obs_array)
     # Define the greedy surveys (single-visit per call)
     greedy = lsst_surveys.gen_greedy_surveys(
         nside=nside,
@@ -373,17 +420,8 @@ def get_scheduler(
         band_to_filter=band_to_filter,
     )
 
-    logger.info(
-        f"Configured {len(surveys)} tiers of surveys in the baseline configuration."
-    )
-
     return nside, scheduler
 
 
 if __name__ == "config":
     nside, scheduler = get_scheduler()
-
-
-if __name__ == "__main__":
-    # This is only here as a way to save the DDF npz array to disk.
-    nside, scheduler = get_scheduler(save_ddf_array=True)
