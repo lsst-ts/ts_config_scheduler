@@ -31,7 +31,7 @@ if importlib.util.find_spec("rubin_scheduler") is None:
 @pytest.mark.parametrize(
     "fbs_config",
     [
-        fbs_config
+        pytest.param(fbs_config, id=fbs_config.name)
         for fbs_config in pathlib.PosixPath("Scheduler/feature_scheduler/").glob(
             "**/*.py"
         )
