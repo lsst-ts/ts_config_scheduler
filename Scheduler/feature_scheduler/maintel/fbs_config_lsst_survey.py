@@ -194,8 +194,6 @@ def get_scheduler() -> tuple[int, CoreScheduler]:
         safety_mask_params=safety_mask_params,
     )
 
-    # Define the DDF surveys
-    ddfs = None
     # This hash is provided by the script that
     # generates the pre-computed data. Execute it and paste
     # the provided value here.
@@ -262,14 +260,17 @@ def get_scheduler() -> tuple[int, CoreScheduler]:
         detailers.TruncatePreTwiDetailer(),
     ]
 
-    survey1 = ScriptedSurvey(
-        safety_masks(**safety_mask_params_ddf),
-        nside=nside,
-        detailers=detailer_list,
-        survey_name="deep drilling",
-        before_twi_check=False,
-    )
-    survey1.set_script(obs_array)
+    ddfs = [
+        ScriptedSurvey(
+            safety_masks(**safety_mask_params_ddf),
+            nside=nside,
+            detailers=detailer_list,
+            survey_name="deep drilling",
+            before_twi_check=False,
+        )
+    ]
+    ddfs[0].set_script(obs_array)
+
     # Define the greedy surveys (single-visit per call)
     greedy = lsst_surveys.gen_greedy_surveys(
         nside=nside,
