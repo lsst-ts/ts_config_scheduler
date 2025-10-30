@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 # This file is part of ts_config_scheduler.
 #
 # Developed for Vera C. Rubin Observatory Telescope and Site Systems.
@@ -19,31 +20,12 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
-import os
-import subprocess
-from pathlib import Path
+from gen_ddf_presched_observations import gen_ddf_presched_observations
 
-import pytest
-from rubin_scheduler.data import DEFAULT_DATA_URL, data_dict, download_rubin_data
+if __name__ == "__main__":
+    science_program = "BLOCK-408"
 
-
-@pytest.fixture(scope="session", autouse=True)
-def retrieve_rubin_data():
-    download_rubin_data(
-        data_dict(),
-        dirs=None,
-        print_versions_only=False,
-        update=True,
-        force=False,
-        url_base=DEFAULT_DATA_URL,
-        tdqm_disable=True,
+    gen_ddf_presched_observations(
+        science_program=science_program,
+        additional_hash_files=[__file__],
     )
-    ddf_gen_path = Path(__file__).parent.parent / "Scheduler" / "ddf_gen"
-    assert ddf_gen_path.exists()
-    print(f"Calculate ddf pre-computed files: {ddf_gen_path}:")
-    for ddf_gen in ddf_gen_path.glob("*.py"):
-        print(f"- {ddf_gen}")
-        if not os.access(ddf_gen, os.X_OK):
-            print(f"Skipping non-executable {ddf_gen}.")
-            continue
-        subprocess.run([str(ddf_gen)])
