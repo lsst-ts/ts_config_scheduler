@@ -33,8 +33,9 @@ import numpy as np
 import rubin_scheduler.scheduler.detailers as detailers
 from lsst.ts.fbs.utils.maintel.lsst_surveys import safety_masks
 from rubin_scheduler.data import get_data_dir
+from rubin_scheduler.scheduler import basis_functions
 from rubin_scheduler.scheduler.schedulers import CoreScheduler
-from rubin_scheduler.scheduler.surveys import ScriptedSurvey
+from rubin_scheduler.scheduler.surveys import GreedySurvey, ScriptedSurvey
 from rubin_scheduler.scheduler.utils import (
     CurrentAreaMap,
     Footprint,
@@ -401,11 +402,36 @@ def get_scheduler() -> tuple[int, CoreScheduler]:
         safety_mask_params=safety_mask_params,
     )
 
+    # CWFS - tier 0
+    cwfs_time_gap = 30.0  # Gap between cwfs images, in minutes
+    cwfs_block = "BLOCK-T630"
+    cwfs_survey_name = "cwfs"
+
+    cwfs_basis_functions = safety_masks(**safety_mask_params, shadow_minutes=0) + [
+        basis_functions.VisitGap(note=cwfs_survey_name, gap_min=cwfs_time_gap),
+        basis_functions.SlewtimeBasisFunction(bandname=None, nside=nside),
+    ]
+
+    cwfs_surveys = [
+        GreedySurvey(
+            cwfs_basis_functions,
+            np.ones(len(cwfs_basis_functions)),
+            nside=nside,
+            survey_name=cwfs_survey_name,
+            science_program=cwfs_block,
+            nexp=3,
+            detailers=[
+                detailers.LabelRegionsAndDDFs(),
+            ],
+        )
+    ]
+
     # Arrange the surveys in tiers.
     surveys = [
         toos,
         roman_micro,
         ddfs,
+        cwfs_surveys,
         template_surveys,
         long_gaps,
         blobs,
