@@ -208,8 +208,8 @@ def get_scheduler() -> tuple[int, CoreScheduler]:
 
     scheduler = CoreScheduler(surveys, nside=nside, band_to_filter=band_to_filter)
 
-    return (nside, scheduler)
+    return nside, scheduler
 
 
 if __name__ == "config":
-    (nside, scheduler) = get_scheduler()
+    nside, scheduler = get_scheduler()

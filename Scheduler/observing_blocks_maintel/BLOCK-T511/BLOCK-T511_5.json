@@ -11,7 +11,7 @@
             }
         },
         {
-            "name": "maintel/take_whitelight_flats_lsstcam.py",
+            "name": "maintel/take_calsys_flats_lsstcam.py",
             "standard": false,
             "parameters": {
                 "sequence_names": ["whitelight_y_10_M970L4"],
@@ -27,7 +27,7 @@
             }
         },
         {
-            "name": "maintel/take_whitelight_flats_lsstcam.py",
+            "name": "maintel/take_calsys_flats_lsstcam.py",
             "standard": false,
             "parameters": {
                 "sequence_names": ["whitelight_y_10_M970L4"],
@@ -43,7 +43,7 @@
             }
         },
         {
-            "name": "maintel/take_whitelight_flats_lsstcam.py",
+            "name": "maintel/take_calsys_flats_lsstcam.py",
             "standard": false,
             "parameters": {
                 "sequence_names": ["whitelight_y_10_M970L4"],
@@ -59,7 +59,7 @@
             }
         },
         {
-            "name": "maintel/take_whitelight_flats_lsstcam.py",
+            "name": "maintel/take_calsys_flats_lsstcam.py",
             "standard": false,
             "parameters": {
                 "sequence_names": ["whitelight_y_10_M970L4"],
@@ -75,7 +75,7 @@
             }
         },
         {
-            "name": "maintel/take_whitelight_flats_lsstcam.py",
+            "name": "maintel/take_calsys_flats_lsstcam.py",
             "standard": false,
             "parameters": {
                 "sequence_names": ["whitelight_y_10_M970L4"],
@@ -91,7 +91,7 @@
             }
         },
         {
-            "name": "maintel/take_whitelight_flats_lsstcam.py",
+            "name": "maintel/take_calsys_flats_lsstcam.py",
             "standard": false,
             "parameters": {
                 "sequence_names": ["whitelight_y_10_M970L4"],
@@ -107,7 +107,7 @@
             }
         },
         {
-            "name": "maintel/take_whitelight_flats_lsstcam.py",
+            "name": "maintel/take_calsys_flats_lsstcam.py",
             "standard": false,
             "parameters": {
                 "sequence_names": ["whitelight_y_10_M970L4"],
@@ -123,7 +123,7 @@
             }
         },
         {
-            "name": "maintel/take_whitelight_flats_lsstcam.py",
+            "name": "maintel/take_calsys_flats_lsstcam.py",
             "standard": false,
             "parameters": {
                 "sequence_names": ["whitelight_y_10_M970L4"],
@@ -139,7 +139,7 @@
             }
         },
         {
-            "name": "maintel/take_whitelight_flats_lsstcam.py",
+            "name": "maintel/take_calsys_flats_lsstcam.py",
             "standard": false,
             "parameters": {
                 "sequence_names": ["whitelight_y_10_M970L4"],
@@ -155,7 +155,7 @@
             }
         },
         {
-            "name": "maintel/take_whitelight_flats_lsstcam.py",
+            "name": "maintel/take_calsys_flats_lsstcam.py",
             "standard": false,
             "parameters": {
                 "sequence_names": ["whitelight_y_10_M970L4"],
@@ -171,7 +171,7 @@
             }
         },
         {
-            "name": "maintel/take_whitelight_flats_lsstcam.py",
+            "name": "maintel/take_calsys_flats_lsstcam.py",
             "standard": false,
             "parameters": {
                 "sequence_names": ["whitelight_y_10_M970L4"],
@@ -187,7 +187,7 @@
             }
         },
         {
-            "name": "maintel/take_whitelight_flats_lsstcam.py",
+            "name": "maintel/take_calsys_flats_lsstcam.py",
             "standard": false,
             "parameters": {
                 "sequence_names": ["whitelight_y_10_M970L4"],
@@ -203,7 +203,7 @@
             }
         },
         {
-            "name": "maintel/take_whitelight_flats_lsstcam.py",
+            "name": "maintel/take_calsys_flats_lsstcam.py",
             "standard": false,
             "parameters": {
                 "sequence_names": ["whitelight_y_10_M970L4"],
@@ -219,7 +219,7 @@
             }
         },
         {
-            "name": "maintel/take_whitelight_flats_lsstcam.py",
+            "name": "maintel/take_calsys_flats_lsstcam.py",
             "standard": false,
             "parameters": {
                 "sequence_names": ["whitelight_y_10_M970L4"],
@@ -235,7 +235,7 @@
             }
         },
         {
-            "name": "maintel/take_whitelight_flats_lsstcam.py",
+            "name": "maintel/take_calsys_flats_lsstcam.py",
             "standard": false,
             "parameters": {
                 "sequence_names": ["whitelight_y_10_M970L4"],
@@ -251,7 +251,7 @@
             }
         },
         {
-            "name": "maintel/take_whitelight_flats_lsstcam.py",
+            "name": "maintel/take_calsys_flats_lsstcam.py",
             "standard": false,
             "parameters": {
                 "sequence_names": ["whitelight_y_10_M970L4"],
@@ -267,7 +267,7 @@
             }
         },
         {
-            "name": "maintel/take_whitelight_flats_lsstcam.py",
+            "name": "maintel/take_calsys_flats_lsstcam.py",
             "standard": false,
             "parameters": {
                 "sequence_names": ["whitelight_y_10_M970L4"],
@@ -283,7 +283,7 @@
             }
         },
         {
-            "name": "maintel/take_whitelight_flats_lsstcam.py",
+            "name": "maintel/take_calsys_flats_lsstcam.py",
             "standard": false,
             "parameters": {
                 "sequence_names": ["whitelight_y_10_M970L4"],
@@ -299,7 +299,7 @@
             }
         },
         {
-            "name": "maintel/take_whitelight_flats_lsstcam.py",
+            "name": "maintel/take_calsys_flats_lsstcam.py",
             "standard": false,
             "parameters": {
                 "sequence_names": ["whitelight_y_10_M970L4"],
@@ -315,7 +315,7 @@
             }
         },
         {
-            "name": "maintel/take_whitelight_flats_lsstcam.py",
+            "name": "maintel/take_calsys_flats_lsstcam.py",
             "standard": false,
             "parameters": {
                 "sequence_names": ["whitelight_y_10_M970L4"],
@@ -331,7 +331,7 @@
             }
         },
         {
-            "name": "maintel/take_whitelight_flats_lsstcam.py",
+            "name": "maintel/take_calsys_flats_lsstcam.py",
             "standard": false,
             "parameters": {
                 "sequence_names": ["whitelight_y_10_M970L4"],
@@ -347,7 +347,7 @@
             }
         },
         {
-            "name": "maintel/take_whitelight_flats_lsstcam.py",
+            "name": "maintel/take_calsys_flats_lsstcam.py",
             "standard": false,
             "parameters": {
                 "sequence_names": ["whitelight_y_10_M970L4"],
@@ -363,7 +363,7 @@
             }
         },
         {
-            "name": "maintel/take_whitelight_flats_lsstcam.py",
+            "name": "maintel/take_calsys_flats_lsstcam.py",
             "standard": false,
             "parameters": {
                 "sequence_names": ["whitelight_y_10_M940L3"],
@@ -379,7 +379,7 @@
             }
         },
         {
-            "name": "maintel/take_whitelight_flats_lsstcam.py",
+            "name": "maintel/take_calsys_flats_lsstcam.py",
             "standard": false,
             "parameters": {
                 "sequence_names": ["whitelight_y_10_M940L3"],
@@ -395,7 +395,7 @@
             }
         },
         {
-            "name": "maintel/take_whitelight_flats_lsstcam.py",
+            "name": "maintel/take_calsys_flats_lsstcam.py",
             "standard": false,
             "parameters": {
                 "sequence_names": ["whitelight_y_10_M940L3"],
@@ -411,7 +411,7 @@
             }
         },
         {
-            "name": "maintel/take_whitelight_flats_lsstcam.py",
+            "name": "maintel/take_calsys_flats_lsstcam.py",
             "standard": false,
             "parameters": {
                 "sequence_names": ["whitelight_y_10_M940L3"],
@@ -427,7 +427,7 @@
             }
         },
         {
-            "name": "maintel/take_whitelight_flats_lsstcam.py",
+            "name": "maintel/take_calsys_flats_lsstcam.py",
             "standard": false,
             "parameters": {
                 "sequence_names": ["whitelight_y_10_M940L3"],
@@ -443,7 +443,7 @@
             }
         },
         {
-            "name": "maintel/take_whitelight_flats_lsstcam.py",
+            "name": "maintel/take_calsys_flats_lsstcam.py",
             "standard": false,
             "parameters": {
                 "sequence_names": ["whitelight_y_10_M940L3"],
@@ -459,7 +459,7 @@
             }
         },
         {
-            "name": "maintel/take_whitelight_flats_lsstcam.py",
+            "name": "maintel/take_calsys_flats_lsstcam.py",
             "standard": false,
             "parameters": {
                 "sequence_names": ["whitelight_y_10_M940L3"],
@@ -475,7 +475,7 @@
             }
         },
         {
-            "name": "maintel/take_whitelight_flats_lsstcam.py",
+            "name": "maintel/take_calsys_flats_lsstcam.py",
             "standard": false,
             "parameters": {
                 "sequence_names": ["whitelight_y_10_M940L3"],
@@ -491,7 +491,7 @@
             }
         },
         {
-            "name": "maintel/take_whitelight_flats_lsstcam.py",
+            "name": "maintel/take_calsys_flats_lsstcam.py",
             "standard": false,
             "parameters": {
                 "sequence_names": ["whitelight_y_10_M940L3"],
@@ -507,7 +507,7 @@
             }
         },
         {
-            "name": "maintel/take_whitelight_flats_lsstcam.py",
+            "name": "maintel/take_calsys_flats_lsstcam.py",
             "standard": false,
             "parameters": {
                 "sequence_names": ["whitelight_y_10_M940L3"],
@@ -523,7 +523,7 @@
             }
         },
         {
-            "name": "maintel/take_whitelight_flats_lsstcam.py",
+            "name": "maintel/take_calsys_flats_lsstcam.py",
             "standard": false,
             "parameters": {
                 "sequence_names": ["whitelight_y_10_M940L3"],
@@ -539,7 +539,7 @@
             }
         },
         {
-            "name": "maintel/take_whitelight_flats_lsstcam.py",
+            "name": "maintel/take_calsys_flats_lsstcam.py",
             "standard": false,
             "parameters": {
                 "sequence_names": ["whitelight_y_10_M940L3"],
@@ -555,7 +555,7 @@
             }
         },
         {
-            "name": "maintel/take_whitelight_flats_lsstcam.py",
+            "name": "maintel/take_calsys_flats_lsstcam.py",
             "standard": false,
             "parameters": {
                 "sequence_names": ["whitelight_y_10_M940L3"],
@@ -571,7 +571,7 @@
             }
         },
         {
-            "name": "maintel/take_whitelight_flats_lsstcam.py",
+            "name": "maintel/take_calsys_flats_lsstcam.py",
             "standard": false,
             "parameters": {
                 "sequence_names": ["whitelight_y_10_M940L3"],
@@ -587,7 +587,7 @@
             }
         },
         {
-            "name": "maintel/take_whitelight_flats_lsstcam.py",
+            "name": "maintel/take_calsys_flats_lsstcam.py",
             "standard": false,
             "parameters": {
                 "sequence_names": ["whitelight_y_10_M940L3"],
@@ -603,7 +603,7 @@
             }
         },
         {
-            "name": "maintel/take_whitelight_flats_lsstcam.py",
+            "name": "maintel/take_calsys_flats_lsstcam.py",
             "standard": false,
             "parameters": {
                 "sequence_names": ["whitelight_y_10_M940L3"],
@@ -619,7 +619,7 @@
             }
         },
         {
-            "name": "maintel/take_whitelight_flats_lsstcam.py",
+            "name": "maintel/take_calsys_flats_lsstcam.py",
             "standard": false,
             "parameters": {
                 "sequence_names": ["whitelight_y_10_M940L3"],
@@ -635,7 +635,7 @@
             }
         },
         {
-            "name": "maintel/take_whitelight_flats_lsstcam.py",
+            "name": "maintel/take_calsys_flats_lsstcam.py",
             "standard": false,
             "parameters": {
                 "sequence_names": ["whitelight_y_10_M940L3"],
@@ -651,7 +651,7 @@
             }
         },
         {
-            "name": "maintel/take_whitelight_flats_lsstcam.py",
+            "name": "maintel/take_calsys_flats_lsstcam.py",
             "standard": false,
             "parameters": {
                 "sequence_names": ["whitelight_y_10_M940L3"],
@@ -667,7 +667,7 @@
             }
         },
         {
-            "name": "maintel/take_whitelight_flats_lsstcam.py",
+            "name": "maintel/take_calsys_flats_lsstcam.py",
             "standard": false,
             "parameters": {
                 "sequence_names": ["whitelight_y_10_M940L3"],
@@ -683,7 +683,7 @@
             }
         },
         {
-            "name": "maintel/take_whitelight_flats_lsstcam.py",
+            "name": "maintel/take_calsys_flats_lsstcam.py",
             "standard": false,
             "parameters": {
                 "sequence_names": ["whitelight_y_10_M940L3"],

@@ -1,0 +1,68 @@
+{
+  "name": "BLOCK-T630",
+  "id": "a174ecf5-a159-4cb1-99f2-c3771ab123cf",
+  "program": "BLOCK-T630",
+  "constraints": [],
+  "scripts": [
+    {
+      "name": "maintel/disable_aos_closed_loop.py",
+      "standard": true,
+      "parameters": {}
+    },
+    {
+      "name": "maintel/track_target.py",
+      "standard": true,
+      "parameters": {
+        "slew_icrs": {
+          "ra": "$ra",
+          "dec": "$dec"
+        },
+        "rot_value": 0.0,
+        "rot_type": "PhysicalSky"
+      }
+    },
+    {
+      "name": "maintel/take_aos_sequence_lsstcam.py",
+      "standard": true,
+      "parameters": {
+        "exposure_time": 30.0,
+        "n_sequences": 1,
+        "mode": "TRIPLET",
+        "program": "$program",
+        "reason": "fov_non_uniformity_investigation"
+      }
+    },
+    {
+      "name": "maintel/enable_aos_closed_loop.py",
+      "standard": true,
+      "parameters": {
+        "truncation_index": 12,
+        "used_dofs": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          30,
+          31,
+          32,
+          33,
+          34
+        ]
+      }
+    }
+  ],
+  "configuration_schema": ""
+}

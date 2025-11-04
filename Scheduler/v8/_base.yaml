@@ -51,7 +51,7 @@ auxtel:
     stop_tracking_observing_script_name: auxtel/stop_tracking.py
   feature_scheduler_driver_configuration:
     observation_database_name: /home/saluser/rubin_sim_data/fbs_observation_database_auxtel.sql
-    scheduler_config: /net/obs-env/auto_base_packages/ts_config_ocs/Scheduler/feature_scheduler/fbs_config_test_anytime_survey.py
+    scheduler_config: /net/obs-env/auto_base_packages/ts_config_scheduler/Scheduler/feature_scheduler/fbs_config_test_anytime_survey.py
 maintel:
   instrument_name: MTCamera
   filter_band_mapping:
@@ -106,7 +106,7 @@ maintel:
     stop_tracking_observing_script_name: auxtel/stop_tracking.py
   feature_scheduler_driver_configuration:
     observation_database_name: /home/saluser/rubin_sim_data/fbs_observation_database_maintel.sql
-    scheduler_config: /net/obs-env/auto_base_packages/ts_config_ocs/Scheduler/feature_scheduler/fbs_config_test_anytime_survey.py
+    scheduler_config: /net/obs-env/auto_base_packages/ts_config_scheduler/Scheduler/feature_scheduler/fbs_config_test_anytime_survey.py
 ocs:
   telemetry:
     efd_name: base_efd
@@ -152,4 +152,4 @@ ocs:
     stop_tracking_observing_script_name: auxtel/stop_tracking.py
   feature_scheduler_driver_configuration:
     observation_database_name: /home/saluser/rubin_sim_data/fbs_observation_database_maintel.sql
-    scheduler_config: /net/obs-env/auto_base_packages/ts_config_ocs/Scheduler/feature_scheduler/fbs_config_test_anytime_survey.py
+    scheduler_config: /net/obs-env/auto_base_packages/ts_config_scheduler/Scheduler/feature_scheduler/fbs_config_test_anytime_survey.py

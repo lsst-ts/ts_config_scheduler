@@ -1,6 +1,6 @@
 s3instance: cp
 auxtel:
-  path_observing_blocks: /net/obs-env/auto_base_packages/ts_config_ocs/Scheduler/observing_blocks_auxtel/
+  path_observing_blocks: /net/obs-env/auto_base_packages/ts_config_scheduler/Scheduler/observing_blocks_auxtel/
   cmd_timeout: 60.0
   driver_configuration:
     parameters:
@@ -38,7 +38,7 @@ auxtel:
         - z
         filter_unmounted:
         - u
-        readout_time: 2.0
+        readout_time: 3.0
         shutter_time: 1.0
       dome:
         altitude_accel: 0.875
@@ -145,7 +145,7 @@ auxtel:
     efd_name: summit_efd
 maintel:
   cmd_timeout: 60.0
-  path_observing_blocks: /net/obs-env/auto_base_packages/ts_config_ocs/Scheduler/observing_blocks_maintel/
+  path_observing_blocks: /net/obs-env/auto_base_packages/ts_config_scheduler/Scheduler/observing_blocks_maintel/
   driver_configuration:
     parameters:
       new_moon_phase_threshold: 20.0
@@ -193,7 +193,7 @@ maintel:
         - z
         filter_unmounted:
         - u
-        readout_time: 2.0
+        readout_time: 3.0
         shutter_time: 1.0
       dome:
         altitude_accel: 0.875
@@ -299,7 +299,7 @@ maintel:
   telemetry:
     efd_name: summit_efd
 ocs:
-  path_observing_blocks: /net/obs-env/auto_base_packages/ts_config_ocs/Scheduler/observing_blocks_ocs/
+  path_observing_blocks: /net/obs-env/auto_base_packages/ts_config_scheduler/Scheduler/observing_blocks_ocs/
   cmd_timeout: 60.0
   driver_configuration:
     parameters:

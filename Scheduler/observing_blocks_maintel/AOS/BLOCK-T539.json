@@ -48,6 +48,15 @@
           0.5
         ]
       }
+    },
+    {
+      "name": "maintel/take_aos_sequence_lsstcam.py",
+      "standard": true,
+      "parameters": {
+        "program": "$program",
+        "reason": "final_image_after_closed_loop",
+        "exposure_time": 30.0
+      }
     }
   ],
   "configuration_schema": "$schema: http://json-schema.org/draft-07/schema#\ntitle: BLOCK-T539 configuration\ndescription: Configuration for BLOCK-T539.\ntype: object\nproperties:\n  rotation_angle:\n    description: Rotation angle.\n    type: number\n    default: 70\n  elevation:\n    description: Elevation angle.\n    type: number\n    default: 70\n  azimuth:\n    description: Azimuth angle.\n    type: number\n    default: 70\n  maxiter:\n    description: Number of iterations for the closed-loop.\n    type: number\n    default: 5\n  block_note:\n    description: A note about the block\n    type: string\n    default: \"closed_loop_22dof_trunc12\"\n  truncation:\n    description: Truncation index to use for the estimating the state.\n    type: number\n    default: 12\n"

@@ -71,7 +71,10 @@ def get_scripts_schema(
     return scripts_validators
 
 
-@pytest.mark.parametrize("instance", ["auxtel", "maintel", "ocs"])
+@pytest.mark.parametrize(
+    "instance",
+    [pytest.param(instance, id=instance) for instance in ("auxtel", "maintel", "ocs")],
+)
 def test_blocks_valid_json(instance: list[str]) -> None:
     blocks_dir = scheduler_config_path / f"observing_blocks_{instance}"
 
