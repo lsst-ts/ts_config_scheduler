@@ -10,8 +10,8 @@
         "component": "CBP",
         "cmd": "move",
         "parameters": {
-          "azimuth": 8.1,
-          "elevation": -37.5
+          "azimuth": 12,
+          "elevation": -28
         }
       }
     },
@@ -36,7 +36,7 @@
         "image_type": "FLAT",
         "program": "$program",
         "reason": "$reason",
-        "note": "920nm, deg=11.9, az=8.1, el=-37.5"
+        "note": "920nm, deg=11.9, az=12, el=-28"
       }
     },
     {
@@ -60,7 +60,7 @@
         "image_type": "FLAT",
         "program": "$program",
         "reason": "$reason",
-        "note": "940nm, deg=11.9, az=8.1, el=-37.5"
+        "note": "940nm, deg=11.9, az=12, el=-28"
       }
     },
     {
@@ -84,7 +84,7 @@
         "image_type": "FLAT",
         "program": "$program",
         "reason": "$reason",
-        "note": "960nm, deg=11.9, az=8.1, el=-37.5"
+        "note": "960nm, deg=11.9, az=12, el=-28"
       }
     },
     {
@@ -108,7 +108,7 @@
         "image_type": "FLAT",
         "program": "$program",
         "reason": "$reason",
-        "note": "980nm, deg=11.9, az=8.1, el=-37.5"
+        "note": "980nm, deg=11.9, az=12, el=-28"
       }
     },
     {
@@ -132,7 +132,7 @@
         "image_type": "FLAT",
         "program": "$program",
         "reason": "$reason",
-        "note": "1000nm, deg=11.9, az=8.1, el=-37.5"
+        "note": "1000nm, deg=11.9, az=12, el=-28"
       }
     },
     {
@@ -156,9 +156,9 @@
         "image_type": "FLAT",
         "program": "$program",
         "reason": "$reason",
-        "note": "1020nm, deg=11.9, az=8.1, el=-37.5"
+        "note": "1020nm, deg=11.9, az=12, el=-28"
       }
     }
   ],
-  "configuration_schema": "$schema: http://json-schema.org/draft-07/schema#\ntitle: BLOCK-T610 configuration\ndescription: Configuration for BLOCK-T564.\ntype: object\nproperties:\n  program:\n    description: Block number\n    type: string\n    default: \"BLOCK-T610\"\n  reason:\n    description: reason for the script\n    type: string\n    default: \"M2_baffle_stray_light_y_13deg\"\n"
+  "configuration_schema": "$schema: http://json-schema.org/draft-07/schema#\ntitle: BLOCK-T610 configuration\ndescription: Configuration for BLOCK-T564.\ntype: object\nproperties:\n  program:\n    description: Block number\n    type: string\n    default: \"BLOCK-T610\"\n  reason:\n    description: reason for the script\n    type: string\n    default: \"M2_baffle_stray_light_y_12deg\"\n"
 }
