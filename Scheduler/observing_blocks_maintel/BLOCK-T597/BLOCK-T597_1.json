@@ -10,8 +10,8 @@
         "component": "CBP",
         "cmd": "move",
         "parameters": {
-          "azimuth": 10.0,
-          "elevation": -34.5
+          "azimuth": 13,
+          "elevation": -29
         }
       }
     },
@@ -36,7 +36,7 @@
         "image_type": "FLAT",
         "program": "$program",
         "reason": "$reason",
-        "note": "920nm, deg=16.04, az=10.0, el=-34.5"
+        "note": "920nm, deg=16.04, az=13, el=-29"
       }
     },
     {
@@ -60,7 +60,7 @@
         "image_type": "FLAT",
         "program": "$program",
         "reason": "$reason",
-        "note": "930nm, deg=16.04, az=10.0, el=-34.5"
+        "note": "930nm, deg=16.04, az=13, el=-29"
       }
     },
     {
@@ -84,7 +84,7 @@
         "image_type": "FLAT",
         "program": "$program",
         "reason": "$reason",
-        "note": "940nm, deg=16.04, az=10.0, el=-34.5"
+        "note": "940nm, deg=16.04, az=13, el=-29"
       }
     },
     {
@@ -108,7 +108,7 @@
         "image_type": "FLAT",
         "program": "$program",
         "reason": "$reason",
-        "note": "950nm, deg=16.04, az=10.0, el=-34.5"
+        "note": "950nm, deg=16.04, az=13, el=-29"
       }
     },
     {
@@ -132,7 +132,7 @@
         "image_type": "FLAT",
         "program": "$program",
         "reason": "$reason",
-        "note": "960nm, deg=16.04, az=10.0, el=-34.5"
+        "note": "960nm, deg=16.04, az=13, el=-29"
       }
     },
     {
@@ -156,7 +156,7 @@
         "image_type": "FLAT",
         "program": "$program",
         "reason": "$reason",
-        "note": "970nm, deg=16.04, az=10.0, el=-34.5"
+        "note": "970nm, deg=16.04, az=13, el=-29"
       }
     },
     {
@@ -180,7 +180,7 @@
         "image_type": "FLAT",
         "program": "$program",
         "reason": "$reason",
-        "note": "980nm, deg=16.04, az=10.0, el=-34.5"
+        "note": "980nm, deg=16.04, az=13, el=-29"
       }
     },
     {
@@ -204,7 +204,7 @@
         "image_type": "FLAT",
         "program": "$program",
         "reason": "$reason",
-        "note": "990nm, deg=16.04, az=10.0, el=-34.5"
+        "note": "990nm, deg=16.04, az=13, el=-29"
       }
     },
         {
@@ -228,7 +228,7 @@
         "image_type": "FLAT",
         "program": "$program",
         "reason": "$reason",
-        "note": "1000nm, deg=16.04, az=10.0, el=-34.5"
+        "note": "1000nm, deg=16.04, az=13, el=-29"
       }
     },
     {
@@ -252,7 +252,7 @@
         "image_type": "FLAT",
         "program": "$program",
         "reason": "$reason",
-        "note": "1010nm, deg=16.04, az=10.0, el=-34.5"
+        "note": "1010nm, deg=16.04, az=13, el=-29"
       }
     },
     {
@@ -276,9 +276,9 @@
         "image_type": "FLAT",
         "program": "$program",
         "reason": "$reason",
-        "note": "1020nm, deg=16.04, az=10.0, el=-34.5"
+        "note": "1020nm, deg=16.04, az=13, el=-29"
       }
     }
   ],
-  "configuration_schema": "$schema: http://json-schema.org/draft-07/schema#\ntitle: BLOCK-T597 configuration\ndescription: Configuration for BLOCK-T597.\ntype: object\nproperties:\n  program:\n    description: Block number\n    type: string\n    default: \"BLOCK-T597_1\"\n  reason:\n    description: reason for the script\n    type: string\n    default: \"M2_baffle_stray_light_y\"\n"
+  "configuration_schema": "$schema: http://json-schema.org/draft-07/schema#\ntitle: BLOCK-T597 configuration\ndescription: Configuration for BLOCK-T597.\ntype: object\nproperties:\n  program:\n    description: Block number\n    type: string\n    default: \"BLOCK-T597_1\"\n  reason:\n    description: reason for the script\n    type: string\n    default: \"M2_baffle_stray_light_y_16deg\"\n"
 }
