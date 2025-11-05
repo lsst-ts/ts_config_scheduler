@@ -108,12 +108,6 @@ def get_scheduler() -> tuple[int, CoreScheduler]:
     # Seeing (FWHM in ") max for template
     fwhm_template_max = 1.3
 
-    # Parameters for  DDF dithers
-    camera_ddf_rot_limit = 55  # Rotator limit for DDF (degrees) .. 75
-    camera_ddf_rot_per_visit = 3.0  # small rotation per visit (degrees)
-    max_dither = 0.2  # Max radial dither for DDF (degrees)
-    per_night = False  # Dither DDF per night (True) or per visit (False)
-
     # Parameters for rolling cadence footprint definition
     nslice = 2  # N slices for rolling
     rolling_scale = 0.9  # Strength of rolling
@@ -146,6 +140,7 @@ def get_scheduler() -> tuple[int, CoreScheduler]:
     # Generate footprint over the sky
     sky = CurrentAreaMap(nside=nside)
     footprints_hp_array, labels = sky.return_maps()
+    footprints_hp_array["y"] = np.zeros(len(labels))
     # Identify pixels for rolling
     roll_indx = np.where((labels == "lowdust") | (labels == "virgo"))[0]
     roll_footprint = footprints_hp_array["r"] * 0
@@ -412,10 +407,14 @@ def get_scheduler() -> tuple[int, CoreScheduler]:
         basis_functions.SlewtimeBasisFunction(bandname=None, nside=nside),
     ]
 
+    cwfs_basis_weights = np.ones(len(cwfs_basis_functions))
+    # Make the FBS not run away from last pointing
+    cwfs_basis_weights[-1] = 100
+
     cwfs_surveys = [
         GreedySurvey(
             cwfs_basis_functions,
-            np.ones(len(cwfs_basis_functions)),
+            cwfs_basis_weights,
             nside=nside,
             survey_name=cwfs_survey_name,
             science_program=cwfs_block,
