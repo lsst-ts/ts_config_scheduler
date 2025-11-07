@@ -1,0 +1,126 @@
+{
+  "name": "BLOCK-T637",
+  "id": "",
+  "program": "BLOCK-T637",
+  "constraints": [],
+  "scripts": [{
+            "name": "maintel/track_target_and_take_image_lsstcam.py",
+            "standard": true,
+            "parameters": {
+                "ra": 58.9,
+                "dec": -49.32,
+                "rot_sky": 0,
+                "band_filter": "i_39",
+                "name": "EDFS",
+                "exp_times": [1],
+                "num_exp": 4,
+                "obs_time": 0,
+                "program": "BLOCK-T637",
+                "reason": "Exposure time scan",
+                "targetid": 0,
+                "note": "1s scan image"
+            }},
+            {
+            "name": "maintel/track_target_and_take_image_lsstcam.py",
+            "standard": true,
+            "parameters": {
+                "ra": 58.9,
+                "dec": -49.32,
+                "rot_sky": 0,
+                "band_filter": "i_39",
+                "name": "EDFS",
+                "exp_times": [15],
+                "num_exp": 4,
+                "obs_time": 0,
+                "program": "BLOCK-T637",
+                "reason": "Exposure time scan",
+                "targetid": 0,
+                "note": "15s scan image"
+            }},
+            {
+            "name": "maintel/track_target_and_take_image_lsstcam.py",
+            "standard": true,
+            "parameters": {
+                "ra": 58.9,
+                "dec": -49.32,
+                "rot_sky": 0,
+                "band_filter": "i_39",
+                "name": "EDFS",
+                "exp_times": [30],
+                "num_exp": 4,
+                "obs_time": 0,
+                "program": "BLOCK-T637",
+                "reason": "Exposure time scan",
+                "targetid": 0,
+                "note": "30s scan image"
+            }},
+    {
+            "name": "maintel/track_target_and_take_image_lsstcam.py",
+            "standard": true,
+            "parameters": {
+                "ra": 58.9,
+                "dec": -49.32,
+                "rot_sky": 0,
+                "band_filter": "i_39",
+                "name": "EDFS",
+                "exp_times": [60],
+                "num_exp": 4,
+                "obs_time": 0,
+                "program": "BLOCK-T637",
+                "reason": "Exposure time scan",
+                "targetid": 0,
+                "note": "60s scan image"
+            }},
+     {
+            "name": "maintel/track_target_and_take_image_lsstcam.py",
+            "standard": true,
+            "parameters": {
+                "ra": 58.9,
+                "dec": -49.32,
+                "rot_sky": 0,
+                "band_filter": "i_39",
+                "name": "EDFS",
+                "exp_times": [90],
+                "num_exp": 4,
+                "obs_time": 0,
+                "program": "BLOCK-T637",
+                "reason": "Exposure time scan",
+                "targetid": 0,
+                "note": "90s scan image"
+            }},
+    {
+            "name": "maintel/track_target_and_take_image_lsstcam.py",
+            "standard": true,
+            "parameters": {
+                "ra": 58.9,
+                "dec": -49.32,
+                "rot_sky": 0,
+                "band_filter": "i_39",
+                "name": "EDFS",
+                "exp_times": [120],
+                "num_exp": 4,
+                "obs_time": 0,
+                "program": "BLOCK-T637",
+                "reason": "Exposure time scan",
+                "targetid": 0,
+                "note": "120s scan image"
+            }},
+        {
+            "name": "maintel/track_target_and_take_image_lsstcam.py",
+            "standard": true,
+            "parameters": {
+                "ra": 58.9,
+                "dec": -49.32,
+                "rot_sky": 0,
+                "band_filter": "i_39",
+                "name": "EDFS",
+                "exp_times": [180],
+                "num_exp": 4,
+                "obs_time": 0,
+                "program": "BLOCK-T637",
+                "reason": "Exposure time scan",
+                "targetid": 0,
+                "note": "180s scan image"
+            }},
+      ]
+}
