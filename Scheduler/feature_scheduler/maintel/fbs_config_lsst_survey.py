@@ -140,7 +140,6 @@ def get_scheduler() -> tuple[int, CoreScheduler]:
     # Generate footprint over the sky
     sky = CurrentAreaMap(nside=nside)
     footprints_hp_array, labels = sky.return_maps()
-    footprints_hp_array["y"] = np.zeros(len(labels))
     # Identify pixels for rolling
     roll_indx = np.where((labels == "lowdust") | (labels == "virgo"))[0]
     roll_footprint = footprints_hp_array["r"] * 0
