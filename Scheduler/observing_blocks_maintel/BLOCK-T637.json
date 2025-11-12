@@ -10,7 +10,7 @@
             "parameters": {
                 "target_name": "EDFS",
                 "slew_icrs": {
-                    "ra": 58.9,
+                    "ra": 58.90,
                     "dec": -49.32
                 },
                 "rot_value": 0,
