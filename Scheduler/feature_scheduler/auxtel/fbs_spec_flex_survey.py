@@ -86,14 +86,16 @@ def get_scheduler():
     imaging_backup_targets = []
 
     # Spectroscopy priority - high priority spectroscopy - tier 1
-    spectroscopy_priority_targets = ["HD205905", "HD36780"]
+    spectroscopy_priority_targets = ["HD14943", "HD38949"]
     # Standard spectroscopy - tier 2
-    spectroscopy_standard_targets = ["HD185975", "HD14943", "HD2811"]
+    spectroscopy_standard_targets = ["HD185975", "HD2811"]
 
     # Backup spectroscopy - tier 3
     spectroscopy_backup_targets = [
         "HD185975",
         "HD2811",
+        "HD205905",
+        "HD38666",
     ]
 
     # CWFS - tier 0
