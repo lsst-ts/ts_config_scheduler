@@ -53,6 +53,7 @@ def get_scheduler():
         wind_speed_maximum = 30
 
     sun_alt_limit = -8
+    min_alt = 30
 
     # Detailers - for now, just simple image or spectroscopy detailers.
     image_detailers = [
@@ -86,14 +87,16 @@ def get_scheduler():
     imaging_backup_targets = []
 
     # Spectroscopy priority - high priority spectroscopy - tier 1
-    spectroscopy_priority_targets = ["HD205905", "HD36780"]
+    spectroscopy_priority_targets = ["HD14943", "HD38949"]
     # Standard spectroscopy - tier 2
-    spectroscopy_standard_targets = ["HD185975", "HD14943", "HD2811"]
+    spectroscopy_standard_targets = ["HD185975", "HD2811"]
 
     # Backup spectroscopy - tier 3
     spectroscopy_backup_targets = [
         "HD185975",
         "HD2811",
+        "HD205905",
+        "HD38666",
     ]
 
     # CWFS - tier 0
@@ -106,6 +109,7 @@ def get_scheduler():
         wind_speed_maximum=wind_speed_maximum,
         cwfs_block_name=cwfs_block,
         sun_alt_limit=sun_alt_limit,
+        min_alt=min_alt,
     )
 
     # Go through imaging targets ('auxtel_imaging_targets' category)
@@ -135,6 +139,7 @@ def get_scheduler():
                     wind_speed_maximum=wind_speed_maximum,
                     survey_detailers=image_detailers,
                     include_slew=False,
+                    min_alt=min_alt,
                 )
             )
         if target_name in imaging_backup_targets:
@@ -159,6 +164,7 @@ def get_scheduler():
                     survey_detailers=image_detailers,
                     include_slew=True,
                     sun_alt_limit=sun_alt_limit,
+                    min_alt=min_alt,
                 )
             )
 
@@ -203,6 +209,7 @@ def get_scheduler():
                         nfields=0,
                         avoid_wind=avoid_wind,
                         sun_alt_limit=sun_alt_limit,
+                        min_alt=min_alt,
                     )
                 )
             if target_name in spectroscopy_standard_targets:
@@ -216,6 +223,7 @@ def get_scheduler():
                         nfields=0,
                         avoid_wind=avoid_wind,
                         sun_alt_limit=sun_alt_limit,
+                        min_alt=min_alt,
                     )
                 )
             if target_name in spectroscopy_backup_targets:
@@ -242,6 +250,7 @@ def get_scheduler():
                         nfields=0,
                         avoid_wind=avoid_wind,
                         sun_alt_limit=sun_alt_limit,
+                        min_alt=min_alt,
                     )
                 )
 
