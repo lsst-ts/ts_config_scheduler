@@ -10,6 +10,37 @@
       "parameters": {
         "program": "$program",
         "reason": "initial_alignment",
+        "note": "closed_loop_hexapods_10dof_trunc5",
+        "exposure_time": 30.0,
+        "max_iter": 2,
+        "az": "$azimuth",
+        "el": "$elevation",
+        "rot": "$rotation_angle",
+        "used_dofs": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9
+        ],
+        "truncation_index": 5,
+        "gain_sequence": [
+          0.8,
+          0.8
+        ]
+      }
+    },
+    {
+      "name": "maintel/close_loop_lsstcam.py",
+      "standard": true,
+      "parameters": {
+        "program": "$program",
+        "reason": "initial_alignment",
         "note": "$block_note",
         "exposure_time": 30.0,
         "max_iter": "$maxiter",
