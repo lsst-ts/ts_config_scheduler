@@ -90,7 +90,7 @@ def get_scheduler():
         basis = [
             VisitGap(
                 note=additional_images_survey_target_name,
-                gap_min=(i + 1) * 20.0,
+                gap_min=(i + 1) * 30.0,
                 band_names=["r"],
             ),
             AltAzShadowMaskBasisFunction(min_alt=26.0, max_alt=85.0, nside=nside),
