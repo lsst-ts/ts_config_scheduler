@@ -275,6 +275,7 @@ def get_scheduler() -> tuple[int, CoreScheduler]:
     # Hack the DDF obs_array to only use desired_band
     # But also modify scheduler note so we know these are different
     obs_array["band"] = desired_band
+    obs_array["exptime"] = 30
     obs_array["scheduler_note"] = obs_array["scheduler_note"] + " mod1"
     ddfs[0].set_script(obs_array)
 
