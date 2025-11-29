@@ -1,6 +1,6 @@
-# This file is part of ts_config_ocs.
+# This file is part of ts_config_scheduler.
 #
-# Developed for the Vera Rubin Observatory Telescope and Site System.
+# Developed for Vera C. Rubin Observatory Telescope and Site Systems.
 # This product includes software developed by the LSST Project
 # (https://www.lsst.org).
 # See the COPYRIGHT file at the top-level directory of this distribution
@@ -19,31 +19,49 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
-from rubin_scheduler.scheduler.basis_functions import (
-    AltAzShadowMaskBasisFunction,
-    AvoidDirectWind,
-    VisitGap,
-)
-from rubin_scheduler.scheduler.detailers import AltAz2RaDecDetailer, ZeroRotDetailer
+__all__ = ("get_scheduler",)
+
+import copy
+import hashlib
+import os
+import pathlib
+
+import lsst.ts.fbs.utils.maintel.lsst_surveys as lsst_surveys
+import lsst.ts.fbs.utils.maintel.roman_surveys as roman_surveys
+import numpy as np
+import rubin_scheduler.scheduler.detailers as detailers
+from lsst.ts.fbs.utils.maintel.lsst_surveys import safety_masks
+from rubin_scheduler.data import get_data_dir
+from rubin_scheduler.scheduler import basis_functions
 from rubin_scheduler.scheduler.schedulers import CoreScheduler
-from rubin_scheduler.scheduler.surveys import FieldAltAzSurvey
+from rubin_scheduler.scheduler.surveys import GreedySurvey, ScriptedSurvey
+from rubin_scheduler.scheduler.utils import (
+    CurrentAreaMap,
+    Footprint,
+    ScheduledObservationArray,
+    make_rolling_footprints,
+)
+from rubin_scheduler.site_models import Almanac
+from rubin_scheduler.utils import SURVEY_START_MJD
 
 
-def get_scheduler():
-    """Construct feature based scheduler.
+def get_scheduler() -> tuple[int, CoreScheduler]:
+    """Construct a limited LSST survey scheduler for chaos monkey mode.
+
+    The parameters are not accessible when calling as 'config'.
 
     Returns
     -------
-    nside : int
+    nside : `int`
         Healpix map resolution.
-    scheduler : Core_scheduler
+    scheduler : `rubin_scheduler.scheduler.scheduler.CoreScheduler`
         Feature based scheduler.
     """
-
     nside = 32
+    science_program = "BLOCK-T648"
+    # Configured to only use one bandpass.
+    desired_band = "i"
 
-    # Mapping from band to filter from
-    # obs_lsst/python/lsst/obs/lsst/filters.py
     band_to_filter = {
         "u": "u_24",
         "g": "g_6",
@@ -52,110 +70,393 @@ def get_scheduler():
         "z": "z_20",
         "y": "y_10",
     }
+    exptime = 30
+    nexp = 1
+    u_exptime = 38
+    u_nexp = 1
 
-    survey_name = "BLOCK-T648"
-    wind_speed_maximum = 20.0
+    survey_start_mjd = SURVEY_START_MJD
 
-    # FYI: There is a bug in the calculation of
-    # the sky angle for the FieldAltAzSurvey which
-    # which forced me to hard code the sky angle in
-    # the observation block. If you change the az
-    # you will have to update the sky angle in the
-    # BLOCK-T644 block.
-    regular_images_survey_alt = 60
-    regular_images_survey_az = 270
+    # Safety mask parameters - constraints on all survey pointings
+    # Generally shadow_minutes value is set by the survey, but can
+    # be set here as well (will be overwritten if too short for survey).
+    safety_mask_params = {
+        "nside": nside,
+        "wind_speed_maximum": 40,
+        "time_to_sunrise": 3.0,
+        "min_az_sunrise": 150,
+        "max_az_sunrise": 250,
+        "min_alt": 40,
+    }
 
-    regular_images_survey_basis_functions = [
-        AltAzShadowMaskBasisFunction(min_alt=26.0, max_alt=85.0, nside=nside),
-        AvoidDirectWind(wind_speed_maximum=wind_speed_maximum, nside=nside),
-    ]
-    regular_images_survey_sequence = ["r"]
-    regular_images_survey_nvisits = dict(r=1)
-    regular_images_survey_exptimes = dict(r=30.0)
-    regular_images_survey_nexps = dict(r=1)
-    regular_images_survey_target_name = (
-        f"Field{regular_images_survey_az}_{regular_images_survey_alt}"
+    safety_mask_params_ddf = copy.deepcopy(safety_mask_params)
+    safety_mask_params_ddf["shadow_minutes"] = 30
+
+    # General parameters for standard pairs (-80/80 default)
+    camera_rot_limits = (-5.0, 5.0)
+    pair_time = 33
+    # Adjust these as the expected timing updates.
+    # -- sets the expected time and number of pointings in a 'blob'.
+    blob_survey_params = {
+        "slew_approx": 8,
+        "band_change_approx": 140.0,
+        "read_approx": 3.07,
+        "flush_time": 30.0,
+        "smoothing_kernel": None,
+        "nside": nside,
+        "seed": 42,
+        "dither": "night",
+        "twilight_scale": True,
+    }
+    # Seeing (FWHM in ") max for template
+    fwhm_template_max = 1.3
+
+    # Parameters for rolling cadence footprint definition
+    nslice = 2  # N slices for rolling
+    rolling_scale = 0.9  # Strength of rolling
+    rolling_uniform = True  # Should we use the uniform rolling flag
+
+    # Parameters for long-gaps survey
+    nights_off = 3  # For long gaps
+
+    # Parameters for near-sun twilight microsurvey
+    ei_night_pattern = 4  # see pattern_dict below
+    ei_bands = "riz"  # Bands to use for earth interior observations.
+    ei_repeat = 4  # Number of times to repeat earth interior observations
+    ei_am = 2.5  # Earth interior airmass limit
+    ei_elong_req = 45.0  # Solar elongation required for inner solar system
+    ei_area_req = 0.0  # Sky area required before attempting inner solar system
+
+    # Mapping for night_pattern for near-sun twilight / twi_blob surveys.
+    pattern_dict = {
+        1: [True],
+        2: [True, False],
+        3: [True, False, False],
+        4: [True, False, False, False],
+        5: [True, True, True, True, False, False, False, False],
+        6: [True, True, True, False, False, False, False],
+        7: [True, True, False, False, False, False],
+    }
+    ei_night_pattern = pattern_dict[ei_night_pattern]
+    reverse_ei_night_pattern = [not val for val in ei_night_pattern]
+
+    # Generate footprint over the sky
+    sky = CurrentAreaMap(nside=nside)
+    footprints_hp_array, labels = sky.return_maps()
+    # Identify pixels for rolling
+    roll_indx = np.where((labels == "lowdust") | (labels == "virgo"))[0]
+    roll_footprint = footprints_hp_array["r"] * 0
+    roll_footprint[roll_indx] = 1
+
+    footprints_hp = {}
+    for key in footprints_hp_array.dtype.names:
+        footprints_hp[key] = footprints_hp_array[key]
+
+    # Set up a mask to contain some surveys within this region
+    footprint_mask = footprints_hp["r"] * 0
+    footprint_mask[np.where(footprints_hp["r"] > 0)] = 1
+
+    # And now remove all except desired band
+    # This restricted to one band for AOS
+    for band in footprints_hp:
+        if band != desired_band:
+            footprints_hp[band] *= 0
+
+    # Use the Almanac to find the position of the sun at the start of survey
+    almanac = Almanac(mjd_start=survey_start_mjd)
+    sun_moon_info = almanac.get_sun_moon_positions(survey_start_mjd)
+    sun_ra_start = sun_moon_info["sun_RA"].copy()
+
+    # Define the rolling footprint
+    footprints = make_rolling_footprints(
+        fp_hp=footprints_hp,
+        mjd_start=survey_start_mjd,
+        sun_ra_start=sun_ra_start,
+        nslice=nslice,
+        scale=rolling_scale,
+        nside=nside,
+        wfd_indx=roll_indx,
+        order_roll=1,
+        n_cycles=3,
+        uniform=rolling_uniform,
     )
-    regular_images_survey_science_program = "BLOCK-T644"
-    regular_images_survey_detailers = [
-        AltAz2RaDecDetailer(),
-        ZeroRotDetailer(),
+
+    # Define the long-gaps (triplets) survey.
+    gaps_night_pattern = [True] + [False] * nights_off
+    long_gaps = lsst_surveys.gen_long_gaps_survey(
+        footprints=footprints,
+        nside=nside,
+        camera_rot_limits=camera_rot_limits,
+        exptime=exptime,
+        nexp=nexp,
+        u_exptime=u_exptime,
+        u_nexp=u_nexp,
+        pair_time=pair_time,
+        night_pattern=gaps_night_pattern,
+        science_program=science_program,
+        blob_survey_params=blob_survey_params,
+        safety_mask_params=safety_mask_params,
+    )
+
+    # This hash is provided by the script that
+    # generates the pre-computed data. Execute it and paste
+    # the provided value here.
+    expected_hex_digest = "fedbbbe"
+    pre_comp_file = (
+        pathlib.Path(get_data_dir())
+        / "scheduler"
+        / f"ts_ddf_array_{expected_hex_digest}.npz"
+    )
+    if os.path.exists(pre_comp_file):
+        loaded = np.load(pre_comp_file, allow_pickle=True)
+        hash_object = hashlib.sha256()
+        hash_object.update(loaded["hash_digest"])
+        hex_digest = hash_object.hexdigest()[:7]
+        if hex_digest == expected_hex_digest:
+            obs_array_loaded = loaded["obs_array"]
+            obs_array = ScheduledObservationArray(obs_array_loaded.size)
+            for key in obs_array_loaded.dtype.names:
+                obs_array[key] = obs_array_loaded[key]
+        else:
+            raise RuntimeError(
+                f"Provided hash {expected_hex_digest} does not match loaded file hash {hex_digest}. "
+                "Reach out for support so they can help you generate the correct file."
+            )
+        loaded.close()
+    else:
+        raise RuntimeError(
+            f"Pre-computed DDF files {pre_comp_file} not available. "
+            "Reach out for support so they can help execute the script "
+            "that will generate this file before proceeding."
+        )
+
+    # Parameters for  DDF dithers
+    camera_ddf_rot_limit = 5  # Rotator limit for DDF (degrees) .. 75
+    camera_ddf_rot_per_visit = 1.5  # small rotation per visit (degrees) .. 3
+    max_dither = 0.2  # Max radial dither for DDF (degrees)
+    per_night = False  # Dither DDF per night (True) or per visit (False)
+
+    band_expt = {
+        "u": u_exptime,
+        "g": exptime,
+        "r": exptime,
+        "i": exptime,
+        "z": exptime,
+        "y": exptime,
+    }
+    band_nexp = {"u": u_nexp, "g": nexp, "r": nexp, "i": nexp, "z": nexp, "y": nexp}
+    u_nexp = band_nexp["u"]
+    u_exptime = band_expt["u"]
+
+    detailer_list = [
+        detailers.CameraSmallRotPerObservationListDetailer(
+            min_rot=-camera_ddf_rot_limit,
+            max_rot=camera_ddf_rot_limit,
+            per_visit_rot=camera_ddf_rot_per_visit,
+        ),
+        detailers.SplitDetailer(
+            detailers.DitherDetailer(per_night=per_night, max_dither=max_dither),
+            detailers.EuclidDitherDetailer(per_night=per_night),
+        ),
+        detailers.BandNexp(bandname="u", nexp=u_nexp, exptime=u_exptime),
+        detailers.BandSortDetailer(),
+        detailers.LabelRegionsAndDDFs(),
+        detailers.TruncatePreTwiDetailer(),
     ]
 
-    additional_images_survey_target_name = (
-        f"AdditionalField{regular_images_survey_az}_{regular_images_survey_alt}"
+    ddfs = [
+        ScriptedSurvey(
+            safety_masks(**safety_mask_params_ddf),
+            nside=nside,
+            detailers=detailer_list,
+            survey_name="deep drilling",
+            before_twi_check=False,
+        )
+    ]
+    # Hack the DDF obs_array to only use desired_band
+    # But also modify scheduler note so we know these are different
+    obs_array["band"] = desired_band
+    obs_array["exptime"] = 30
+    obs_array["science_program"] = science_program
+    obs_array["scheduler_note"] = obs_array["scheduler_note"] + " chaos"
+    ddfs[0].set_script(obs_array)
+
+    # Define the greedy surveys (single-visit per call)
+    greedy = lsst_surveys.gen_greedy_surveys(
+        nside=nside,
+        camera_rot_limits=camera_rot_limits,
+        exptime=exptime,
+        nexp=nexp,
+        u_exptime=u_exptime,
+        u_nexp=u_nexp,
+        footprints=footprints,
+        science_program=science_program,
+        safety_mask_params=safety_mask_params,
     )
-    additional_images_survey_basis_functions_list = []
+
+    # Define the near-sun twilight microsurvey
+    neo_micro = lsst_surveys.generate_twilight_near_sun(
+        nside=nside,
+        night_pattern=ei_night_pattern,
+        max_airmass=ei_am,
+        camera_rot_limits=camera_rot_limits,
+        footprint_mask=footprint_mask,
+        min_area=ei_area_req,
+        bands=ei_bands,
+        n_repeat=ei_repeat,
+        max_elong=ei_elong_req,
+        science_program=science_program,
+        safety_mask_params=safety_mask_params,
+    )
+
+    # Define the alternate twilight (and other short time period)
+    # short 15minute pairs
+    short_blobs = lsst_surveys.generate_short_blobs(
+        footprints=footprints,
+        nside=nside,
+        camera_rot_limits=camera_rot_limits,
+        exptime=exptime,
+        nexp=nexp,
+        pair_time=15.0,
+        repeat_weight=0,
+        night_pattern=reverse_ei_night_pattern,
+        science_program=science_program,
+        blob_survey_params=blob_survey_params,
+        safety_mask_params=safety_mask_params,
+    )
+
+    # Define the standard pairs during the night survey
+    blobs = lsst_surveys.generate_blobs(
+        footprints=footprints,
+        nside=nside,
+        camera_rot_limits=camera_rot_limits,
+        exptime=exptime,
+        nexp=nexp,
+        u_exptime=u_exptime,
+        u_nexp=u_nexp,
+        pair_time=pair_time,
+        survey_start=survey_start_mjd,
+        science_program=science_program,
+        blob_survey_params=blob_survey_params,
+        safety_mask_params=safety_mask_params,
+    )
+
+    # Define Roman scripted surveys
+    roman_micro = [
+        roman_surveys.gen_roman_on_season(
+            nside=nside,
+            max_dither=max_dither,
+            per_night=per_night,
+            camera_ddf_rot_limit=camera_ddf_rot_limit,
+            camera_ddf_rot_per_visit=camera_ddf_rot_per_visit,
+            exptimes=exptime,
+            nexps=nexp,
+            science_program=science_program,
+            safety_mask_params=safety_mask_params,
+        ),
+        roman_surveys.gen_roman_off_season(
+            nside=nside,
+            max_dither=max_dither,
+            per_night=per_night,
+            camera_ddf_rot_limit=camera_ddf_rot_limit,
+            camera_ddf_rot_per_visit=camera_ddf_rot_per_visit,
+            exptimes=exptime,
+            nexps=nexp,
+            science_program=science_program,
+            safety_mask_params=safety_mask_params,
+        ),
+    ]
+
+    # Create template footprint.
+    # Similar to rolling footprint but tracks visits separately
+    # (only good seeing visits) and no rolling.
+    template_fp = Footprint(survey_start_mjd, sun_ra_start, nside=nside)
+    for key in footprints_hp_array.dtype.names:
+        tmp_fp = np.where(footprints_hp_array[key] > 0, 1, np.nan)
+        template_fp.set_footprint(key, tmp_fp)
+    # Define template surveys
+    template_surveys = lsst_surveys.gen_template_surveys(
+        template_fp,
+        nside=nside,
+        seeing_fwhm_max=fwhm_template_max,
+        camera_rot_limits=camera_rot_limits,
+        exptime=exptime,
+        nexp=nexp,
+        u_exptime=u_exptime,
+        u_nexp=u_nexp,
+        n_obs_template={"u": 4, "g": 4, "r": 4, "i": 4, "z": 4, "y": 4},
+        science_program=science_program,
+        blob_survey_params=blob_survey_params,
+        safety_mask_params=safety_mask_params,
+    )
+
+    # Removed ToO surveys.
+
+    # Add chaos monkey perturbation blocks.
+    perturbation_time_gap = 30.0  # Gap between perturbation applications.
+    perturbation_base_block = "BLOCK-T648"
+    perturbation_survey_name_base = "chaos_block"
+
+    perturbation_surveys = []
+
     for i in range(6):
-        basis = [
-            VisitGap(
-                note=additional_images_survey_target_name,
-                gap_min=(i + 1) * 20.0,
-                band_names=["r"],
+        perturbation_block = f"{perturbation_base_block}_{i+1}"
+        perturbation_survey_name = f"{perturbation_survey_name_base}_{i+1}"
+        perturbation_basis_functions = safety_masks(
+            **safety_mask_params, shadow_minutes=0
+        ) + [
+            basis_functions.VisitGap(
+                note=perturbation_survey_name,
+                gap_min=(i + 1) * perturbation_time_gap,
             ),
-            AltAzShadowMaskBasisFunction(min_alt=26.0, max_alt=85.0, nside=nside),
-            AvoidDirectWind(wind_speed_maximum=wind_speed_maximum, nside=nside),
+            basis_functions.SlewtimeBasisFunction(bandname=None, nside=nside),
         ]
 
-        additional_images_survey_basis_functions_list.append(basis)
-    additional_images_survey_science_programs = [f"BLOCK-T644_{i+1}" for i in range(6)]
-    additional_images_survey_detailers = [
-        AltAz2RaDecDetailer(),
-        ZeroRotDetailer(),
-    ]
-
-    regular_images_survey = FieldAltAzSurvey(
-        basis_functions=regular_images_survey_basis_functions,
-        alt=regular_images_survey_alt,
-        az=regular_images_survey_az,
-        sequence=regular_images_survey_sequence,
-        nvisits=regular_images_survey_nvisits,
-        exptimes=regular_images_survey_exptimes,
-        nexps=regular_images_survey_nexps,
-        ignore_obs=None,
-        survey_name=survey_name,
-        target_name=regular_images_survey_target_name,
-        science_program=regular_images_survey_science_program,
-        observation_reason="FixedChaosMonkeyTest",
-        scheduler_note=regular_images_survey_target_name,
-        nside=nside,
-        flush_pad=30.0,
-        detailers=regular_images_survey_detailers,
-    )
-
-    additional_surveys = []
-
-    for i in range(6):
-        survey = FieldAltAzSurvey(
-            basis_functions=additional_images_survey_basis_functions_list[i],
-            alt=regular_images_survey_alt,
-            az=regular_images_survey_az,
-            sequence=regular_images_survey_sequence,
-            nvisits=regular_images_survey_nvisits,
-            exptimes=regular_images_survey_exptimes,
-            nexps=regular_images_survey_nexps,
-            ignore_obs=None,
-            survey_name=survey_name,
-            target_name=additional_images_survey_target_name,
-            science_program=additional_images_survey_science_programs[i],
-            observation_reason="FixedChaosMonkeyTest",
-            scheduler_note=additional_images_survey_target_name,
-            nside=nside,
-            flush_pad=30.0,
-            detailers=additional_images_survey_detailers,
+        perturbation_basis_weights = np.ones(len(perturbation_basis_functions))
+        # Make the FBS not run away from last pointing
+        perturbation_basis_weights[-1] = 100
+        perturbation_surveys.append(
+            GreedySurvey(
+                perturbation_basis_functions,
+                perturbation_basis_weights,
+                nside=nside,
+                survey_name=perturbation_survey_name,
+                observation_reason=perturbation_survey_name,
+                scheduler_note=perturbation_survey_name,
+                science_program=perturbation_block,
+                # We will try to tell the FBS how  long it takes to actually
+                # acquire these visits here, for more accurate sims.
+                nexp=1,
+                exptime=60,
+                bandname=desired_band,
+                detailers=[
+                    detailers.LabelRegionsAndDDFs(),
+                ],
+            )
         )
-        additional_surveys.append(survey)
 
-    survey_lists = [
-        additional_surveys,
-        [regular_images_survey],
+    # Arrange the surveys in tiers.
+    surveys = [
+        perturbation_surveys,
+        roman_micro,
+        ddfs,
+        template_surveys,
+        long_gaps,
+        blobs,
+        short_blobs,
+        neo_micro,
+        greedy,
     ]
 
-    return nside, CoreScheduler(
-        survey_lists,
+    # Combine into CoreScheduler
+    scheduler = CoreScheduler(
+        surveys,
         nside=nside,
+        survey_start_mjd=survey_start_mjd,
         band_to_filter=band_to_filter,
     )
+
+    return nside, scheduler
 
 
 if __name__ == "config":
