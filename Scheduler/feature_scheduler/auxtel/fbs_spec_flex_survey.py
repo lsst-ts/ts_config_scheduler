@@ -53,7 +53,7 @@ def get_scheduler():
         wind_speed_maximum = 30
 
     sun_alt_limit = -8
-    min_alt = 30
+    min_alt = 27
 
     # Detailers - for now, just simple image or spectroscopy detailers.
     image_detailers = [
@@ -87,7 +87,7 @@ def get_scheduler():
     imaging_backup_targets = []
 
     # Spectroscopy priority - high priority spectroscopy - tier 1
-    spectroscopy_priority_targets = ["HD14943", "HD38949"]
+    spectroscopy_priority_targets = ["HD2811", "HD38949"]
     # Standard spectroscopy - tier 2
     spectroscopy_standard_targets = ["HD185975", "HD2811"]
 
