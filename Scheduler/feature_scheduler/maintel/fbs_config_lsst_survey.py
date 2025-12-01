@@ -84,14 +84,13 @@ def get_scheduler() -> tuple[int, CoreScheduler]:
         "time_to_sunrise": 3.0,
         "min_az_sunrise": 150,
         "max_az_sunrise": 250,
-        "min_alt": 40,
     }
 
     safety_mask_params_ddf = copy.deepcopy(safety_mask_params)
     safety_mask_params_ddf["shadow_minutes"] = 30
 
     # General parameters for standard pairs (-80/80 default)
-    camera_rot_limits = (-5.0, 5.0)
+    camera_rot_limits = (-75.0, 75.0)
     pair_time = 33
     # Adjust these as the expected timing updates.
     # -- sets the expected time and number of pointings in a 'blob'.
@@ -153,13 +152,6 @@ def get_scheduler() -> tuple[int, CoreScheduler]:
     # Set up a mask to contain some surveys within this region
     footprint_mask = footprints_hp["r"] * 0
     footprint_mask[np.where(footprints_hp["r"] > 0)] = 1
-
-    # And now remove all except desired band
-    # This restricted to one band for AOS
-    desired_band = "z"
-    for band in footprints_hp:
-        if band != desired_band:
-            footprints_hp[band] *= 0
 
     # Use the Almanac to find the position of the sun at the start of survey
     almanac = Almanac(mjd_start=survey_start_mjd)
@@ -230,8 +222,8 @@ def get_scheduler() -> tuple[int, CoreScheduler]:
         )
 
     # Parameters for  DDF dithers
-    camera_ddf_rot_limit = 5  # Rotator limit for DDF (degrees) .. 75
-    camera_ddf_rot_per_visit = 1.5  # small rotation per visit (degrees) .. 3
+    camera_ddf_rot_limit = 75  # Rotator limit for DDF (degrees) .. 75
+    camera_ddf_rot_per_visit = 3  # small rotation per visit (degrees) .. 3
     max_dither = 0.2  # Max radial dither for DDF (degrees)
     per_night = False  # Dither DDF per night (True) or per visit (False)
 
@@ -272,11 +264,6 @@ def get_scheduler() -> tuple[int, CoreScheduler]:
             before_twi_check=False,
         )
     ]
-    # Hack the DDF obs_array to only use desired_band
-    # But also modify scheduler note so we know these are different
-    obs_array["band"] = desired_band
-    obs_array["exptime"] = 30
-    obs_array["scheduler_note"] = obs_array["scheduler_note"] + " mod1"
     ddfs[0].set_script(obs_array)
 
     # Define the greedy surveys (single-visit per call)
@@ -438,7 +425,7 @@ def get_scheduler() -> tuple[int, CoreScheduler]:
             # acquire these visits here, for more accurate sims.
             nexp=3,
             exptime=50 * 3,
-            bandname=desired_band,
+            bandname="r",
             detailers=[
                 detailers.LabelRegionsAndDDFs(),
             ],
