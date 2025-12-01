@@ -85,6 +85,8 @@ def get_scheduler() -> tuple[int, CoreScheduler]:
         "min_az_sunrise": 150,
         "max_az_sunrise": 250,
         "min_alt": 40,
+        "min_az": 110,
+        "max_az": 300,
     }
 
     safety_mask_params_ddf = copy.deepcopy(safety_mask_params)
