@@ -83,6 +83,8 @@ def get_scheduler() -> tuple[int, CoreScheduler]:
         "time_to_sunrise": 3.0,
         "min_az_sunrise": 150,
         "max_az_sunrise": 250,
+        "min_az": 110,
+        "max_az": 300,
     }
 
     safety_mask_params_ddf = copy.deepcopy(safety_mask_params)
