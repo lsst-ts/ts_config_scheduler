@@ -13,7 +13,7 @@
                 },
                 "target_name": "EUTELSAT_117W_B",
                 "rot_value": 0.0,
-                "rot_type": "PhysicalSky"
+                "rot_type": "Sky"
             }
         },
         {
