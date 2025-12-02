@@ -79,8 +79,6 @@ def get_scheduler() -> tuple[int, CoreScheduler]:
         "min_az_sunrise": 150,
         "max_az_sunrise": 250,
         "min_alt": 40,
-        "min_az": 110,
-        "max_az": 300,
     }
 
     # General parameters for standard pairs (-80/80 default)
