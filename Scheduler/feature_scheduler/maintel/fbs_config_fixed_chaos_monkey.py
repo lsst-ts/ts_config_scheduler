@@ -19,9 +19,8 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
+import lsst.ts.fbs.utils.maintel.lsst_surveys as lsst_surveys
 from rubin_scheduler.scheduler.basis_functions import (
-    AltAzShadowMaskBasisFunction,
-    AvoidDirectWind,
     VisitGap,
 )
 from rubin_scheduler.scheduler.detailers import AltAz2RaDecDetailer, ZeroRotDetailer
@@ -53,8 +52,7 @@ def get_scheduler():
         "y": "y_10",
     }
 
-    survey_name = "BLOCK-T644"
-    wind_speed_maximum = 20.0
+    science_program = "BLOCK-T644"
 
     # FYI: There is a bug in the calculation of
     # the sky angle for the FieldAltAzSurvey which
@@ -65,10 +63,7 @@ def get_scheduler():
     regular_images_survey_alt = 60
     regular_images_survey_az = 270
 
-    regular_images_survey_basis_functions = [
-        AltAzShadowMaskBasisFunction(min_alt=26.0, max_alt=85.0, nside=nside),
-        AvoidDirectWind(wind_speed_maximum=wind_speed_maximum, nside=nside),
-    ]
+    regular_images_survey_basis_functions = lsst_surveys.safety_masks(shadow_minutes=10)
     regular_images_survey_sequence = ["r"]
     regular_images_survey_nvisits = dict(r=1)
     regular_images_survey_exptimes = dict(r=30.0)
@@ -76,30 +71,8 @@ def get_scheduler():
     regular_images_survey_target_name = (
         f"Field{regular_images_survey_az}_{regular_images_survey_alt}"
     )
-    regular_images_survey_science_program = "BLOCK-T644"
+    regular_images_survey_science_program = science_program
     regular_images_survey_detailers = [
-        AltAz2RaDecDetailer(),
-        ZeroRotDetailer(),
-    ]
-
-    additional_images_survey_target_name = (
-        f"AdditionalField{regular_images_survey_az}_{regular_images_survey_alt}"
-    )
-    additional_images_survey_basis_functions_list = []
-    for i in range(6):
-        basis = [
-            VisitGap(
-                note=additional_images_survey_target_name,
-                gap_min=(i + 1) * 30.0,
-                band_names=["r"],
-            ),
-            AltAzShadowMaskBasisFunction(min_alt=26.0, max_alt=85.0, nside=nside),
-            AvoidDirectWind(wind_speed_maximum=wind_speed_maximum, nside=nside),
-        ]
-
-        additional_images_survey_basis_functions_list.append(basis)
-    additional_images_survey_science_programs = [f"BLOCK-T644_{i+1}" for i in range(6)]
-    additional_images_survey_detailers = [
         AltAz2RaDecDetailer(),
         ZeroRotDetailer(),
     ]
@@ -113,7 +86,7 @@ def get_scheduler():
         exptimes=regular_images_survey_exptimes,
         nexps=regular_images_survey_nexps,
         ignore_obs=None,
-        survey_name=survey_name,
+        survey_name=regular_images_survey_target_name,
         target_name=regular_images_survey_target_name,
         science_program=regular_images_survey_science_program,
         observation_reason="FixedChaosMonkeyTest",
@@ -123,11 +96,28 @@ def get_scheduler():
         detailers=regular_images_survey_detailers,
     )
 
-    additional_surveys = []
+    perturbation_surveys = []
 
     for i in range(6):
+        perturbation_survey_name = (
+            f"AdditionalField{regular_images_survey_az}_"
+            f"{regular_images_survey_alt}_{i+1}"
+        )
+        perturbation_basis_functions = lsst_surveys.safety_masks(shadow_minutes=10)
+        perturbation_basis_functions.append(
+            VisitGap(
+                note=perturbation_survey_name,
+                gap_min=(i + 1) * 30.0,
+                band_names=["r"],
+            )
+        )
+        perturbation_block = f"BLOCK_T644_{i+1}"
+        perturbation_survey_detailers = [
+            AltAz2RaDecDetailer(),
+            ZeroRotDetailer(),
+        ]
         survey = FieldAltAzSurvey(
-            basis_functions=additional_images_survey_basis_functions_list[i],
+            basis_functions=perturbation_basis_functions,
             alt=regular_images_survey_alt,
             az=regular_images_survey_az,
             sequence=regular_images_survey_sequence,
@@ -135,19 +125,19 @@ def get_scheduler():
             exptimes=regular_images_survey_exptimes,
             nexps=regular_images_survey_nexps,
             ignore_obs=None,
-            survey_name=survey_name,
-            target_name=additional_images_survey_target_name,
-            science_program=additional_images_survey_science_programs[i],
-            observation_reason="FixedChaosMonkeyTest",
-            scheduler_note=additional_images_survey_target_name,
+            survey_name=perturbation_survey_name,
+            target_name=regular_images_survey_target_name,
+            science_program=perturbation_block,
+            observation_reason=f"FixedChaosMonkeyTest_perturbation_{i+1}",
+            scheduler_note=perturbation_survey_name,
             nside=nside,
             flush_pad=30.0,
-            detailers=additional_images_survey_detailers,
+            detailers=perturbation_survey_detailers,
         )
-        additional_surveys.append(survey)
+        perturbation_surveys.append(survey)
 
     survey_lists = [
-        additional_surveys,
+        perturbation_surveys,
         [regular_images_survey],
     ]
 
