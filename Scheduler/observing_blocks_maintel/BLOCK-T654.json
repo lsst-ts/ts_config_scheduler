@@ -12,8 +12,8 @@
                     "el": 29.098
                 },
                 "target_name": "EUTELSAT_117W_B",
-                "rot_value": 0.0,
-                "rot_type": "Sky"
+                "rot_value": 38.5,
+                "rot_type": "PhysicalSky"
             }
         },
         {
