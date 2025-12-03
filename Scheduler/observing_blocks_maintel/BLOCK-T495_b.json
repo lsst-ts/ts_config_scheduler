@@ -28,23 +28,10 @@
             }
         },
         {
-            "name": "maintel/mtdome/slew_dome.py",
+            "name": "maintel/mtdome/park_dome.py",
             "standard": true,
             "parameters": {
-                "az": 328,
                 "ignore": ["mtm1m3","mtm2","mtaos","mthexapod_1","mthexapod_2","mtmount","mtptg","mtrotator"]
-            }
-        },
-        {
-            "name": "run_command.py",
-            "standard": true,
-            "parameters": {
-                "component": "MTDome",
-                "cmd": "stop",
-                "parameters":{
-                    "engageBrakes": true,
-                    "subSystemIds": 1
-                }  
             }
         },
         {
