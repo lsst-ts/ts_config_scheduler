@@ -24,7 +24,7 @@
         "image_type": "FLAT",
         "program": "$program",
         "reason": "$reason",
-        "note": "810nm, deg=11.9, az=8.1, el=-37.5"
+        "note": "810nm, deg=11.9, az=12, el=-28"
       }
     },
     {
@@ -48,7 +48,7 @@
         "image_type": "FLAT",
         "program": "$program",
         "reason": "$reason",
-        "note": "830nm, deg=11.9, az=8.1, el=-37.5"
+        "note": "830nm, deg=11.9, az=12, el=-28"
       }
     },
     {
@@ -72,7 +72,7 @@
         "image_type": "FLAT",
         "program": "$program",
         "reason": "$reason",
-        "note": "850nm, deg=11.9, az=8.1, el=-37.5"
+        "note": "840nm, deg=11.9, az=12, el=-28"
       }
     },
     {
@@ -96,7 +96,7 @@
         "image_type": "FLAT",
         "program": "$program",
         "reason": "$reason",
-        "note": "870nm, deg=11.9, az=8.1, el=-37.5"
+        "note": "870nm, deg=11.9, az=12, el=-28"
       }
     },
     {
@@ -120,7 +120,7 @@
         "image_type": "FLAT",
         "program": "$program",
         "reason": "$reason",
-        "note": "890nm, deg=11.9, az=8.1, el=-37.5"
+        "note": "890nm, deg=11.9, az=12, el=-28"
       }
     },
     {
@@ -144,7 +144,7 @@
         "image_type": "FLAT",
         "program": "$program",
         "reason": "$reason",
-        "note": "910nm, deg=11.9, az=8.1, el=-37.5"
+        "note": "910nm, deg=11.9, az=12, el=-28"
       }
     }
   ],
