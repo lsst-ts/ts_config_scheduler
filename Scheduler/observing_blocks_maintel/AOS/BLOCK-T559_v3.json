@@ -1,6 +1,6 @@
 {
-  "name": "BLOCK-T559_v2",
-  "program": "BLOCK-T559_v2",
+  "name": "BLOCK-T559_v3",
+  "program": "BLOCK-T559_v3",
   "constraints": [],
   "scripts": [
     {
@@ -23,14 +23,13 @@
       }
     },
     {
-      "name": "maintel/take_image_lsstcam.py",
+      "name": "maintel/take_aos_sequence_lsstcam.py",
       "standard": true,
       "parameters": {
         "program": "$program",
         "reason": "filter_offsets_test",
-        "exp_times": "$exptime",
-        "image_type": "ACQ",
-        "nimages": 3
+        "exposure_time": "$exptime",
+        "n_sequences": 2
       }
     },
     {
@@ -53,14 +52,13 @@
       }
     },
     {
-      "name": "maintel/take_image_lsstcam.py",
+      "name": "maintel/take_aos_sequence_lsstcam.py",
       "standard": true,
       "parameters": {
         "program": "$program",
         "reason": "filter_offsets_test",
-        "exp_times": "$exptime",
-        "image_type": "ACQ",
-        "nimages": 3
+        "exposure_time": "$exptime",
+        "n_sequences": 2
       }
     },
     {
@@ -83,14 +81,13 @@
       }
     },
     {
-      "name": "maintel/take_image_lsstcam.py",
+      "name": "maintel/take_aos_sequence_lsstcam.py",
       "standard": true,
       "parameters": {
         "program": "$program",
         "reason": "filter_offsets_test",
-        "exp_times": "$exptime",
-        "image_type": "ACQ",
-        "nimages": 3
+        "exposure_time": "$exptime",
+        "n_sequences": 2
       }
     },
     {
@@ -113,14 +110,13 @@
       }
     },
     {
-      "name": "maintel/take_image_lsstcam.py",
+      "name": "maintel/take_aos_sequence_lsstcam.py",
       "standard": true,
       "parameters": {
         "program": "$program",
         "reason": "filter_offsets_test",
-        "exp_times": "$exptime",
-        "image_type": "ACQ",
-        "nimages": 3
+        "exposure_time": "$exptime",
+        "n_sequences": 2
       }
     },
     {
@@ -143,14 +139,13 @@
       }
     },
     {
-      "name": "maintel/take_image_lsstcam.py",
+      "name": "maintel/take_aos_sequence_lsstcam.py",
       "standard": true,
       "parameters": {
         "program": "$program",
         "reason": "filter_offsets_test",
-        "exp_times": "$exptime",
-        "image_type": "ACQ",
-        "nimages": 3
+        "exposure_time": "$exptime",
+        "n_sequences": 2
       }
     },
     {
@@ -173,14 +168,13 @@
       }
     },
     {
-      "name": "maintel/take_image_lsstcam.py",
+      "name": "maintel/take_aos_sequence_lsstcam.py",
       "standard": true,
       "parameters": {
         "program": "$program",
         "reason": "filter_offsets_test",
-        "exp_times": "$exptime",
-        "image_type": "ACQ",
-        "nimages": 3
+        "exposure_time": "$exptime",
+        "n_sequences": 2
       }
     },
     {
@@ -203,14 +197,13 @@
       }
     },
     {
-      "name": "maintel/take_image_lsstcam.py",
+      "name": "maintel/take_aos_sequence_lsstcam.py",
       "standard": true,
       "parameters": {
         "program": "$program",
         "reason": "filter_offsets_test",
-        "exp_times": "$exptime",
-        "image_type": "ACQ",
-        "nimages": 3
+        "exposure_time": "$exptime",
+        "n_sequences": 2
       }
     },
     {
@@ -233,14 +226,13 @@
       }
     },
     {
-      "name": "maintel/take_image_lsstcam.py",
+      "name": "maintel/take_aos_sequence_lsstcam.py",
       "standard": true,
       "parameters": {
         "program": "$program",
         "reason": "filter_offsets_test",
-        "exp_times": "$exptime",
-        "image_type": "ACQ",
-        "nimages": 3
+        "exposure_time": "$exptime",
+        "n_sequences": 2
       }
     },
     {
@@ -263,14 +255,13 @@
       }
     },
     {
-      "name": "maintel/take_image_lsstcam.py",
+      "name": "maintel/take_aos_sequence_lsstcam.py",
       "standard": true,
       "parameters": {
         "program": "$program",
         "reason": "filter_offsets_test",
-        "exp_times": "$exptime",
-        "image_type": "ACQ",
-        "nimages": 3
+        "exposure_time": "$exptime",
+        "n_sequences": 2
       }
     }
   ],
