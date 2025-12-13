@@ -63,7 +63,9 @@ def get_scheduler():
     regular_images_survey_alt = 60
     regular_images_survey_az = 270
 
-    regular_images_survey_basis_functions = lsst_surveys.safety_masks(shadow_minutes=10)
+    regular_images_survey_basis_functions = lsst_surveys.safety_masks(
+        apply_time_limited_shadow=False, shadow_minutes=10
+    )
     regular_images_survey_sequence = ["r"]
     regular_images_survey_nvisits = dict(r=1)
     regular_images_survey_exptimes = dict(r=30.0)
@@ -103,7 +105,9 @@ def get_scheduler():
             f"AdditionalField{regular_images_survey_az}_"
             f"{regular_images_survey_alt}_{i+1}"
         )
-        perturbation_basis_functions = lsst_surveys.safety_masks(shadow_minutes=10)
+        perturbation_basis_functions = lsst_surveys.safety_masks(
+            apply_time_limited_shadow=False, shadow_minutes=10
+        )
         perturbation_basis_functions.append(
             VisitGap(
                 note=perturbation_survey_name,

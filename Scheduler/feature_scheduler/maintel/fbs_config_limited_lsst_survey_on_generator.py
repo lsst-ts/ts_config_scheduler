@@ -59,7 +59,7 @@ def get_scheduler() -> tuple[int, CoreScheduler]:
         Feature based scheduler.
     """
     nside = 32
-    science_program = "BLOCK-417"
+    science_program = "BLOCK-416"
     band_to_filter = {
         "u": "u_24",
         "g": "g_6",
@@ -81,17 +81,18 @@ def get_scheduler() -> tuple[int, CoreScheduler]:
     safety_mask_params = {
         "nside": nside,
         "wind_speed_maximum": 40,
-        "apply_time_limited_shadow": False,
+        "apply_time_limited_shadow": True,
         "time_to_sunrise": 3.0,
         "min_az_sunrise": 150,
         "max_az_sunrise": 250,
+        "min_alt": 40,
     }
 
     safety_mask_params_ddf = copy.deepcopy(safety_mask_params)
     safety_mask_params_ddf["shadow_minutes"] = 30
 
     # General parameters for standard pairs (-80/80 default)
-    camera_rot_limits = (-65.0, 65.0)
+    camera_rot_limits = (-5.0, 5.0)
     pair_time = 33
     # Adjust these as the expected timing updates.
     # -- sets the expected time and number of pointings in a 'blob'.
@@ -230,8 +231,8 @@ def get_scheduler() -> tuple[int, CoreScheduler]:
         )
 
     # Parameters for  DDF dithers
-    camera_ddf_rot_limit = 65  # Rotator limit for DDF (degrees) .. 75
-    camera_ddf_rot_per_visit = 3.0  # small rotation per visit (degrees) .. 3
+    camera_ddf_rot_limit = 5  # Rotator limit for DDF (degrees) .. 75
+    camera_ddf_rot_per_visit = 1.5  # small rotation per visit (degrees) .. 3
     max_dither = 0.2  # Max radial dither for DDF (degrees)
     per_night = False  # Dither DDF per night (True) or per visit (False)
 
@@ -277,7 +278,6 @@ def get_scheduler() -> tuple[int, CoreScheduler]:
     obs_array["band"] = desired_band
     obs_array["exptime"] = 30
     obs_array["scheduler_note"] = obs_array["scheduler_note"] + " mod1"
-    obs_array["science_program"] = science_program
     ddfs[0].set_script(obs_array)
 
     # Define the greedy surveys (single-visit per call)
