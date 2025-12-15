@@ -73,11 +73,9 @@
             "name": "maintel/make_lsstcam_calibrations.py",
             "standard": false,
             "parameters": {
-                "script_mode": "BIAS_DARK",
+                "script_mode": "BIAS",
                 "n_bias": 3,
                 "n_discard_bias": 1,
-                "n_dark": 0,
-                "n_discard_dark": 0,
                 "exp_times_dark": [15, 15, 15, 15],
                 "wait_between_exposures": 30,
                 "generate_calibrations": true,
@@ -90,9 +88,7 @@
             "name": "maintel/make_lsstcam_calibrations.py",
             "standard": false,
             "parameters": {
-                "script_mode": "BIAS_DARK",
-                "n_bias": 0,
-                "n_discard_bias": 0,
+                "script_mode": "DARK",
                 "n_dark": 3,
                 "n_discard_dark": 1,
                 "exp_times_dark": [30, 30, 30, 30],
