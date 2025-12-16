@@ -63,7 +63,7 @@ def get_scheduler() -> tuple[int, CoreScheduler]:
         "wind_speed_maximum": 40,
         "apply_time_limited_shadow": False,
         "min_alt": 30,
-        "shadow_minutes": 10,
+        "shadow_minutes": 9,
     }
 
     # Get path for template pointing information
