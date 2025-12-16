@@ -70,6 +70,29 @@
             }
         },
         {
+            "name": "maintel/setup_calsys_flats.py",
+            "standard": false,
+            "parameters":{
+                "ignore": "$ignore"
+            }
+        },
+        {
+            "name": "maintel/take_calsys_flats_lsstcam.py",
+            "standard": false,
+            "parameters": {
+                "sequence_names": "$sequence_names",
+                "reason": "min_daily_flat",
+                "program": "$program"
+            }
+        },
+        {
+            "name": "maintel/park_calibration_projector.py",
+            "standard": false,
+            "parameters": {
+                "ignore": "$ignore"
+            }
+        },
+        {
             "name": "maintel/make_lsstcam_calibrations.py",
             "standard": false,
             "parameters": {
@@ -100,26 +123,33 @@
             }
         },
         {
-            "name": "maintel/setup_calsys_flats.py",
-            "standard": false,
-            "parameters":{
-                "ignore": "$ignore"
-            }
-        },
-        {
-            "name": "maintel/take_calsys_flats_lsstcam.py",
+            "name": "maintel/make_lsstcam_calibrations.py",
             "standard": false,
             "parameters": {
-                "sequence_names": "$sequence_names",
-                "reason": "min_daily_flat",
+                "script_mode": "BIAS",
+                "n_bias": 20,
+                "n_discard_bias": 1,
+                "exp_times_dark": [15, 15, 15, 15,15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15],
+                "wait_between_exposures": 30,
+                "generate_calibrations": true,
+                "do_verify": true,
+                "reason": "daily_bias",
                 "program": "$program"
             }
         },
         {
-            "name": "maintel/park_calibration_projector.py",
+            "name": "maintel/make_lsstcam_calibrations.py",
             "standard": false,
             "parameters": {
-                "ignore": "$ignore"
+                "script_mode": "DARK",
+                "n_dark": 100,
+                "n_discard_dark": 1,
+                "exp_times_dark": [30],
+                "wait_between_exposures": 0,
+                "generate_calibrations": true,
+                "do_verify": true,
+                "reason": "daily_dark",
+                "program": "$program"
             }
         },
         {
