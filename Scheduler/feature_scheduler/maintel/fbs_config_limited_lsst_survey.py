@@ -448,6 +448,7 @@ def get_scheduler() -> tuple[int, CoreScheduler]:
 
     # Arrange the surveys in tiers.
     surveys = [
+        greedy,
         toos,
         roman_micro,
         ddfs,
@@ -457,7 +458,6 @@ def get_scheduler() -> tuple[int, CoreScheduler]:
         blobs,
         short_blobs,
         neo_micro,
-        greedy,
     ]
 
     # Combine into CoreScheduler
