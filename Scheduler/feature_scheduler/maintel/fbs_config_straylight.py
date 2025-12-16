@@ -61,11 +61,9 @@ def get_scheduler() -> tuple[int, CoreScheduler]:
     safety_mask_params = {
         "nside": nside,
         "wind_speed_maximum": 40,
-        "time_to_sunrise": 3.0,
-        "min_az_sunrise": 150,
-        "max_az_sunrise": 250,
-        "min_alt": 40,
-        "shadow_minutes": 20,
+        "apply_time_limited_shadow": False,
+        "min_alt": 30,
+        "shadow_minutes": 9,
     }
 
     # Get path for template pointing information
