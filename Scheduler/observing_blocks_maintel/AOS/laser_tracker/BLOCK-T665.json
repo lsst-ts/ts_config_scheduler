@@ -1,0 +1,281 @@
+{
+  "name": "BLOCK-T665",
+  "id": "ff9c3f9c-e11e-4242-9ea5-c1e54ba74ecc",
+  "program": "BLOCK-T665",
+  "constraints": [],
+  "scripts": [
+    {
+      "name": "maintel/point_azel.py",
+      "standard": true,
+      "parameters": {
+        "program": "$program",
+        "reason": "hexapod_repeatability_test",
+        "az": "$azimuth",
+        "el": "$elevation",
+        "rot_tel": 0.0,
+        "ignore": [
+          "mtdome",
+          "mtdometrajectory"
+        ]
+      }
+    },
+    {
+      "name": "maintel/laser_tracker/measure.py",
+      "standard": true,
+      "parameters": {
+        "program": "$program",
+        "reason": "hexapod_repeatability_test",
+        "target": "Camera"
+      }
+    },
+    {
+      "name": "maintel/apply_dof.py",
+      "standard": true,
+      "parameters": {
+        "Cam_dz": -690.642
+      }
+    },
+    {
+      "name": "maintel/point_azel.py",
+      "standard": true,
+      "parameters": {
+        "program": "$program",
+        "reason": "hexapod_repeatability_test",
+        "az": "$azimuth",
+        "el": "$elevation",
+        "rot_tel": 0.0,
+        "ignore": [
+          "mtdome",
+          "mtdometrajectory"
+        ]
+      }
+    },
+    {
+      "name": "maintel/laser_tracker/measure.py",
+      "standard": true,
+      "parameters": {
+        "program": "$program",
+        "reason": "hexapod_repeatability_test",
+        "target": "Camera"
+      }
+    },
+    {
+      "name": "maintel/apply_dof.py",
+      "standard": true,
+      "parameters": {
+        "Cam_dz": 690.642
+      }
+    },
+    {
+      "name": "maintel/point_azel.py",
+      "standard": true,
+      "parameters": {
+        "program": "$program",
+        "reason": "hexapod_repeatability_test",
+        "az": "$azimuth",
+        "el": "$elevation",
+        "rot_tel": 0.0,
+        "ignore": [
+          "mtdome",
+          "mtdometrajectory"
+        ]
+      }
+    },
+    {
+      "name": "maintel/laser_tracker/measure.py",
+      "standard": true,
+      "parameters": {
+        "program": "$program",
+        "reason": "hexapod_repeatability_test",
+        "target": "Camera"
+      }
+    },
+    {
+      "name": "maintel/apply_dof.py",
+      "standard": true,
+      "parameters": {
+        "Cam_dz": 690.642
+      }
+    },
+    {
+      "name": "maintel/point_azel.py",
+      "standard": true,
+      "parameters": {
+        "program": "$program",
+        "reason": "hexapod_repeatability_test",
+        "az": "$azimuth",
+        "el": "$elevation",
+        "rot_tel": 0.0,
+        "ignore": [
+          "mtdome",
+          "mtdometrajectory"
+        ]
+      }
+    },
+    {
+      "name": "maintel/laser_tracker/measure.py",
+      "standard": true,
+      "parameters": {
+        "program": "$program",
+        "reason": "hexapod_repeatability_test",
+        "target": "Camera"
+      }
+    },
+    {
+      "name": "maintel/apply_dof.py",
+      "standard": true,
+      "parameters": {
+        "Cam_dz": -690.642
+      }
+    },
+    {
+      "name": "maintel/point_azel.py",
+      "standard": true,
+      "parameters": {
+        "program": "$program",
+        "reason": "hexapod_repeatability_test",
+        "az": "$azimuth",
+        "el": "$elevation",
+        "rot_tel": 0.0,
+        "ignore": [
+          "mtdome",
+          "mtdometrajectory"
+        ]
+      }
+    },
+    {
+      "name": "maintel/laser_tracker/measure.py",
+      "standard": true,
+      "parameters": {
+        "program": "$program",
+        "reason": "hexapod_repeatability_test",
+        "target": "Camera"
+      }
+    },
+    {
+      "name": "maintel/apply_dof.py",
+      "standard": true,
+      "parameters": {
+        "Cam_dz": -690.642
+      }
+    },
+    {
+      "name": "maintel/point_azel.py",
+      "standard": true,
+      "parameters": {
+        "program": "$program",
+        "reason": "hexapod_repeatability_test",
+        "az": "$azimuth",
+        "el": "$elevation",
+        "rot_tel": 0.0,
+        "ignore": [
+          "mtdome",
+          "mtdometrajectory"
+        ]
+      }
+    },
+    {
+      "name": "maintel/laser_tracker/measure.py",
+      "standard": true,
+      "parameters": {
+        "program": "$program",
+        "reason": "hexapod_repeatability_test",
+        "target": "Camera"
+      }
+    },
+    {
+      "name": "maintel/apply_dof.py",
+      "standard": true,
+      "parameters": {
+        "Cam_dz": 690.642
+      }
+    },
+    {
+      "name": "maintel/point_azel.py",
+      "standard": true,
+      "parameters": {
+        "program": "$program",
+        "reason": "hexapod_repeatability_test",
+        "az": "$azimuth",
+        "el": "$elevation",
+        "rot_tel": 0.0,
+        "ignore": [
+          "mtdome",
+          "mtdometrajectory"
+        ]
+      }
+    },
+    {
+      "name": "maintel/laser_tracker/measure.py",
+      "standard": true,
+      "parameters": {
+        "program": "$program",
+        "reason": "hexapod_repeatability_test",
+        "target": "Camera"
+      }
+    },
+    {
+      "name": "maintel/apply_dof.py",
+      "standard": true,
+      "parameters": {
+        "Cam_dz": -690.642
+      }
+    },
+    {
+      "name": "maintel/point_azel.py",
+      "standard": true,
+      "parameters": {
+        "program": "$program",
+        "reason": "hexapod_repeatability_test",
+        "az": "$azimuth",
+        "el": "$elevation",
+        "rot_tel": 0.0,
+        "ignore": [
+          "mtdome",
+          "mtdometrajectory"
+        ]
+      }
+    },
+    {
+      "name": "maintel/laser_tracker/measure.py",
+      "standard": true,
+      "parameters": {
+        "program": "$program",
+        "reason": "hexapod_repeatability_test",
+        "target": "Camera"
+      }
+    },
+    {
+      "name": "maintel/apply_dof.py",
+      "standard": true,
+      "parameters": {
+        "Cam_dz": 690.642
+      }
+    },
+    {
+      "name": "maintel/point_azel.py",
+      "standard": true,
+      "parameters": {
+        "program": "$program",
+        "reason": "hexapod_repeatability_test",
+        "az": "$azimuth",
+        "el": "$elevation",
+        "rot_tel": 0.0,
+        "ignore": [
+          "mtdome",
+          "mtdometrajectory"
+        ]
+      }
+    },
+    {
+      "name": "maintel/laser_tracker/measure.py",
+      "standard": true,
+      "parameters": {
+        "program": "$program",
+        "reason": "hexapod_repeatability_test",
+        "target": "Camera"
+      }
+    }
+  ],
+  "configuration_schema": "$schema: http://json-schema.org/draft-07/schema#\ntitle: BLOCK-T665 configuration\ndescription: Configuration for BLOCK-T665.\ntype: object\nproperties:\n  azimuth:\n    description: Azimuth.\n    type: number\n    default: 0\n  elevation:\n    description: Elevation.\n    type: number\n    default: 0\n"
+}
