@@ -108,7 +108,7 @@ def get_scheduler() -> tuple[int, CoreScheduler]:
         "twilight_scale": True,
     }
     # Seeing (FWHM in ") max for template
-    fwhm_template_max = 1.3
+    fwhm_template_max = 0.7
 
     # Parameters for rolling cadence footprint definition
     nslice = 2  # N slices for rolling
@@ -157,10 +157,12 @@ def get_scheduler() -> tuple[int, CoreScheduler]:
 
     # And now remove all except desired band
     # This restricted to one band for AOS
-    desired_band = "i"
+    desired_band = "r"
     for band in footprints_hp:
         if band != desired_band:
             footprints_hp[band] *= 0
+    if desired_band in "riz":
+        ei_bands = desired_band
 
     # Use the Almanac to find the position of the sun at the start of survey
     almanac = Almanac(mjd_start=survey_start_mjd)
@@ -283,6 +285,7 @@ def get_scheduler() -> tuple[int, CoreScheduler]:
     # Define the greedy surveys (single-visit per call)
     greedy = lsst_surveys.gen_greedy_surveys(
         nside=nside,
+        bands=[desired_band],
         camera_rot_limits=camera_rot_limits,
         exptime=exptime,
         nexp=nexp,
@@ -313,6 +316,8 @@ def get_scheduler() -> tuple[int, CoreScheduler]:
     short_blobs = lsst_surveys.generate_short_blobs(
         footprints=footprints,
         nside=nside,
+        band1s=[desired_band],
+        band2s=[desired_band],
         camera_rot_limits=camera_rot_limits,
         exptime=exptime,
         nexp=nexp,
@@ -328,6 +333,8 @@ def get_scheduler() -> tuple[int, CoreScheduler]:
     blobs = lsst_surveys.generate_blobs(
         footprints=footprints,
         nside=nside,
+        band1s=[desired_band],
+        band2s=[desired_band],
         camera_rot_limits=camera_rot_limits,
         exptime=exptime,
         nexp=nexp,
