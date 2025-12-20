@@ -62,8 +62,8 @@ def get_scheduler() -> tuple[int, CoreScheduler]:
         "nside": nside,
         "wind_speed_maximum": 40,
         "apply_time_limited_shadow": False,
-        "min_alt": 30,
-        "shadow_minutes": 9,
+        "min_alt": 20,
+        "shadow_minutes": 0,
     }
 
     # Get path for template pointing information
@@ -89,7 +89,7 @@ def get_scheduler() -> tuple[int, CoreScheduler]:
     # To get the scheduled observation in the same order as the template_list
     fudge = np.arange(0, len(template_pointings), 1) * (10 / 60 / 60 / 24)
     template_sched_obs["mjd"] = Time("2025-12-06T12:00:00").mjd + fudge
-    template_sched_obs["flush_by_mjd"] = Time("2025-12-06T12:00:00").mjd + 10
+    template_sched_obs["flush_by_mjd"] = Time("2025-12-06T12:00:00").mjd + 60
     template_sched_obs["mjd_tol"] = 1
     template_sched_obs["dist_tol"] = np.radians(2)
     template_sched_obs["HA_min"] = 18
@@ -144,7 +144,7 @@ def get_scheduler() -> tuple[int, CoreScheduler]:
     # To get the scheduled observation in the same order as the template_list
     fudge = np.arange(0, len(test_pointings), 1) * (10 / 60 / 60 / 24)
     test_sched_obs["mjd"] = Time("2025-12-06T12:00:00").mjd + fudge
-    test_sched_obs["flush_by_mjd"] = Time("2025-12-06T12:00:00").mjd + 10
+    test_sched_obs["flush_by_mjd"] = Time("2025-12-06T12:00:00").mjd + 60
     test_sched_obs["mjd_tol"] = 1
     test_sched_obs["dist_tol"] = np.radians(2)
     test_sched_obs["HA_min"] = 18
