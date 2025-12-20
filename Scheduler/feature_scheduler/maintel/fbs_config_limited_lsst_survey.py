@@ -157,12 +157,15 @@ def get_scheduler() -> tuple[int, CoreScheduler]:
 
     # And now remove all except desired band
     # This restricted to one band for AOS
-    desired_band = "r"
+    desired_band = "g"
     for band in footprints_hp:
         if band != desired_band:
             footprints_hp[band] *= 0
     if desired_band in "riz":
         ei_bands = desired_band
+    else:
+        ei_night_pattern = [False]
+        reverse_ei_night_pattern = [True]
 
     # Use the Almanac to find the position of the sun at the start of survey
     almanac = Almanac(mjd_start=survey_start_mjd)
