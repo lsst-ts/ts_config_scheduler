@@ -1,6 +1,6 @@
 {
   "name": "BLOCK-T646_4",
-  "id": "05978bd5-3b58-448a-9792-9e35d43eb280",
+  "id": "bdeda783-a8a6-4716-82d8-c661d2b8672c",
   "program": "BLOCK-T646_4",
   "constraints": [],
   "scripts": [
@@ -11,8 +11,8 @@
         "component": "CBP",
         "cmd": "move",
         "parameters": {
-          "azimuth": -15.430348260524852,
-          "elevation": -17.72398640592266
+          "azimuth": -18.037546851676552,
+          "elevation": -16.835811445558875
         }
       }
     },
@@ -20,8 +20,8 @@
       "name": "maintel/point_azel.py",
       "standard": true,
       "parameters": {
-        "az": -105.12290568437936,
-        "el": 16.23535757149,
+        "az": -109.15938496519408,
+        "el": 16.57607668322541,
         "target_name": "CBPCal",
         "ignore": [
           "mtdome",
@@ -47,8 +47,8 @@
         "component": "CBP",
         "cmd": "move",
         "parameters": {
-          "azimuth": -15.421440073331496,
-          "elevation": -17.7788388767309
+          "azimuth": -18.18271427121931,
+          "elevation": -16.622436574507418
         }
       }
     },
@@ -56,8 +56,8 @@
       "name": "maintel/point_azel.py",
       "standard": true,
       "parameters": {
-        "az": -105.29166650981699,
-        "el": 15.99750396554822,
+        "az": -109.30694248138309,
+        "el": 16.363918040182426,
         "target_name": "CBPCal",
         "ignore": [
           "mtdome",
@@ -83,8 +83,8 @@
         "component": "CBP",
         "cmd": "move",
         "parameters": {
-          "azimuth": -15.411885266567651,
-          "elevation": -17.8340989637515
+          "azimuth": -18.32800061737214,
+          "elevation": -16.4086488418545
         }
       }
     },
@@ -92,8 +92,8 @@
       "name": "maintel/point_azel.py",
       "standard": true,
       "parameters": {
-        "az": -105.45941214239724,
-        "el": 15.760059659032237,
+        "az": -109.45461849604197,
+        "el": 16.151339787187226,
         "target_name": "CBPCal",
         "ignore": [
           "mtdome",
@@ -119,8 +119,8 @@
         "component": "CBP",
         "cmd": "move",
         "parameters": {
-          "azimuth": -15.401693098111764,
-          "elevation": -17.889755457300083
+          "azimuth": -18.473407070685198,
+          "elevation": -16.19443895276507
         }
       }
     },
@@ -128,8 +128,8 @@
       "name": "maintel/point_azel.py",
       "standard": true,
       "parameters": {
-        "az": -105.62608199728311,
-        "el": 15.523046711995903,
+        "az": -109.60241427853305,
+        "el": 15.938332578110249,
         "target_name": "CBPCal",
         "ignore": [
           "mtdome",
@@ -155,8 +155,8 @@
         "component": "CBP",
         "cmd": "move",
         "parameters": {
-          "azimuth": -15.377202479168318,
-          "elevation": -17.911383514572435
+          "azimuth": -18.768318216738635,
+          "elevation": -16.214539724223783
         }
       }
     },
@@ -164,8 +164,8 @@
       "name": "maintel/point_azel.py",
       "standard": true,
       "parameters": {
-        "az": -105.95230350369877,
-        "el": 15.545668395193701,
+        "az": -109.8983702663237,
+        "el": 15.961150169672123,
         "target_name": "CBPCal",
         "ignore": [
           "mtdome",
@@ -191,8 +191,8 @@
         "component": "CBP",
         "cmd": "move",
         "parameters": {
-          "azimuth": -15.352248805986392,
-          "elevation": -17.933112939239095
+          "azimuth": -19.06372214263081,
+          "elevation": -16.235109972310653
         }
       }
     },
@@ -200,8 +200,8 @@
       "name": "maintel/point_azel.py",
       "standard": true,
       "parameters": {
-        "az": -106.27824146568958,
-        "el": 15.567720770709656,
+        "az": -110.19482076885771,
+        "el": 15.984437255650647,
         "target_name": "CBPCal",
         "ignore": [
           "mtdome",
@@ -227,8 +227,8 @@
         "component": "CBP",
         "cmd": "move",
         "parameters": {
-          "azimuth": -15.326833975464979,
-          "elevation": -17.954938694517665
+          "azimuth": -19.359629280504123,
+          "elevation": -16.256155335887968
         }
       }
     },
@@ -236,8 +236,8 @@
       "name": "maintel/point_azel.py",
       "standard": true,
       "parameters": {
-        "az": -106.60382514662206,
-        "el": 15.589198155742025,
+        "az": -110.49177624987533,
+        "el": 16.008199473749812,
         "target_name": "CBPCal",
         "ignore": [
           "mtdome",
@@ -263,8 +263,8 @@
         "component": "CBP",
         "cmd": "move",
         "parameters": {
-          "azimuth": -15.300960238039238,
-          "elevation": -17.976856033054673
+          "azimuth": -19.65605020585292,
+          "elevation": -16.277681613451136
         }
       }
     },
@@ -272,8 +272,8 @@
       "name": "maintel/point_azel.py",
       "standard": true,
       "parameters": {
-        "az": -106.9289845030857,
-        "el": 15.610093425428943,
+        "az": -110.78924731694872,
+        "el": 16.032442621220298,
         "target_name": "CBPCal",
         "ignore": [
           "mtdome",
@@ -299,8 +299,8 @@
         "component": "CBP",
         "cmd": "move",
         "parameters": {
-          "azimuth": -15.274630244974333,
-          "elevation": -17.998860445200364
+          "azimuth": -19.952995641831308,
+          "elevation": -16.299694767510914
         }
       }
     },
@@ -308,8 +308,8 @@
       "name": "maintel/point_azel.py",
       "standard": true,
       "parameters": {
-        "az": -107.25364938086847,
-        "el": 15.630397967098247,
+        "az": -111.08724472580275,
+        "el": 16.05717265923741,
         "target_name": "CBPCal",
         "ignore": [
           "mtdome",
@@ -335,8 +335,8 @@
         "component": "CBP",
         "cmd": "move",
         "parameters": {
-          "azimuth": -15.262393131242789,
-          "elevation": -17.96514317665924
+          "azimuth": -20.1035441529516,
+          "elevation": -16.536753545825945
         }
       }
     },
@@ -344,8 +344,8 @@
       "name": "maintel/point_azel.py",
       "standard": true,
       "parameters": {
-        "az": -107.41924635874517,
-        "el": 15.889019595327852,
+        "az": -111.23644421116524,
+        "el": 16.295742503015106,
         "target_name": "CBPCal",
         "ignore": [
           "mtdome",
@@ -371,8 +371,8 @@
         "component": "CBP",
         "cmd": "move",
         "parameters": {
-          "azimuth": -15.250560756892583,
-          "elevation": -17.931842203945877
+          "azimuth": -20.254231411391515,
+          "elevation": -16.77398593894796
         }
       }
     },
@@ -380,8 +380,8 @@
       "name": "maintel/point_azel.py",
       "standard": true,
       "parameters": {
-        "az": -107.58572418570282,
-        "el": 16.14809826893986,
+        "az": -111.38577938476851,
+        "el": 16.534477997315776,
         "target_name": "CBPCal",
         "ignore": [
           "mtdome",
@@ -407,8 +407,8 @@
         "component": "CBP",
         "cmd": "move",
         "parameters": {
-          "azimuth": -15.23914135251107,
-          "elevation": -17.898961042884793
+          "azimuth": -20.405058909496347,
+          "elevation": -17.011400035452652
         }
       }
     },
@@ -416,8 +416,8 @@
       "name": "maintel/point_azel.py",
       "standard": true,
       "parameters": {
-        "az": -107.75302320123359,
-        "el": 16.40760379280522,
+        "az": -111.53525163475183,
+        "el": 16.773387227643354,
         "target_name": "CBPCal",
         "ignore": [
           "mtdome",
@@ -443,8 +443,8 @@
         "component": "CBP",
         "cmd": "move",
         "parameters": {
-          "azimuth": -15.228142844192462,
-          "elevation": -17.866502647855697
+          "azimuth": -20.556028150830798,
+          "elevation": -17.249003932692432
         }
       }
     },
@@ -452,8 +452,8 @@
       "name": "maintel/point_azel.py",
       "standard": true,
       "parameters": {
-        "az": -107.92108262368924,
-        "el": 16.66750775347421,
+        "az": -111.68486235937416,
+        "el": 17.012478287361716,
         "target_name": "CBPCal",
         "ignore": [
           "mtdome",
@@ -479,8 +479,8 @@
         "component": "CBP",
         "cmd": "move",
         "parameters": {
-          "azimuth": -15.217572979181,
-          "elevation": -17.834469313223366
+          "azimuth": -20.707140650378847,
+          "elevation": -17.48680573837919
         }
       }
     },
@@ -488,8 +488,8 @@
       "name": "maintel/point_azel.py",
       "standard": true,
       "parameters": {
-        "az": -108.08983896213635,
-        "el": 16.927783456721045,
+        "az": -111.83461296716536,
+        "el": 17.25175927927924,
         "target_name": "CBPCal",
         "ignore": [
           "mtdome",
@@ -515,8 +515,8 @@
         "component": "CBP",
         "cmd": "move",
         "parameters": {
-          "azimuth": -15.236171977215804,
-          "elevation": -17.696333130030695
+          "azimuth": -20.563591916085443,
+          "elevation": -18.148730605876807
         }
       }
     },
@@ -524,8 +524,8 @@
       "name": "maintel/point_azel.py",
       "standard": true,
       "parameters": {
-        "az": -107.93832761477432,
-        "el": 17.672907545025282,
+        "az": -111.68486235937416,
+        "el": 17.912650628068945,
         "target_name": "CBPCal",
         "ignore": [
           "mtdome",
@@ -551,8 +551,8 @@
         "component": "CBP",
         "cmd": "move",
         "parameters": {
-          "azimuth": -15.335596769824178,
-          "elevation": -17.473798791920558
+          "azimuth": -19.23233312759612,
+          "elevation": -18.70629002321985
         }
       }
     },
@@ -560,8 +560,8 @@
       "name": "maintel/point_azel.py",
       "standard": true,
       "parameters": {
-        "az": -106.4410819757997,
-        "el": 18.337611065951705,
+        "az": -110.34323472750384,
+        "el": 18.45827462947591,
         "target_name": "CBPCal",
         "ignore": [
           "mtdome",
@@ -587,8 +587,8 @@
         "component": "CBP",
         "cmd": "move",
         "parameters": {
-          "azimuth": -15.427578713087428,
-          "elevation": -17.49905583505921
+          "azimuth": -17.90001049184241,
+          "elevation": -17.938012961681835
         }
       }
     },
@@ -596,8 +596,8 @@
       "name": "maintel/point_azel.py",
       "standard": true,
       "parameters": {
-        "az": -104.93596757459397,
-        "el": 17.478499487745438,
+        "az": -109.01194468633707,
+        "el": 17.67752307049173,
         "target_name": "CBPCal",
         "ignore": [
           "mtdome",
@@ -623,8 +623,8 @@
         "component": "CBP",
         "cmd": "move",
         "parameters": {
-          "azimuth": -15.443989076717116,
-          "elevation": -17.75737166337217
+          "azimuth": -17.88875523070874,
+          "elevation": -16.60271124236536
         }
       }
     },
@@ -632,8 +632,8 @@
       "name": "maintel/point_azel.py",
       "standard": true,
       "parameters": {
-        "az": -104.96279855534385,
-        "el": 15.973796372561964,
+        "az": -109.01194468633707,
+        "el": 16.3414768682251,
         "target_name": "CBPCal",
         "ignore": [
           "mtdome",
@@ -659,8 +659,8 @@
         "component": "CBP",
         "cmd": "move",
         "parameters": {
-          "azimuth": -15.339984614654895,
-          "elevation": -17.989201358683374
+          "azimuth": -19.209742576322242,
+          "elevation": -16.020355115148817
         }
       }
     },
@@ -668,8 +668,8 @@
       "name": "maintel/point_azel.py",
       "standard": true,
       "parameters": {
-        "az": -106.44108197579965,
-        "el": 15.330556736396886,
+        "az": -110.34323472750384,
+        "el": 15.770879214254364,
         "target_name": "CBPCal",
         "ignore": [
           "mtdome",
@@ -695,8 +695,8 @@
         "component": "CBP",
         "cmd": "move",
         "parameters": {
-          "azimuth": -15.22431066159379,
-          "elevation": -17.954034521181626
+          "azimuth": -20.55226139667525,
+          "elevation": -16.797631591570195
         }
       }
     },
@@ -704,8 +704,8 @@
       "name": "maintel/point_azel.py",
       "standard": true,
       "parameters": {
-        "az": -107.91147870717987,
-        "el": 16.167333159470047,
+        "az": -111.68486235937416,
+        "el": 16.560839386721455,
         "target_name": "CBPCal",
         "ignore": [
           "mtdome",
