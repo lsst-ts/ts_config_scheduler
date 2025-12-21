@@ -1,6 +1,6 @@
 {
   "name": "BLOCK-T646_3",
-  "id": "ffa64a85-2130-4003-b5a8-cb746844c5e1",
+  "id": "c60ba4b0-8b0c-41b6-a396-0a9c838a5d7f",
   "program": "BLOCK-T646_3",
   "constraints": [],
   "scripts": [
@@ -20,8 +20,8 @@
       "name": "maintel/point_azel.py",
       "standard": true,
       "parameters": {
-        "az": -108.87255860414916,
-        "el": 17.209848240963964,
+        "az": -109.22571041,
+        "el": 17.55885399,
         "target_name": "CBPCal",
         "ignore": [
           "mtdome",
@@ -56,8 +56,8 @@
       "name": "maintel/point_azel.py",
       "standard": true,
       "parameters": {
-        "az": -108.94361365989914,
-        "el": 17.109250404411625,
+        "az": -109.22571041,
+        "el": 17.55885399,
         "target_name": "CBPCal",
         "ignore": [
           "mtdome",
@@ -92,8 +92,8 @@
       "name": "maintel/point_azel.py",
       "standard": true,
       "parameters": {
-        "az": -109.08470149354605,
-        "el": 17.120910832782016,
+        "az": -109.22571041,
+        "el": 17.55885399,
         "target_name": "CBPCal",
         "ignore": [
           "mtdome",
@@ -128,8 +128,8 @@
       "name": "maintel/point_azel.py",
       "standard": true,
       "parameters": {
-        "az": -109.22571040821015,
-        "el": 17.13247113343212,
+        "az": -109.22571041,
+        "el": 17.55885399,
         "target_name": "CBPCal",
         "ignore": [
           "mtdome",
@@ -164,8 +164,8 @@
       "name": "maintel/point_azel.py",
       "standard": true,
       "parameters": {
-        "az": -109.36663522707124,
-        "el": 17.143930637125123,
+        "az": -109.22571041,
+        "el": 17.55885399,
         "target_name": "CBPCal",
         "ignore": [
           "mtdome",
@@ -200,8 +200,8 @@
       "name": "maintel/point_azel.py",
       "standard": true,
       "parameters": {
-        "az": -109.50747078378777,
-        "el": 17.155288666395847,
+        "az": -109.22571041,
+        "el": 17.55885399,
         "target_name": "CBPCal",
         "ignore": [
           "mtdome",
@@ -236,8 +236,8 @@
       "name": "maintel/point_azel.py",
       "standard": true,
       "parameters": {
-        "az": -109.57833666629102,
-        "el": 17.267419906586497,
+        "az": -109.22571041,
+        "el": 17.55885399,
         "target_name": "CBPCal",
         "ignore": [
           "mtdome",
@@ -272,8 +272,8 @@
       "name": "maintel/point_azel.py",
       "standard": true,
       "parameters": {
-        "az": -109.64936348211455,
-        "el": 17.379614085625235,
+        "az": -109.22571041,
+        "el": 17.55885399,
         "target_name": "CBPCal",
         "ignore": [
           "mtdome",
@@ -308,8 +308,8 @@
       "name": "maintel/point_azel.py",
       "standard": true,
       "parameters": {
-        "az": -109.72054653807561,
-        "el": 17.49186884358369,
+        "az": -109.22571041,
+        "el": 17.55885399,
         "target_name": "CBPCal",
         "ignore": [
           "mtdome",
@@ -344,8 +344,8 @@
       "name": "maintel/point_azel.py",
       "standard": true,
       "parameters": {
-        "az": -109.79188110384064,
-        "el": 17.60418184003575,
+        "az": -109.22571041,
+        "el": 17.55885399,
         "target_name": "CBPCal",
         "ignore": [
           "mtdome",
@@ -380,8 +380,8 @@
       "name": "maintel/point_azel.py",
       "standard": true,
       "parameters": {
-        "az": -109.8633623892523,
-        "el": 17.716550752490377,
+        "az": -109.22571041,
+        "el": 17.55885399,
         "target_name": "CBPCal",
         "ignore": [
           "mtdome",
@@ -416,8 +416,8 @@
       "name": "maintel/point_azel.py",
       "standard": true,
       "parameters": {
-        "az": -109.79332950870116,
-        "el": 17.81787438211319,
+        "az": -109.22571041,
+        "el": 17.55885399,
         "target_name": "CBPCal",
         "ignore": [
           "mtdome",
@@ -452,8 +452,8 @@
       "name": "maintel/point_azel.py",
       "standard": true,
       "parameters": {
-        "az": -109.72308109885034,
-        "el": 17.919234302675022,
+        "az": -109.22571041,
+        "el": 17.55885399,
         "target_name": "CBPCal",
         "ignore": [
           "mtdome",
@@ -488,8 +488,8 @@
       "name": "maintel/point_azel.py",
       "standard": true,
       "parameters": {
-        "az": -109.65262187537633,
-        "el": 18.02062887652383,
+        "az": -109.22571041,
+        "el": 17.55885399,
         "target_name": "CBPCal",
         "ignore": [
           "mtdome",
@@ -524,8 +524,8 @@
       "name": "maintel/point_azel.py",
       "standard": true,
       "parameters": {
-        "az": -109.4395262696512,
-        "el": 18.110696881173737,
+        "az": -109.22571041,
+        "el": 17.55885399,
         "target_name": "CBPCal",
         "ignore": [
           "mtdome",
@@ -560,8 +560,8 @@
       "name": "maintel/point_azel.py",
       "standard": true,
       "parameters": {
-        "az": -109.2970042100435,
-        "el": 18.09924296760701,
+        "az": -109.22571041,
+        "el": 17.55885399,
         "target_name": "CBPCal",
         "ignore": [
           "mtdome",
@@ -596,8 +596,8 @@
       "name": "maintel/point_azel.py",
       "standard": true,
       "parameters": {
-        "az": -109.15439562892794,
-        "el": 18.08769534148459,
+        "az": -109.22571041,
+        "el": 17.55885399,
         "target_name": "CBPCal",
         "ignore": [
           "mtdome",
