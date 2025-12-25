@@ -157,7 +157,7 @@ def get_scheduler() -> tuple[int, CoreScheduler]:
 
     # And now remove all except desired band
     # This restricted to one band for AOS
-    desired_band = "g"
+    desired_band = "r"
     for band in footprints_hp:
         if band != desired_band:
             footprints_hp[band] *= 0
