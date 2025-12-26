@@ -20,6 +20,10 @@
                 "reason": "$observation_reason",
                 "targetid": "$targetid",
                 "note": "$note",
+                "run_aos_closed_loop_on_filter_change": true,
+                "aos_closed_loop_settings": {
+                    "n_iter": 2
+                },
                 "ignore": ["mtaos"]
             }
         }
