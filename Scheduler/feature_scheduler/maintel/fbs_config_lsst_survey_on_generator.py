@@ -59,7 +59,7 @@ def get_scheduler() -> tuple[int, CoreScheduler]:
         Feature based scheduler.
     """
     nside = 32
-    science_program = "BLOCK-417"
+    science_program = "BLOCK-407"
     band_to_filter = {
         "u": "u_24",
         "g": "g_6",
@@ -81,7 +81,7 @@ def get_scheduler() -> tuple[int, CoreScheduler]:
     safety_mask_params = {
         "nside": nside,
         "wind_speed_maximum": 40,
-        "apply_time_limited_shadow": False,
+        "apply_time_limited_shadow": True,
         "time_to_sunrise": 3.0,
         "min_az_sunrise": 150,
         "max_az_sunrise": 250,
@@ -91,7 +91,7 @@ def get_scheduler() -> tuple[int, CoreScheduler]:
     safety_mask_params_ddf["shadow_minutes"] = 30
 
     # General parameters for standard pairs (-80/80 default)
-    camera_rot_limits = (-65.0, 65.0)
+    camera_rot_limits = (-60.0, 60.0)
     pair_time = 33
     # Adjust these as the expected timing updates.
     # -- sets the expected time and number of pointings in a 'blob'.
@@ -107,8 +107,7 @@ def get_scheduler() -> tuple[int, CoreScheduler]:
         "twilight_scale": True,
     }
     # Seeing (FWHM in ") max for template
-    # Make it small here so templates are deweighted
-    fwhm_template_max = 0.7
+    fwhm_template_max = 1.3
 
     # Parameters for rolling cadence footprint definition
     nslice = 2  # N slices for rolling
@@ -155,18 +154,6 @@ def get_scheduler() -> tuple[int, CoreScheduler]:
     footprint_mask = footprints_hp["r"] * 0
     footprint_mask[np.where(footprints_hp["r"] > 0)] = 1
 
-    # And now remove all except desired band
-    # This restricted to one band for AOS
-    desired_band = "i"
-    for band in footprints_hp:
-        if band != desired_band:
-            footprints_hp[band] *= 0
-    if desired_band in "riz":
-        ei_bands = desired_band
-    else:
-        ei_night_pattern = [False]
-        reverse_ei_night_pattern = [True]
-
     # Use the Almanac to find the position of the sun at the start of survey
     almanac = Almanac(mjd_start=survey_start_mjd)
     sun_moon_info = almanac.get_sun_moon_positions(survey_start_mjd)
@@ -206,7 +193,7 @@ def get_scheduler() -> tuple[int, CoreScheduler]:
     # This hash is provided by the script that
     # generates the pre-computed data. Execute it and paste
     # the provided value here.
-    expected_hex_digest = "6daf169"
+    expected_hex_digest = "fedbbbe"
     pre_comp_file = (
         pathlib.Path(get_data_dir())
         / "scheduler"
@@ -236,7 +223,7 @@ def get_scheduler() -> tuple[int, CoreScheduler]:
         )
 
     # Parameters for  DDF dithers
-    camera_ddf_rot_limit = 65  # Rotator limit for DDF (degrees) .. 75
+    camera_ddf_rot_limit = 55  # Rotator limit for DDF (degrees) .. 75
     camera_ddf_rot_per_visit = 3.0  # small rotation per visit (degrees) .. 3
     max_dither = 0.2  # Max radial dither for DDF (degrees)
     per_night = False  # Dither DDF per night (True) or per visit (False)
@@ -278,18 +265,11 @@ def get_scheduler() -> tuple[int, CoreScheduler]:
             before_twi_check=False,
         )
     ]
-    # Hack the DDF obs_array to only use desired_band
-    # But also modify scheduler note so we know these are different
-    obs_array["band"] = desired_band
-    obs_array["exptime"] = 30
-    obs_array["scheduler_note"] = obs_array["scheduler_note"] + " mod1"
-    obs_array["science_program"] = science_program
     ddfs[0].set_script(obs_array)
 
     # Define the greedy surveys (single-visit per call)
     greedy = lsst_surveys.gen_greedy_surveys(
         nside=nside,
-        bands=[desired_band],
         camera_rot_limits=camera_rot_limits,
         exptime=exptime,
         nexp=nexp,
@@ -320,8 +300,6 @@ def get_scheduler() -> tuple[int, CoreScheduler]:
     short_blobs = lsst_surveys.generate_short_blobs(
         footprints=footprints,
         nside=nside,
-        band1s=[desired_band],
-        band2s=[desired_band],
         camera_rot_limits=camera_rot_limits,
         exptime=exptime,
         nexp=nexp,
@@ -337,8 +315,6 @@ def get_scheduler() -> tuple[int, CoreScheduler]:
     blobs = lsst_surveys.generate_blobs(
         footprints=footprints,
         nside=nside,
-        band1s=[desired_band],
-        band2s=[desired_band],
         camera_rot_limits=camera_rot_limits,
         exptime=exptime,
         nexp=nexp,
@@ -450,7 +426,7 @@ def get_scheduler() -> tuple[int, CoreScheduler]:
             # acquire these visits here, for more accurate sims.
             nexp=3,
             exptime=50 * 3,
-            bandname=desired_band,
+            bandname="r",
             detailers=[
                 detailers.LabelRegionsAndDDFs(),
             ],

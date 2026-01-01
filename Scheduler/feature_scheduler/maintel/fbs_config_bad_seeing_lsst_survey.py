@@ -80,6 +80,7 @@ def get_scheduler() -> tuple[int, CoreScheduler]:
     safety_mask_params = {
         "nside": nside,
         "wind_speed_maximum": 40,
+        "apply_time_limited_shadow": False,
         "time_to_sunrise": 3.0,
         "min_az_sunrise": 150,
         "max_az_sunrise": 250,

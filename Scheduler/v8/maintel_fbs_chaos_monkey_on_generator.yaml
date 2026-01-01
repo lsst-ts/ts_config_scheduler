@@ -10,27 +10,13 @@ maintel:
         filter_max_changes_avg_num: 30000
       park:
         filter_position: r
-      telescope:
-        azimuth_maxspeed: 1.0
-        azimuth_accel: 1.0
-        altitude_maxspeed: 1.0
-        altitude_accel: 1.0
-        settle_time: 3.0
-      optics_loop_corr:
-        tel_optics_cl_alt_limit:
-          - 0.0
-          - 85.0
-          - 90.0
-        tel_optics_cl_delay:
-          - 0.0
-          - 36.0
   driver_configuration:
     parameters:
       night_boundary: -10.0
     stop_tracking_observing_script_name: maintel/stop_tracking.py
   feature_scheduler_driver_configuration:
     observation_database_name: /home/saluser/rubin_sim_data/maintel_fbs_m1m3_thermal_step_observation_database.sql
-    scheduler_config: /net/obs-env/auto_base_packages/ts_config_scheduler/Scheduler/feature_scheduler/maintel/fbs_config_straylight.py
+    scheduler_config: /net/obs-env/auto_base_packages/ts_config_scheduler/Scheduler/feature_scheduler/maintel/fbs_config_chaos_monkey.py
   telemetry:
     streams:
       - name: seeing
