@@ -59,7 +59,7 @@ def get_scheduler() -> tuple[int, CoreScheduler]:
         Feature based scheduler.
     """
     nside = 32
-    science_program = "BLOCK-417"
+    science_program = "BLOCK-419"
     band_to_filter = {
         "u": "u_24",
         "g": "g_6",
@@ -154,18 +154,6 @@ def get_scheduler() -> tuple[int, CoreScheduler]:
     # Set up a mask to contain some surveys within this region
     footprint_mask = footprints_hp["r"] * 0
     footprint_mask[np.where(footprints_hp["r"] > 0)] = 1
-
-    # And now remove all except desired band
-    # This restricted to one band for AOS
-    desired_band = "i"
-    for band in footprints_hp:
-        if band != desired_band:
-            footprints_hp[band] *= 0
-    if desired_band in "riz":
-        ei_bands = desired_band
-    else:
-        ei_night_pattern = [False]
-        reverse_ei_night_pattern = [True]
 
     # Use the Almanac to find the position of the sun at the start of survey
     almanac = Almanac(mjd_start=survey_start_mjd)
@@ -278,18 +266,11 @@ def get_scheduler() -> tuple[int, CoreScheduler]:
             before_twi_check=False,
         )
     ]
-    # Hack the DDF obs_array to only use desired_band
-    # But also modify scheduler note so we know these are different
-    obs_array["band"] = desired_band
-    obs_array["exptime"] = 30
-    obs_array["scheduler_note"] = obs_array["scheduler_note"] + " mod1"
-    obs_array["science_program"] = science_program
     ddfs[0].set_script(obs_array)
 
     # Define the greedy surveys (single-visit per call)
     greedy = lsst_surveys.gen_greedy_surveys(
         nside=nside,
-        bands=[desired_band],
         camera_rot_limits=camera_rot_limits,
         exptime=exptime,
         nexp=nexp,
@@ -320,8 +301,6 @@ def get_scheduler() -> tuple[int, CoreScheduler]:
     short_blobs = lsst_surveys.generate_short_blobs(
         footprints=footprints,
         nside=nside,
-        band1s=[desired_band],
-        band2s=[desired_band],
         camera_rot_limits=camera_rot_limits,
         exptime=exptime,
         nexp=nexp,
@@ -337,8 +316,6 @@ def get_scheduler() -> tuple[int, CoreScheduler]:
     blobs = lsst_surveys.generate_blobs(
         footprints=footprints,
         nside=nside,
-        band1s=[desired_band],
-        band2s=[desired_band],
         camera_rot_limits=camera_rot_limits,
         exptime=exptime,
         nexp=nexp,
@@ -450,7 +427,7 @@ def get_scheduler() -> tuple[int, CoreScheduler]:
             # acquire these visits here, for more accurate sims.
             nexp=3,
             exptime=50 * 3,
-            bandname=desired_band,
+            bandname="r",
             detailers=[
                 detailers.LabelRegionsAndDDFs(),
             ],
