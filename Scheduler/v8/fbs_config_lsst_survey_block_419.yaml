@@ -30,7 +30,7 @@ maintel:
     stop_tracking_observing_script_name: maintel/stop_tracking.py
   feature_scheduler_driver_configuration:
     observation_database_name: /home/saluser/rubin_sim_data/preops_lsst_fbs_observations.sql
-    scheduler_config: /net/obs-env/auto_base_packages/ts_config_scheduler/Scheduler/feature_scheduler/maintel/fbs_config_lsst_survey_on_genrator.py
+    scheduler_config: /net/obs-env/auto_base_packages/ts_config_scheduler/Scheduler/feature_scheduler/maintel/fbs_config_lsst_survey_block_419.py
   telemetry:
     lfa_client:
       source: DREAM
