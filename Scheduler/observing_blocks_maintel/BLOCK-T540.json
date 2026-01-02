@@ -10,7 +10,7 @@
       "parameters": {
         "offset_azel": {
           "az": 0,
-          "el": 18000
+          "el": 16200
         },
         "relative": true
       }
@@ -30,7 +30,7 @@
           ]
         },
         "program": "BLOCK-T540",
-        "reason": "L2_pads_rot_scan_5deg",
+        "reason": "L2_pads_rot_scan_4.5deg",
         "exp_times": 30.0,
         "image_type": "OBJECT",
         "reset_offsets_when_finished": false
@@ -42,7 +42,7 @@
       "parameters": {
         "offset_azel": {
           "az": 0,
-          "el": 1800
+          "el": 360
         },
         "relative": true
       }
@@ -62,7 +62,7 @@
           ]
         },
         "program": "BLOCK-T540",
-        "reason": "L2_pads_rot_scan_5.5deg",
+        "reason": "L2_pads_rot_scan_4.6deg",
         "exp_times": 30.0,
         "image_type": "OBJECT",
         "reset_offsets_when_finished": false
@@ -74,7 +74,7 @@
       "parameters": {
         "offset_azel": {
           "az": 0,
-          "el": 1800
+          "el": 360
         },
         "relative": true
       }
@@ -94,7 +94,7 @@
           ]
         },
         "program": "BLOCK-T540",
-        "reason": "L2_pads_rot_scan_6deg",
+        "reason": "L2_pads_rot_scan_4.7deg",
         "exp_times": 30.0,
         "image_type": "OBJECT",
         "reset_offsets_when_finished": false
@@ -106,7 +106,7 @@
       "parameters": {
         "offset_azel": {
           "az": 0,
-          "el": 1800
+          "el": 360
         },
         "relative": true
       }
@@ -126,7 +126,7 @@
           ]
         },
         "program": "BLOCK-T540",
-        "reason": "L2_pads_rot_scan_6.5deg",
+        "reason": "L2_pads_rot_scan_4.8deg",
         "exp_times": 30.0,
         "image_type": "OBJECT",
         "reset_offsets_when_finished": false
@@ -138,7 +138,7 @@
       "parameters": {
         "offset_azel": {
           "az": 0,
-          "el": 1800
+          "el": 360
         },
         "relative": true
       }
@@ -158,7 +158,7 @@
           ]
         },
         "program": "BLOCK-T540",
-        "reason": "L2_pads_rot_scan_7deg",
+        "reason": "L2_pads_rot_scan_4.9deg",
         "exp_times": 30.0,
         "image_type": "OBJECT",
         "reset_offsets_when_finished": false
@@ -170,7 +170,7 @@
       "parameters": {
         "offset_azel": {
           "az": 0,
-          "el": 1800
+          "el": 360
         },
         "relative": true
       }
@@ -190,7 +190,7 @@
           ]
         },
         "program": "BLOCK-T540",
-        "reason": "L2_pads_rot_scan_7.5deg",
+        "reason": "L2_pads_rot_scan_5deg",
         "exp_times": 30.0,
         "image_type": "OBJECT",
         "reset_offsets_when_finished": false
@@ -202,7 +202,7 @@
       "parameters": {
         "offset_azel": {
           "az": 0,
-          "el": 1800
+          "el": 360
         },
         "relative": true
       }
@@ -222,7 +222,7 @@
           ]
         },
         "program": "BLOCK-T540",
-        "reason": "L2_pads_rot_scan_8deg",
+        "reason": "L2_pads_rot_scan_5.1deg",
         "exp_times": 30.0,
         "image_type": "OBJECT",
         "reset_offsets_when_finished": false
@@ -234,7 +234,7 @@
       "parameters": {
         "offset_azel": {
           "az": 0,
-          "el": 1800
+          "el": 360
         },
         "relative": true
       }
@@ -254,7 +254,7 @@
           ]
         },
         "program": "BLOCK-T540",
-        "reason": "L2_pads_rot_scan_8.5deg",
+        "reason": "L2_pads_rot_scan_5.2deg",
         "exp_times": 30.0,
         "image_type": "OBJECT",
         "reset_offsets_when_finished": false
@@ -266,7 +266,7 @@
       "parameters": {
         "offset_azel": {
           "az": 0,
-          "el": 1800
+          "el": 360
         },
         "relative": true
       }
@@ -286,7 +286,7 @@
           ]
         },
         "program": "BLOCK-T540",
-        "reason": "L2_pads_rot_scan_9deg",
+        "reason": "L2_pads_rot_scan_5.3deg",
         "exp_times": 30.0,
         "image_type": "OBJECT",
         "reset_offsets_when_finished": false
@@ -298,7 +298,7 @@
       "parameters": {
         "offset_azel": {
           "az": 0,
-          "el": 1800
+          "el": 360
         },
         "relative": true
       }
@@ -318,39 +318,7 @@
           ]
         },
         "program": "BLOCK-T540",
-        "reason": "L2_pads_rot_scan_9.5deg",
-        "exp_times": 30.0,
-        "image_type": "OBJECT",
-        "reset_offsets_when_finished": false
-      }
-    },
-    {
-      "name": "maintel/offset_mtcs.py",
-      "standard": true,
-      "parameters": {
-        "offset_azel": {
-          "az": 0,
-          "el": 1800
-        },
-        "relative": true
-      }
-    },
-    {
-      "name": "maintel/offset_and_take_images_lsstcam.py",
-      "standard": false,
-      "parameters": {
-        "offset_rot": {
-          "rot": [
-            -28,
-            -21,
-            -7,
-            1,
-            11,
-            17
-          ]
-        },
-        "program": "BLOCK-T540",
-        "reason": "L2_pads_rot_scan_10deg",
+        "reason": "L2_pads_rot_scan_5.4deg",
         "exp_times": 30.0,
         "image_type": "OBJECT",
         "reset_offsets_when_finished": false
