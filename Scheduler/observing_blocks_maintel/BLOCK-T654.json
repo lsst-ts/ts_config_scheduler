@@ -24,8 +24,7 @@
                 "program": "$program",
                 "nimages": 40,
                 "exp_times": 10,
-                "reason": "TimingCalibration",
-                "filter": "r_03"
+                "reason": "TimingCalibration"
             }
         }
     ]
