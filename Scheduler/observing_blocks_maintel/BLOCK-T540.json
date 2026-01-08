@@ -1,0 +1,328 @@
+{
+  "name": "BLOCK-T540",
+  "id": "70e641e6-5a88-4d5d-aa3c-bd5082f547cc",
+  "program": "BLOCK-T540",
+  "constraints": [],
+  "scripts": [
+    {
+      "name": "maintel/offset_mtcs.py",
+      "standard": true,
+      "parameters": {
+        "offset_azel": {
+          "az": 0,
+          "el": 16200
+        },
+        "relative": true
+      }
+    },
+    {
+      "name": "maintel/offset_and_take_images_lsstcam.py",
+      "standard": false,
+      "parameters": {
+        "offset_rot": {
+          "rot": [
+            0,
+            10,
+            15,
+            7,
+            -12,
+            -20
+          ]
+        },
+        "program": "BLOCK-T540",
+        "reason": "L2_pads_rot_scan_4.5deg",
+        "exp_times": 30.0,
+        "image_type": "OBJECT",
+        "reset_offsets_when_finished": false
+      }
+    },
+    {
+      "name": "maintel/offset_mtcs.py",
+      "standard": true,
+      "parameters": {
+        "offset_azel": {
+          "az": 0,
+          "el": 360
+        },
+        "relative": true
+      }
+    },
+    {
+      "name": "maintel/offset_and_take_images_lsstcam.py",
+      "standard": false,
+      "parameters": {
+        "offset_rot": {
+          "rot": [
+            -30,
+            -20,
+            -5,
+            8,
+            15,
+            25
+          ]
+        },
+        "program": "BLOCK-T540",
+        "reason": "L2_pads_rot_scan_4.6deg",
+        "exp_times": 30.0,
+        "image_type": "OBJECT",
+        "reset_offsets_when_finished": false
+      }
+    },
+    {
+      "name": "maintel/offset_mtcs.py",
+      "standard": true,
+      "parameters": {
+        "offset_azel": {
+          "az": 0,
+          "el": 360
+        },
+        "relative": true
+      }
+    },
+    {
+      "name": "maintel/offset_and_take_images_lsstcam.py",
+      "standard": false,
+      "parameters": {
+        "offset_rot": {
+          "rot": [
+            35,
+            15,
+            5,
+            -7,
+            -18,
+            -25
+          ]
+        },
+        "program": "BLOCK-T540",
+        "reason": "L2_pads_rot_scan_4.7deg",
+        "exp_times": 30.0,
+        "image_type": "OBJECT",
+        "reset_offsets_when_finished": false
+      }
+    },
+    {
+      "name": "maintel/offset_mtcs.py",
+      "standard": true,
+      "parameters": {
+        "offset_azel": {
+          "az": 0,
+          "el": 360
+        },
+        "relative": true
+      }
+    },
+    {
+      "name": "maintel/offset_and_take_images_lsstcam.py",
+      "standard": false,
+      "parameters": {
+        "offset_rot": {
+          "rot": [
+            -20,
+            -9,
+            0,
+            7,
+            14,
+            22
+          ]
+        },
+        "program": "BLOCK-T540",
+        "reason": "L2_pads_rot_scan_4.8deg",
+        "exp_times": 30.0,
+        "image_type": "OBJECT",
+        "reset_offsets_when_finished": false
+      }
+    },
+    {
+      "name": "maintel/offset_mtcs.py",
+      "standard": true,
+      "parameters": {
+        "offset_azel": {
+          "az": 0,
+          "el": 360
+        },
+        "relative": true
+      }
+    },
+    {
+      "name": "maintel/offset_and_take_images_lsstcam.py",
+      "standard": false,
+      "parameters": {
+        "offset_rot": {
+          "rot": [
+            33,
+            15,
+            4,
+            -6,
+            -12,
+            -17
+          ]
+        },
+        "program": "BLOCK-T540",
+        "reason": "L2_pads_rot_scan_4.9deg",
+        "exp_times": 30.0,
+        "image_type": "OBJECT",
+        "reset_offsets_when_finished": false
+      }
+    },
+    {
+      "name": "maintel/offset_mtcs.py",
+      "standard": true,
+      "parameters": {
+        "offset_azel": {
+          "az": 0,
+          "el": 360
+        },
+        "relative": true
+      }
+    },
+    {
+      "name": "maintel/offset_and_take_images_lsstcam.py",
+      "standard": false,
+      "parameters": {
+        "offset_rot": {
+          "rot": [
+            -27,
+            -16,
+            -5,
+            5,
+            12,
+            24
+          ]
+        },
+        "program": "BLOCK-T540",
+        "reason": "L2_pads_rot_scan_5deg",
+        "exp_times": 30.0,
+        "image_type": "OBJECT",
+        "reset_offsets_when_finished": false
+      }
+    },
+    {
+      "name": "maintel/offset_mtcs.py",
+      "standard": true,
+      "parameters": {
+        "offset_azel": {
+          "az": 0,
+          "el": 360
+        },
+        "relative": true
+      }
+    },
+    {
+      "name": "maintel/offset_and_take_images_lsstcam.py",
+      "standard": false,
+      "parameters": {
+        "offset_rot": {
+          "rot": [
+            30,
+            25,
+            15,
+            -5,
+            -12,
+            -20
+          ]
+        },
+        "program": "BLOCK-T540",
+        "reason": "L2_pads_rot_scan_5.1deg",
+        "exp_times": 30.0,
+        "image_type": "OBJECT",
+        "reset_offsets_when_finished": false
+      }
+    },
+    {
+      "name": "maintel/offset_mtcs.py",
+      "standard": true,
+      "parameters": {
+        "offset_azel": {
+          "az": 0,
+          "el": 360
+        },
+        "relative": true
+      }
+    },
+    {
+      "name": "maintel/offset_and_take_images_lsstcam.py",
+      "standard": false,
+      "parameters": {
+        "offset_rot": {
+          "rot": [
+            -10,
+            6,
+            13,
+            -5,
+            -12,
+            -30
+          ]
+        },
+        "program": "BLOCK-T540",
+        "reason": "L2_pads_rot_scan_5.2deg",
+        "exp_times": 30.0,
+        "image_type": "OBJECT",
+        "reset_offsets_when_finished": false
+      }
+    },
+    {
+      "name": "maintel/offset_mtcs.py",
+      "standard": true,
+      "parameters": {
+        "offset_azel": {
+          "az": 0,
+          "el": 360
+        },
+        "relative": true
+      }
+    },
+    {
+      "name": "maintel/offset_and_take_images_lsstcam.py",
+      "standard": false,
+      "parameters": {
+        "offset_rot": {
+          "rot": [
+            -32,
+            -20,
+            -5,
+            7,
+            12,
+            27
+          ]
+        },
+        "program": "BLOCK-T540",
+        "reason": "L2_pads_rot_scan_5.3deg",
+        "exp_times": 30.0,
+        "image_type": "OBJECT",
+        "reset_offsets_when_finished": false
+      }
+    },
+    {
+      "name": "maintel/offset_mtcs.py",
+      "standard": true,
+      "parameters": {
+        "offset_azel": {
+          "az": 0,
+          "el": 360
+        },
+        "relative": true
+      }
+    },
+    {
+      "name": "maintel/offset_and_take_images_lsstcam.py",
+      "standard": false,
+      "parameters": {
+        "offset_rot": {
+          "rot": [
+            20,
+            13,
+            7,
+            -5,
+            -12,
+            -22
+          ]
+        },
+        "program": "BLOCK-T540",
+        "reason": "L2_pads_rot_scan_5.4deg",
+        "exp_times": 30.0,
+        "image_type": "OBJECT",
+        "reset_offsets_when_finished": false
+      }
+    }
+  ]
+}

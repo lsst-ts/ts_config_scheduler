@@ -290,7 +290,7 @@ maintel:
       throughputs_version: '1.1'
     sky:
       exclude_planets: true
-  n_targets: 1
+  n_targets: 2
   observing_script: standard_visit.py
   observing_script_is_standard: true
   predicted_scheduler_window: 2.0

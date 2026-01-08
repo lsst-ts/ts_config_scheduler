@@ -1,0 +1,16 @@
+{
+    "name": "Imaging",
+    "program": "BLOCK-T644_1",
+    "constraints": [],
+    "scripts": [
+        {
+            "name": "maintel/apply_dof.py",
+            "standard": true,
+            "parameters": {
+                "M2_rx": 0.006,
+                "Cam_ry": -0.020000000000000004,
+                "M1M3_B1": -0.06
+            }
+        }
+    ]
+}

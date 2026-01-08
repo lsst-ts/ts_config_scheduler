@@ -81,6 +81,7 @@ def get_scheduler() -> tuple[int, CoreScheduler]:
     safety_mask_params = {
         "nside": nside,
         "wind_speed_maximum": 40,
+        "apply_time_limited_shadow": False,
         "time_to_sunrise": 3.0,
         "min_az_sunrise": 150,
         "max_az_sunrise": 250,
@@ -107,12 +108,6 @@ def get_scheduler() -> tuple[int, CoreScheduler]:
     }
     # Seeing (FWHM in ") max for template
     fwhm_template_max = 1.3
-
-    # Parameters for  DDF dithers
-    camera_ddf_rot_limit = 55  # Rotator limit for DDF (degrees) .. 75
-    camera_ddf_rot_per_visit = 3.0  # small rotation per visit (degrees)
-    max_dither = 0.2  # Max radial dither for DDF (degrees)
-    per_night = False  # Dither DDF per night (True) or per visit (False)
 
     # Parameters for rolling cadence footprint definition
     nslice = 2  # N slices for rolling
@@ -229,7 +224,7 @@ def get_scheduler() -> tuple[int, CoreScheduler]:
 
     # Parameters for  DDF dithers
     camera_ddf_rot_limit = 55  # Rotator limit for DDF (degrees) .. 75
-    camera_ddf_rot_per_visit = 3.0  # small rotation per visit (degrees)
+    camera_ddf_rot_per_visit = 3.0  # small rotation per visit (degrees) .. 3
     max_dither = 0.2  # Max radial dither for DDF (degrees)
     per_night = False  # Dither DDF per night (True) or per visit (False)
 
@@ -305,6 +300,7 @@ def get_scheduler() -> tuple[int, CoreScheduler]:
     short_blobs = lsst_surveys.generate_short_blobs(
         footprints=footprints,
         nside=nside,
+        camera_rot_limits=camera_rot_limits,
         exptime=exptime,
         nexp=nexp,
         pair_time=15.0,
@@ -412,14 +408,25 @@ def get_scheduler() -> tuple[int, CoreScheduler]:
         basis_functions.SlewtimeBasisFunction(bandname=None, nside=nside),
     ]
 
+    cwfs_basis_weights = np.ones(len(cwfs_basis_functions))
+    # Make the FBS not run away from last pointing
+    cwfs_basis_weights[-1] = 100
+
     cwfs_surveys = [
         GreedySurvey(
             cwfs_basis_functions,
-            np.ones(len(cwfs_basis_functions)),
+            cwfs_basis_weights,
             nside=nside,
             survey_name=cwfs_survey_name,
+            observation_reason="cwfs",
             science_program=cwfs_block,
+            # We can set nexp=3 here because the CWFS triplet
+            # block actually sets exptime etc itself (as well as band).
+            # We will however tell the FBS how  long it takes to actually
+            # acquire these visits here, for more accurate sims.
             nexp=3,
+            exptime=50 * 3,
+            bandname="r",
             detailers=[
                 detailers.LabelRegionsAndDDFs(),
             ],

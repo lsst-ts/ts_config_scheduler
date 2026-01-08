@@ -1,0 +1,67 @@
+{
+    "name": "BLOCK-T664_b",
+    "program": "BLOCK-T664_b",
+    "constraints": [],
+    "scripts": [
+        {
+            "name": "maintel/make_lsstcam_calibrations.py",
+            "standard": false,
+            "parameters": {
+                "script_mode": "BIAS",
+                "n_bias": 3,
+                "n_discard_bias": 1,
+                "wait_between_exposures": 30,
+                "generate_calibrations": true,
+                "do_verify": true,
+                "reason": "daily_bias",
+                "program": "$program"
+            }
+        },
+        {
+            "name": "maintel/make_lsstcam_calibrations.py",
+            "standard": false,
+            "parameters": {
+                "script_mode": "DARK",
+                "n_dark": 3,
+                "n_discard_dark": 1,
+                "exp_times_dark": 30,
+                "wait_between_exposures": 0,
+                "generate_calibrations": true,
+                "do_verify": true,
+                "reason": "daily_dark",
+                "program": "$program"
+            }
+        },
+        {
+            "name": "maintel/make_lsstcam_calibrations.py",
+            "standard": false,
+            "parameters": {
+                "script_mode": "BIAS",
+                "n_bias": 20,
+                "n_discard_bias": 1,
+                "wait_between_exposures": 30,
+                "generate_calibrations": true,
+                "do_verify": true,
+                "reason": "daily_bias",
+                "program": "$program"
+            }
+        },
+        {
+            "name": "maintel/make_lsstcam_calibrations.py",
+            "standard": false,
+            "parameters": {
+                "script_mode": "DARK",
+                "n_dark": 100,
+                "n_discard_dark": 1,
+                "exp_times_dark": 30,
+                "wait_between_exposures": 0,
+                "generate_calibrations": true,
+                "do_verify": true,
+                "reason": "daily_dark",
+                "program": "$program"
+            }
+        }
+    ],
+     "configuration_schema": "$schema: http://json-schema.org/draft-07/schema#\ntitle: BLOCK-T664_b configuration\ndescription: Configuration for BLOCK-T664_b.\ntype: object\nproperties:\n  program:\n    description: Name of program\n    type: string\n    default: BLOCK-T664_b\n  ignore:\n    description: Name of the CSCs we want to ignore\n    type: array\n    default: ['TunableLaser','CBP','Electrometer:101','Electrometer:102','Electrometer:103']\n  sequence_names:\n    description: List of sequence names to run for whitelight flats script.\n    type: array\n    default: ['whitelight_i_39_daily']\n"
+}
+

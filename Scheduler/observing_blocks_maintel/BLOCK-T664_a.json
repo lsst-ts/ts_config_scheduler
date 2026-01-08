@@ -1,0 +1,126 @@
+{
+    "name": "BLOCK-T664_a",
+    "program": "BLOCK-T664_a",
+    "constraints": [],
+    "scripts": [
+        {
+                "name": "maintel/mtrotator/move_rotator.py",
+                "standard": true,
+                "parameters": {
+                    "angle": 0.0
+                }
+            },
+            {
+                "name": "maintel/open_mirror_covers.py",
+                "standard": true,
+                "parameters":{}
+            },
+            {
+                "name": "maintel/enable_hexapod_compensation_mode.py",
+                "standard": true,
+                "parameters": {}
+            },
+            {
+                "name": "maintel/set_dof.py",
+                "standard": true,
+                "parameters": {
+                    "dofs": [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0],
+                    "ignore": ["mtdome","mtdometrajectory"]
+                }
+            },
+            {
+                "name": "maintel/mtdome/park_dome.py",
+                "standard": true,
+                "parameters": {
+                    "ignore": ["mtm1m3","mtm2","mtaos","mthexapod_1","mthexapod_2","mtmount","mtptg","mtrotator"]
+                }
+            },
+            {
+                "name": "maintel/point_azel.py",
+                "standard": true,
+                "parameters": {
+                    "az": -126.2,
+                    "el": 22.0,
+                    "ignore": ["mtdome","mtdometrajectory"]
+                }
+            },
+            {
+                "name": "set_summary_state.py",
+                "standard": true,
+                "parameters": {
+                    "data": [["LEDProjector", "ENABLED"],
+                            ["OCPS:1", "ENABLED"],
+                            ["OCPS:2", "ENABLED"],
+                            ["OCPS:3", "ENABLED"],
+                            ["FiberSpectrograph:101", "ENABLED"],
+                            ["FiberSpectrograph:102", "ENABLED"],
+                            ["LinearStage:101", "ENABLED"],
+                            ["LinearStage:102", "ENABLED"],
+                            ["LinearStage:103", "ENABLED"],
+                            ["LinearStage:104", "ENABLED"],
+                            ["MTReflector", "ENABLED"]]
+            }
+        },
+        {
+            "name": "run_command.py",
+            "standard": true,
+            "parameters": {
+                "component": "MTReflector",
+                "cmd": "open"
+            }
+        },
+        {
+            "name": "maintel/setup_calsys_flats.py",
+            "standard": false,
+            "parameters":{
+                "ignore": "$ignore"
+            }
+        },
+        {
+            "name": "maintel/take_calsys_flats_lsstcam.py",
+            "standard": false,
+            "parameters": {
+                "sequence_names": "$sequence_names",
+                "reason": "min_daily_flat",
+                "program": "$program"
+            }
+        },
+        {
+            "name": "maintel/park_calibration_projector.py",
+            "standard": false,
+            "parameters": {
+                "ignore": "$ignore"
+            }
+        },
+        {
+            "name": "run_command.py",
+            "standard": true,
+            "parameters": {
+                "component": "MTReflector",
+                "cmd": "close"
+            }
+        },
+        {
+            "name": "maintel/close_mirror_covers.py",
+            "standard": true,
+            "parameters":{}
+        },
+        {
+            "name": "set_summary_state.py",
+            "standard": true,
+            "parameters": {
+                "data": [["LEDProjector", "STANDBY"],
+                        ["FiberSpectrograph:101", "STANDBY"],
+                        ["FiberSpectrograph:102", "STANDBY"],
+                        ["LinearStage:101", "STANDBY"],
+                        ["LinearStage:102", "STANDBY"],
+                        ["LinearStage:103", "STANDBY"],
+                        ["LinearStage:104", "STANDBY"],
+                        ["MTReflector", "STANDBY"]]
+            }
+        }
+
+    ],
+     "configuration_schema": "$schema: http://json-schema.org/draft-07/schema#\ntitle: BLOCK-T664_a configuration\ndescription: Configuration for BLOCK-T664_a.\ntype: object\nproperties:\n  program:\n    description: Name of program\n    type: string\n    default: BLOCK-T664_a\n  ignore:\n    description: Name of the CSCs we want to ignore\n    type: array\n    default: ['TunableLaser','CBP','Electrometer:101','Electrometer:102','Electrometer:103']\n  sequence_names:\n    description: List of sequence names to run for whitelight flats script.\n    type: array\n    default: ['whitelight_i_39_daily']\n"
+}
+

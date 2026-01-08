@@ -80,6 +80,7 @@ def get_scheduler() -> tuple[int, CoreScheduler]:
     safety_mask_params = {
         "nside": nside,
         "wind_speed_maximum": 40,
+        "apply_time_limited_shadow": False,
         "time_to_sunrise": 3.0,
         "min_az_sunrise": 150,
         "max_az_sunrise": 250,
@@ -106,12 +107,6 @@ def get_scheduler() -> tuple[int, CoreScheduler]:
     }
     # Seeing (FWHM in ") max for template
     fwhm_template_max = 1.3
-
-    # Parameters for  DDF dithers
-    camera_ddf_rot_limit = 55  # Rotator limit for DDF (degrees) .. 75
-    camera_ddf_rot_per_visit = 3.0  # small rotation per visit (degrees)
-    max_dither = 0.2  # Max radial dither for DDF (degrees)
-    per_night = False  # Dither DDF per night (True) or per visit (False)
 
     # Parameters for rolling cadence footprint definition
     nslice = 2  # N slices for rolling
