@@ -54,6 +54,7 @@
                             ["OCPS:3", "ENABLED"],
                             ["FiberSpectrograph:101", "ENABLED"],
                             ["FiberSpectrograph:102", "ENABLED"],
+                            ["Electrometer:103", "ENABLED"],
                             ["LinearStage:101", "ENABLED"],
                             ["LinearStage:102", "ENABLED"],
                             ["LinearStage:103", "ENABLED"],
@@ -112,6 +113,7 @@
                 "data": [["LEDProjector", "STANDBY"],
                         ["FiberSpectrograph:101", "STANDBY"],
                         ["FiberSpectrograph:102", "STANDBY"],
+                        ["Electrometer:103", "STANDBY"],
                         ["LinearStage:101", "STANDBY"],
                         ["LinearStage:102", "STANDBY"],
                         ["LinearStage:103", "STANDBY"],
@@ -121,6 +123,6 @@
         }
 
     ],
-     "configuration_schema": "$schema: http://json-schema.org/draft-07/schema#\ntitle: BLOCK-T664_a configuration\ndescription: Configuration for BLOCK-T664_a.\ntype: object\nproperties:\n  program:\n    description: Name of program\n    type: string\n    default: BLOCK-T664_a\n  ignore:\n    description: Name of the CSCs we want to ignore\n    type: array\n    default: ['TunableLaser','CBP','Electrometer:101','Electrometer:102','Electrometer:103']\n  sequence_names:\n    description: List of sequence names to run for whitelight flats script.\n    type: array\n    default: ['whitelight_i_39_daily']\n"
+     "configuration_schema": "$schema: http://json-schema.org/draft-07/schema#\ntitle: BLOCK-T664_a configuration\ndescription: Configuration for BLOCK-T664_a.\ntype: object\nproperties:\n  program:\n    description: Name of program\n    type: string\n    default: BLOCK-T664_a\n  ignore:\n    description: Name of the CSCs we want to ignore\n    type: array\n    default: ['TunableLaser','CBP','Electrometer:101','Electrometer:102']\n  sequence_names:\n    description: List of sequence names to run for whitelight flats script.\n    type: array\n    default: ['whitelight_i_39_daily']\n"
 }
 
