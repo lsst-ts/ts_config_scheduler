@@ -8,6 +8,7 @@ maintel:
       camera:
         filter_max_changes_burst_num: 1000000
         filter_max_changes_avg_num: 30000
+        filter_change_time: 380
       park:
         filter_position: r
       telescope:
