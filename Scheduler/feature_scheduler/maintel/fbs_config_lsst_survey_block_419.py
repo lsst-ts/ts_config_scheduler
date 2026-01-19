@@ -149,6 +149,12 @@ def get_scheduler() -> tuple[int, CoreScheduler]:
     for key in footprints_hp_array.dtype.names:
         footprints_hp[key] = footprints_hp_array[key]
 
+    # And now remove g band
+    bad_band = "g"
+    for band in footprints_hp:
+        if band == bad_band:
+            footprints_hp[band] *= 0
+
     # Set up a mask to contain some surveys within this region
     footprint_mask = footprints_hp["r"] * 0
     footprint_mask[np.where(footprints_hp["r"] > 0)] = 1
@@ -264,6 +270,12 @@ def get_scheduler() -> tuple[int, CoreScheduler]:
             before_twi_check=False,
         )
     ]
+
+    # Hack the DDF obs_array to only use desired_band
+    # But also modify scheduler note so we know these are different
+    to_replace = np.where(obs_array["band"] == "g")[0]
+    obs_array["band"][to_replace] = "r"
+
     ddfs[0].set_script(obs_array)
 
     # Define the greedy surveys (single-visit per call)
