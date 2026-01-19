@@ -147,6 +147,8 @@ def get_scheduler() -> tuple[int, CoreScheduler]:
 
     footprints_hp = {}
     for key in footprints_hp_array.dtype.names:
+        if key == "g":  # TODO: Temporarily remove g due to large focus change offsets
+            continue
         footprints_hp[key] = footprints_hp_array[key]
 
     # Set up a mask to contain some surveys within this region
@@ -229,13 +231,15 @@ def get_scheduler() -> tuple[int, CoreScheduler]:
 
     band_expt = {
         "u": u_exptime,
-        "g": exptime,
+        # "g": exptime,  # TODO: Temporarily remove g due to large focus change offsets
         "r": exptime,
         "i": exptime,
         "z": exptime,
         "y": exptime,
     }
-    band_nexp = {"u": u_nexp, "g": nexp, "r": nexp, "i": nexp, "z": nexp, "y": nexp}
+    # TODO: Temporarily remove g due to large focus change offsets
+    # band_nexp = {"u": u_nexp, "g": nexp, "r": nexp, "i": nexp, "z": nexp, "y": nexp}
+    band_nexp = {"u": u_nexp, "r": nexp, "i": nexp, "z": nexp, "y": nexp}
     u_nexp = band_nexp["u"]
     u_exptime = band_expt["u"]
 
@@ -369,7 +373,9 @@ def get_scheduler() -> tuple[int, CoreScheduler]:
         nexp=nexp,
         u_exptime=u_exptime,
         u_nexp=u_nexp,
-        n_obs_template={"u": 4, "g": 4, "r": 4, "i": 4, "z": 4, "y": 4},
+        # TODO: Temporarily remove g due to large focus change offsets
+        # n_obs_template={"u": 4, "g": 4, "r": 4, "i": 4, "z": 4, "y": 4},
+        n_obs_template={"u": 4, "r": 4, "i": 4, "z": 4, "y": 4},
         science_program=science_program,
         blob_survey_params=blob_survey_params,
         safety_mask_params=safety_mask_params,
