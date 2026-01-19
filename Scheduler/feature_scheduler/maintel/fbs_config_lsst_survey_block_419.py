@@ -361,6 +361,8 @@ def get_scheduler() -> tuple[int, CoreScheduler]:
     # (only good seeing visits) and no rolling.
     template_fp = Footprint(survey_start_mjd, sun_ra_start, nside=nside)
     for key in footprints_hp_array.dtype.names:
+        if key == "g":  # TODO: Temporarily remove g due to large focus change offsets
+            continue
         tmp_fp = np.where(footprints_hp_array[key] > 0, 1, np.nan)
         template_fp.set_footprint(key, tmp_fp)
     # Define template surveys
