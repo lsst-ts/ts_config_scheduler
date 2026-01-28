@@ -1,0 +1,41 @@
+{
+    "name": "BLOCK-T682",
+    "program": "BLOCK-T682",
+    "constraints": [],
+    "scripts": [
+        {
+            "name": "maintel/mtrotator/move_rotator.py",
+            "standard": true,
+            "parameters": {
+                "angle": 0.0
+            }
+        },
+        {
+            "name": "maintel/take_calsys_flats_lsstcam.py",
+            "standard": false,
+            "parameters": {
+                "sequence_names": ["electrometer_ptc_stability_low"],
+                "reason": "PTC Stability - low level",
+                "program": "$program"
+            }
+        }, 
+        {
+            "name": "maintel/take_calsys_flats_lsstcam.py",
+            "standard": false,
+            "parameters": {
+                "sequence_names": ["electrometer_ptc_stability_mid_2"],
+                "reason": "PTC Stability - mid level, 2",
+                "program": "$program"
+            }
+        }, 
+        {
+            "name": "maintel/take_calsys_flats_lsstcam.py",
+            "standard": false,
+            "parameters": {
+                "sequence_names": ["electrometer_ptc_stability_mid_1"],
+                "reason": "PTC Stability - mid level, 1",
+                "program": "$program"
+            }
+        }
+    ]
+}
