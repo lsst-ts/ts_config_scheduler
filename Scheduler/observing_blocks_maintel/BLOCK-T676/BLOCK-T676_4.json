@@ -1,0 +1,117 @@
+{
+  "name": "BLOCK-T676_4",
+  "program": "BLOCK-T676_4",
+  "constraints": [],
+  "scripts": [
+    {
+      "name": "maintel/track_target.py",
+      "standard": true,
+      "parameters": {
+        "track_azel": {
+          "az": 173.7927,
+          "el": 36.4142
+        },
+        "target_name": "offset_obstime_2026-01-30T08:18:00.000_UTC"
+      }
+    },
+    {
+      "name": "maintel/take_image_lsstcam.py",
+      "standard": true,
+      "parameters": {
+        "exp_times": 30.0,
+        "nimages": 1,
+        "image_type": "ACQ",
+        "program": "BLOCK-T676_4",
+        "reason": "stray_light_mid_baffle"
+      }
+    },
+    {
+      "name": "maintel/track_target.py",
+      "standard": true,
+      "parameters": {
+        "track_azel": {
+          "az": 168.9757,
+          "el": 33.6622
+        },
+        "target_name": "offset_obstime_2026-01-30T08:18:37.000_UTC"
+      }
+    },
+    {
+      "name": "maintel/take_image_lsstcam.py",
+      "standard": true,
+      "parameters": {
+        "exp_times": 30.0,
+        "nimages": 1,
+        "image_type": "ACQ",
+        "program": "BLOCK-T676_4",
+        "reason": "stray_light_mid_baffle"
+      }
+    },
+    {
+      "name": "maintel/track_target.py",
+      "standard": true,
+      "parameters": {
+        "track_azel": {
+          "az": 163.7621,
+          "el": 31.6432
+        },
+        "target_name": "offset_obstime_2026-01-30T08:19:14.000_UTC"
+      }
+    },
+    {
+      "name": "maintel/take_image_lsstcam.py",
+      "standard": true,
+      "parameters": {
+        "exp_times": 30.0,
+        "nimages": 1,
+        "image_type": "ACQ",
+        "program": "BLOCK-T676_4",
+        "reason": "stray_light_mid_baffle"
+      }
+    },
+    {
+      "name": "maintel/track_target.py",
+      "standard": true,
+      "parameters": {
+        "track_azel": {
+          "az": 158.2894,
+          "el": 30.4297
+        },
+        "target_name": "offset_obstime_2026-01-30T08:19:51.000_UTC"
+      }
+    },
+    {
+      "name": "maintel/take_image_lsstcam.py",
+      "standard": true,
+      "parameters": {
+        "exp_times": 30.0,
+        "nimages": 1,
+        "image_type": "ACQ",
+        "program": "BLOCK-T676_4",
+        "reason": "stray_light_mid_baffle"
+      }
+    },
+    {
+      "name": "maintel/track_target.py",
+      "standard": true,
+      "parameters": {
+        "track_azel": {
+          "az": 152.6832,
+          "el": 30.0617
+        },
+        "target_name": "offset_obstime_2026-01-30T08:20:28.000_UTC"
+      }
+    },
+    {
+      "name": "maintel/take_image_lsstcam.py",
+      "standard": true,
+      "parameters": {
+        "exp_times": 30.0,
+        "nimages": 1,
+        "image_type": "ACQ",
+        "program": "BLOCK-T676_4",
+        "reason": "stray_light_mid_baffle"
+      }
+    }
+  ]
+}
