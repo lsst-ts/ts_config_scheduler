@@ -19,6 +19,11 @@
                     ]
                 ]
             }
+        },
+        {
+            "name": "auxtel/stop_tracking.py",
+            "standard": true,
+            "parameters": {}
         }
     ]
 }
