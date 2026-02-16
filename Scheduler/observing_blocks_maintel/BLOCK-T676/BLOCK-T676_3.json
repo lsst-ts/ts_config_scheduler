@@ -8,10 +8,10 @@
       "standard": true,
       "parameters": {
         "track_azel": {
-          "az": 164.5577,
-          "el": 32.4684
+          "az": 187.9586,
+          "el": 41.5087
         },
-        "target_name": "offset_obstime_2026-01-31T08:06:00.000_UTC"
+        "target_name": "offset_obstime_2026-02-17T09:00:00.000_UTC"
       }
     },
     {
@@ -30,10 +30,10 @@
       "standard": true,
       "parameters": {
         "track_azel": {
-          "az": 164.9547,
-          "el": 32.1069
+          "az": 188.5063,
+          "el": 41.1163
         },
-        "target_name": "offset_obstime_2026-01-31T08:06:37.000_UTC"
+        "target_name": "offset_obstime_2026-02-17T09:00:37.000_UTC"
       }
     },
     {
@@ -52,10 +52,10 @@
       "standard": true,
       "parameters": {
         "track_azel": {
-          "az": 165.3523,
-          "el": 31.7458
+          "az": 189.054,
+          "el": 40.7243
         },
-        "target_name": "offset_obstime_2026-01-31T08:07:14.000_UTC"
+        "target_name": "offset_obstime_2026-02-17T09:01:14.000_UTC"
       }
     },
     {
@@ -74,10 +74,10 @@
       "standard": true,
       "parameters": {
         "track_azel": {
-          "az": 165.7505,
-          "el": 31.385
+          "az": 189.6018,
+          "el": 40.3328
         },
-        "target_name": "offset_obstime_2026-01-31T08:07:51.000_UTC"
+        "target_name": "offset_obstime_2026-02-17T09:01:51.000_UTC"
       }
     },
     {
@@ -96,10 +96,10 @@
       "standard": true,
       "parameters": {
         "track_azel": {
-          "az": 165.9912,
-          "el": 31.2373
+          "az": 189.9508,
+          "el": 40.1466
         },
-        "target_name": "offset_obstime_2026-01-31T08:08:28.000_UTC"
+        "target_name": "offset_obstime_2026-02-17T09:02:28.000_UTC"
       }
     },
     {
@@ -118,10 +118,10 @@
       "standard": true,
       "parameters": {
         "track_azel": {
-          "az": 166.2327,
-          "el": 31.0896
+          "az": 190.3,
+          "el": 39.9602
         },
-        "target_name": "offset_obstime_2026-01-31T08:09:05.000_UTC"
+        "target_name": "offset_obstime_2026-02-17T09:03:05.000_UTC"
       }
     },
     {
@@ -140,10 +140,10 @@
       "standard": true,
       "parameters": {
         "track_azel": {
-          "az": 166.4749,
-          "el": 30.942
+          "az": 190.6492,
+          "el": 39.7737
         },
-        "target_name": "offset_obstime_2026-01-31T08:09:42.000_UTC"
+        "target_name": "offset_obstime_2026-02-17T09:03:42.000_UTC"
       }
     },
     {
@@ -162,10 +162,10 @@
       "standard": true,
       "parameters": {
         "track_azel": {
-          "az": 166.7177,
-          "el": 30.7944
+          "az": 190.9988,
+          "el": 39.5871
         },
-        "target_name": "offset_obstime_2026-01-31T08:10:19.000_UTC"
+        "target_name": "offset_obstime_2026-02-17T09:04:19.000_UTC"
       }
     },
     {
@@ -184,10 +184,10 @@
       "standard": true,
       "parameters": {
         "track_azel": {
-          "az": 166.9614,
-          "el": 30.6469
+          "az": 191.3483,
+          "el": 39.4003
         },
-        "target_name": "offset_obstime_2026-01-31T08:10:56.000_UTC"
+        "target_name": "offset_obstime_2026-02-17T09:04:56.000_UTC"
       }
     },
     {
@@ -206,10 +206,10 @@
       "standard": true,
       "parameters": {
         "track_azel": {
-          "az": 167.2057,
-          "el": 30.4993
+          "az": 191.698,
+          "el": 39.2134
         },
-        "target_name": "offset_obstime_2026-01-31T08:11:33.000_UTC"
+        "target_name": "offset_obstime_2026-02-17T09:05:33.000_UTC"
       }
     },
     {
@@ -228,10 +228,10 @@
       "standard": true,
       "parameters": {
         "track_azel": {
-          "az": 167.6092,
-          "el": 30.1399
+          "az": 192.2465,
+          "el": 38.8226
         },
-        "target_name": "offset_obstime_2026-01-31T08:12:10.000_UTC"
+        "target_name": "offset_obstime_2026-02-17T09:06:10.000_UTC"
       }
     },
     {
