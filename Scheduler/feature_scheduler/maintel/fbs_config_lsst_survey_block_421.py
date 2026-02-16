@@ -49,9 +49,9 @@ def first_alert_obs(science_program: str) -> ScheduledObservationArray:
     # First alerts:
     # Observe EDFS a and b first, then COSMOS, then M49
     # Test with ~hour on each field over week prior to event, then
-    # full night on Feb 23
+    # full night no earlier than Feb 24 61095.5
     # MJD 61087.5 to 61094.5
-    first_alert_day = 61094.5
+    first_alert_day = 61095.5
     alert_fields = {
         "EDFS_a": (58.9, -49.32),  # griz
         "EDFS_b": (63.6, -47.6),  # griz
@@ -65,7 +65,7 @@ def first_alert_obs(science_program: str) -> ScheduledObservationArray:
         "M49": "ugri",
     }
     # Typical sequence
-    nvis = {"u": 10, "g": 10, "r": 10, "i": 10, "z": 12, "y": 15}
+    nvis = {"u": 10, "g": 15, "r": 15, "i": 15, "z": 15, "y": 15}
     obs_params = {
         "flush_length": 1.0,  # days
         "mjd_tol": 15 / 60 / 24.0,  # minutes
@@ -80,11 +80,11 @@ def first_alert_obs(science_program: str) -> ScheduledObservationArray:
     expt = {"u": 38, "g": 30, "r": 30, "i": 30, "z": 30, "y": 30}
     thirty_seconds = 30 / 60 / 60 / 24
     # Order by socket
-    band_order = "iygzr"
+    band_order = "igzr"
 
     sched_obs = []
     # visits for the week prior to first alerts, plus 2 days
-    mjds = np.arange(61087.5, 61096.6, 1)
+    mjds = np.arange(61087.5, first_alert_day + 2, 1)
     for mjd in mjds:
         c_mjd = mjd
         for name in ["EDFS_a", "COSMOS", "M49"]:
@@ -102,7 +102,7 @@ def first_alert_obs(science_program: str) -> ScheduledObservationArray:
                 n_per_cycle = 1
                 n_cycles = 1
             elif name == "M49":
-                n_per_cycle = 2
+                n_per_cycle = 1
                 n_cycles = 2
             elif name == "COSMOS":
                 n_per_cycle = 1
@@ -112,7 +112,7 @@ def first_alert_obs(science_program: str) -> ScheduledObservationArray:
                     n_per_cycle = 1.6
                     n_cycles = 1
                 elif name == "COSMOS":
-                    n_per_cycle = 2.3
+                    n_per_cycle = 2
                     n_cycles = 3
                 elif name == "M49":
                     n_per_cycle = 3
@@ -411,6 +411,7 @@ def get_scheduler() -> tuple[int, CoreScheduler]:
             detailers=detailer_list,
             survey_name="first alerts",
             before_twi_check=False,
+            return_n_limit=15,
         )
     ]
     alert_obs_array = first_alert_obs(science_program)
