@@ -293,7 +293,6 @@ def gen_ddf_presched_observations(
     nexp: dict | None = None,
     survey_start: float = SURVEY_START_MJD,
     survey_length: int = 10,
-    survey_name: str = "deep drilling",
     science_program: str = SCIENCE_PROGRAM,
     save_filename: str = "ts_ddf_array.npz",
     save_path: str = None,
@@ -335,7 +334,7 @@ def gen_ddf_presched_observations(
 
     if save_path is None:
         save_path = Path(get_data_dir(), "scheduler")
-    # Potetial pre-computed obs_array:
+    # Pre-computed obs_array filename
     root, ext = save_filename.rsplit(".", maxsplit=1)
 
     # Hash of the files that define the DDF sequences, to identify

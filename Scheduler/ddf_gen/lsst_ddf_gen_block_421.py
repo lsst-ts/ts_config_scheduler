@@ -23,9 +23,5 @@
 from gen_ddf_presched_observations import gen_ddf_presched_observations
 
 if __name__ == "__main__":
-    science_program = "BLOCK-416"
 
-    gen_ddf_presched_observations(
-        science_program=science_program,
-        additional_hash_files=[__file__],
-    )
+    gen_ddf_presched_observations(science_program="BLOCK-421")

@@ -45,6 +45,128 @@ from rubin_scheduler.site_models import Almanac
 from rubin_scheduler.utils import SURVEY_START_MJD
 
 
+def first_alert_obs(science_program: str) -> ScheduledObservationArray:
+    # First alerts:
+    # Observe EDFS a and b first, then COSMOS, then M49
+    # Test with ~hour on each field over week prior to event, then
+    # full night on Feb 23
+    # MJD 61087.5 to 61094.5
+    first_alert_day = 61094.5
+    alert_fields = {
+        "EDFS_a": (58.9, -49.32),  # griz
+        "EDFS_b": (63.6, -47.6),  # griz
+        "COSMOS": (150.108, 2.2336),  # ugrizy
+        "M49": (186.2, 7.0),  # ugri
+    }
+    alert_field_bands = {
+        "EDFS_a": "griz",
+        "EDFS_b": "griz",
+        "COSMOS": "ugrizy",
+        "M49": "ugri",
+    }
+    # Typical sequence
+    nvis = {"u": 10, "g": 10, "r": 10, "i": 10, "z": 12, "y": 15}
+    obs_params = {
+        "flush_length": 1.0,  # days
+        "mjd_tol": 15 / 60 / 24.0,  # minutes
+        "dist_tol": np.radians(3.0),
+        "alt_min": np.radians(25.0),
+        "alt_max": np.radians(85.0),
+        "sun_alt_max": np.radians(-12.0),
+        "HA_min": 21.0,
+        "HA_max": 3.0,
+        "moon_min_distance": np.radians(25.0),
+    }
+    expt = {"u": 38, "g": 30, "r": 30, "i": 30, "z": 30, "y": 30}
+    thirty_seconds = 30 / 60 / 60 / 24
+    # Order by socket
+    band_order = "iygzr"
+
+    sched_obs = []
+    # visits for the week prior to first alerts, plus 2 days
+    mjds = np.arange(61087.5, 61096.6, 1)
+    for mjd in mjds:
+        c_mjd = mjd
+        for name in ["EDFS_a", "COSMOS", "M49"]:
+            ra = alert_fields[name][0]
+            dec = alert_fields[name][1]
+            # Make the metadata for our real DDFs be different than M49
+            if name == "M49":
+                target_name = "field_" + name.lower()
+            else:
+                target_name = "ddf_" + name.lower()
+            # Run different number of cycles through each field
+            n_cycles = 1
+            n_per_cycle = 1
+            if name == "EDFS_a":
+                n_per_cycle = 1
+                n_cycles = 1
+            elif name == "M49":
+                n_per_cycle = 2
+                n_cycles = 2
+            elif name == "COSMOS":
+                n_per_cycle = 1
+                n_cycles = 2
+            if mjd >= first_alert_day:
+                if name == "EDFS_a":
+                    n_per_cycle = 1.6
+                    n_cycles = 1
+                elif name == "COSMOS":
+                    n_per_cycle = 2.3
+                    n_cycles = 3
+                elif name == "M49":
+                    n_per_cycle = 3
+                    n_cycles = 3
+
+            for cycle in range(n_cycles):
+                for band in band_order:
+                    if band in alert_field_bands[name]:
+                        n_vis_band = int(nvis[band] * n_per_cycle)
+                        obs = ScheduledObservationArray(n=n_vis_band)
+                        obs["RA"] = np.radians(ra)
+                        obs["dec"] = np.radians(dec)
+                        # Set like this to ensure desired order of visits
+                        # The mjd is not intended to be precise at all.
+                        obs["mjd"] = c_mjd + np.arange(0, n_vis_band) * thirty_seconds
+                        obs["flush_by_mjd"] = mjd + obs_params["flush_length"]
+                        obs["exptime"] = expt[band]
+                        obs["band"] = band
+                        obs["nexp"] = 1
+                        obs["scheduler_note"] = f"Alert:{name}"
+                        obs["target_name"] = target_name
+                        obs["science_program"] = science_program
+                        obs["observation_reason"] = "alert_" + name.lower()
+                        obs["mjd_tol"] = obs_params["mjd_tol"]
+                        obs["dist_tol"] = obs_params["dist_tol"]
+                        obs["HA_min"] = obs_params["HA_min"]
+                        obs["HA_max"] = obs_params["HA_max"]
+                        obs["alt_min"] = obs_params["alt_min"]
+                        obs["alt_max"] = obs_params["alt_max"]
+                        obs["sun_alt_max"] = obs_params["sun_alt_max"]
+                        obs["moon_min_distance"] = obs_params["moon_min_distance"]
+                        # I want the different fields to go sequentially
+                        c_mjd += (n_vis_band + 2) * thirty_seconds
+                        if name == "EDFS_a":
+                            # Copy EDFS_a to EDFS_b, so they execute in tandem
+                            obs_b = copy.deepcopy(obs)
+                            name_b = "EDFS_b"
+                            obs_b["RA"] = np.radians(alert_fields[name_b][0])
+                            obs_b["dec"] = np.radians(alert_fields[name_b][1])
+                            obs_b["scheduler_note"] = f"Alert:{name_b}"
+                            obs_b["target_name"] = "ddf_" + name_b.lower()
+                            obs_b["observation_reason"] = "alert_" + name_b.lower()
+                            obs = np.concat([obs, obs_b])
+                            obs = np.sort(obs, order="mjd")
+                        sched_obs.append(obs)
+    all_scheduled_obs = np.concatenate(sched_obs)
+    # But now all_scheduled_obs is just an ndarray with the right fields
+    # So .. convert it back.
+    sched_obs_all = ScheduledObservationArray(n=len(all_scheduled_obs))
+    for key in all_scheduled_obs.dtype.names:
+        sched_obs_all[key] = all_scheduled_obs[key]
+    return sched_obs_all
+
+
 def get_scheduler() -> tuple[int, CoreScheduler]:
     """Construct the LSST survey scheduler.
 
@@ -58,7 +180,7 @@ def get_scheduler() -> tuple[int, CoreScheduler]:
         Feature based scheduler.
     """
     nside = 32
-    science_program = "BLOCK-408"
+    science_program = "BLOCK-421"
     band_to_filter = {
         "u": "u_24",
         "g": "g_6",
@@ -73,6 +195,7 @@ def get_scheduler() -> tuple[int, CoreScheduler]:
     u_nexp = 1
 
     survey_start_mjd = SURVEY_START_MJD
+    # survey_start_mjd = 61100.5
 
     # Safety mask parameters - constraints on all survey pointings
     # Generally shadow_minutes value is set by the survey, but can
@@ -96,7 +219,7 @@ def get_scheduler() -> tuple[int, CoreScheduler]:
     # -- sets the expected time and number of pointings in a 'blob'.
     blob_survey_params = {
         "slew_approx": 8,
-        "band_change_approx": 140.0,
+        "band_change_approx": 320.0,
         "read_approx": 3.07,
         "flush_time": 30.0,
         "smoothing_kernel": None,
@@ -106,7 +229,7 @@ def get_scheduler() -> tuple[int, CoreScheduler]:
         "twilight_scale": True,
     }
     # Seeing (FWHM in ") max for template
-    fwhm_template_max = 1.3
+    fwhm_template_max = 1.4
 
     # Parameters for rolling cadence footprint definition
     nslice = 2  # N slices for rolling
@@ -189,11 +312,10 @@ def get_scheduler() -> tuple[int, CoreScheduler]:
         safety_mask_params=safety_mask_params,
     )
 
-    # Define the DDF surveys
     # This hash is provided by the script that
     # generates the pre-computed data. Execute it and paste
     # the provided value here.
-    expected_hex_digest = "dc68d5d"
+    expected_hex_digest = "70645ab"
     pre_comp_file = (
         pathlib.Path(get_data_dir())
         / "scheduler"
@@ -224,7 +346,7 @@ def get_scheduler() -> tuple[int, CoreScheduler]:
 
     # Parameters for  DDF dithers
     camera_ddf_rot_limit = 55  # Rotator limit for DDF (degrees) .. 75
-    camera_ddf_rot_per_visit = 3.0  # small rotation per visit (degrees)
+    camera_ddf_rot_per_visit = 3.0  # small rotation per visit (degrees) .. 3
     max_dither = 0.2  # Max radial dither for DDF (degrees)
     per_night = False  # Dither DDF per night (True) or per visit (False)
 
@@ -267,6 +389,33 @@ def get_scheduler() -> tuple[int, CoreScheduler]:
     ]
     ddfs[0].set_script(obs_array)
 
+    detailer_list = [
+        detailers.CameraSmallRotPerObservationListDetailer(
+            min_rot=-camera_ddf_rot_limit,
+            max_rot=camera_ddf_rot_limit,
+            per_visit_rot=camera_ddf_rot_per_visit,
+        ),
+        detailers.SplitDetailer(
+            detailers.DitherDetailer(per_night=per_night, max_dither=max_dither),
+            detailers.EuclidDitherDetailer(per_night=per_night),
+        ),
+        detailers.BandNexp(bandname="u", nexp=u_nexp, exptime=u_exptime),
+        # Purposefully excluded bandsort detailer
+        detailers.LabelRegionsAndDDFs(),
+        detailers.TruncatePreTwiDetailer(),
+    ]
+    first_alerts = [
+        ScriptedSurvey(
+            safety_masks(**safety_mask_params_ddf),
+            nside=nside,
+            detailers=detailer_list,
+            survey_name="first alerts",
+            before_twi_check=False,
+        )
+    ]
+    alert_obs_array = first_alert_obs(science_program)
+    first_alerts[0].set_script(alert_obs_array)
+
     # Define the greedy surveys (single-visit per call)
     greedy = lsst_surveys.gen_greedy_surveys(
         nside=nside,
@@ -300,6 +449,7 @@ def get_scheduler() -> tuple[int, CoreScheduler]:
     short_blobs = lsst_surveys.generate_short_blobs(
         footprints=footprints,
         nside=nside,
+        camera_rot_limits=camera_rot_limits,
         exptime=exptime,
         nexp=nexp,
         pair_time=15.0,
@@ -400,6 +550,7 @@ def get_scheduler() -> tuple[int, CoreScheduler]:
     # Arrange the surveys in tiers.
     surveys = [
         toos,
+        first_alerts,
         roman_micro,
         ddfs,
         template_surveys,

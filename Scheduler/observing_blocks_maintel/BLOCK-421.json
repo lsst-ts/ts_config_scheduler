@@ -1,6 +1,6 @@
 {
     "name": "Imaging",
-    "program": "BLOCK-408",
+    "program": "BLOCK-421",
     "constraints": [],
     "scripts": [
         {
@@ -20,7 +20,7 @@
                 "reason": "$observation_reason",
                 "targetid": "$targetid",
                 "note": "$note",
-                "run_aos_closed_loop_on_filter_change": true,
+                "run_aos_closed_loop_on_filter_change": false,
                 "aos_closed_loop_settings": {
                     "n_iter": 2
                 },
