@@ -24,6 +24,8 @@
                 "aos_closed_loop_settings": {
                     "n_iter": 2
                 },
+                "roi_size": 200,
+                "roi_time_ms": 50,
                 "ignore": ["mtaos"]
             }
         }
