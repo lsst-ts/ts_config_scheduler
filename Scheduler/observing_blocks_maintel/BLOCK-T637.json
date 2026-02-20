@@ -7,10 +7,10 @@
             "name": "maintel/track_target.py",
             "standard": true,
             "parameters": {
-                "target_name": "EDFS",
+                "target_name": "COSMOS",
                 "slew_icrs": {
-                    "ra": 3.9267,
-                    "dec": -49.32
+                    "ra": 150.11,
+                    "dec": 2.23
                 },
                 "rot_value": 0,
                 "rot_type": "PhysicalSky",
