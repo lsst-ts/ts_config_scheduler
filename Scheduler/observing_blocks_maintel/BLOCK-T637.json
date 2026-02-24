@@ -7,10 +7,10 @@
             "name": "maintel/track_target.py",
             "standard": true,
             "parameters": {
-                "target_name": "EDFS",
+                "target_name": "COSMOS",
                 "slew_icrs": {
-                    "ra": 3.9267,
-                    "dec": -49.32
+                    "ra": 10.007,
+                    "dec": 2.23
                 },
                 "rot_value": 0,
                 "rot_type": "PhysicalSky",
@@ -34,72 +34,12 @@
                 "image_type": "ACQ",
                 "program": "BLOCK-T637",
                 "reason": "Exposure time scan",
-                "note": "1s exposure"
-            }
-        },
-        {
-            "name": "maintel/take_image_lsstcam.py",
-            "standard": true,
-            "parameters": {
-                "filter": "i_39",
-                "exp_times": 15,
-                "nimages": 4,
-                "image_type": "ACQ",
-                "program": "BLOCK-T637",
-                "reason": "Exposure time scan",
-                "note": "15s exposure"
-            }
-        },
-        {
-            "name": "maintel/take_image_lsstcam.py",
-            "standard": true,
-            "parameters": {
-                "filter": "i_39",
-                "exp_times": 30,
-                "nimages": 4,
-                "image_type": "ACQ",
-                "program": "BLOCK-T637",
-                "reason": "Exposure time scan",
-                "note": "30s exposure"
-            }
-        },
-        {
-            "name": "maintel/take_image_lsstcam.py",
-            "standard": true,
-            "parameters": {
-                "filter": "i_39",
-                "exp_times": 60,
-                "nimages": 4,
-                "image_type": "ACQ",
-                "program": "BLOCK-T637",
-                "reason": "Exposure time scan",
-                "note": "60s exposure"
-            }
-        },
-        {
-            "name": "maintel/take_image_lsstcam.py",
-            "standard": true,
-            "parameters": {
-                "filter": "i_39",
-                "exp_times": 90,
-                "nimages": 4,
-                "image_type": "ACQ",
-                "program": "BLOCK-T637",
-                "reason": "Exposure time scan",
-                "note": "90s exposure"
-            }
-        },
-        {
-            "name": "maintel/take_image_lsstcam.py",
-            "standard": true,
-            "parameters": {
-                "filter": "i_39",
-                "exp_times": 120,
-                "nimages": 4,
-                "image_type": "ACQ",
-                "program": "BLOCK-T637",
-                "reason": "Exposure time scan",
-                "note": "120s exposure"
+                "note": "1s exposure",
+                "visit_metadata": {
+                    "ra": 10.007,
+                    "dec": 2.23,
+                    "rot_sky": 0 
+                }
             }
         },
         {
@@ -112,7 +52,102 @@
                 "image_type": "ACQ",
                 "program": "BLOCK-T637",
                 "reason": "Exposure time scan",
-                "note": "180s exposure"
+                "note": "180s exposure",
+                "visit_metadata": {
+                    "ra": 10.007,
+                    "dec": 2.23,
+                    "rot_sky": 0 
+                }
+            }
+        },
+        {
+            "name": "maintel/take_image_lsstcam.py",
+            "standard": true,
+            "parameters": {
+                "filter": "i_39",
+                "exp_times": 30,
+                "nimages": 4,
+                "image_type": "ACQ",
+                "program": "BLOCK-T637",
+                "reason": "Exposure time scan",
+                "note": "30s exposure",
+                "visit_metadata": {
+                    "ra": 10.007,
+                    "dec": 2.23,
+                    "rot_sky": 0 
+                }
+            }
+        },
+        {
+            "name": "maintel/take_image_lsstcam.py",
+            "standard": true,
+            "parameters": {
+                "filter": "i_39",
+                "exp_times": 60,
+                "nimages": 4,
+                "image_type": "ACQ",
+                "program": "BLOCK-T637",
+                "reason": "Exposure time scan",
+                "note": "60s exposure",
+                "visit_metadata": {
+                    "ra": 10.007,
+                    "dec": 2.23,
+                    "rot_sky": 0 
+                }
+            }
+        },
+        {
+            "name": "maintel/take_image_lsstcam.py",
+            "standard": true,
+            "parameters": {
+                "filter": "i_39",
+                "exp_times": 90,
+                "nimages": 4,
+                "image_type": "ACQ",
+                "program": "BLOCK-T637",
+                "reason": "Exposure time scan",
+                "note": "90s exposure",
+                "visit_metadata": {
+                    "ra": 10.007,
+                    "dec": 2.23,
+                    "rot_sky": 0 
+                }
+            }
+        },
+        {
+            "name": "maintel/take_image_lsstcam.py",
+            "standard": true,
+            "parameters": {
+                "filter": "i_39",
+                "exp_times": 120,
+                "nimages": 4,
+                "image_type": "ACQ",
+                "program": "BLOCK-T637",
+                "reason": "Exposure time scan",
+                "note": "120s exposure",
+                "visit_metadata": {
+                    "ra": 10.007,
+                    "dec": 2.23,
+                    "rot_sky": 0 
+                }
+            }
+        },
+        {
+            "name": "maintel/take_image_lsstcam.py",
+            "standard": true,
+            "parameters": {
+                "filter": "i_39",
+                "exp_times": 15,
+                "nimages": 4,
+                "image_type": "ACQ",
+                "program": "BLOCK-T637",
+                "reason": "Exposure time scan",
+                "note": "15s exposure",
+                "visit_metadata": {
+                    "ra": 10.007,
+                    "dec": 2.23,
+                    "rot_sky": 0 
+                }
             }
         }
     ]
