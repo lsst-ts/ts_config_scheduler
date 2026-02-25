@@ -84,7 +84,7 @@ def first_alert_obs(science_program: str) -> ScheduledObservationArray:
 
     sched_obs = []
     # visits for the week prior to first alerts, plus 2 days
-    mjds = np.arange(61087.5, first_alert_day + 2, 1)
+    mjds = np.arange(61087.5, first_alert_day + 3, 1)
     for mjd in mjds:
         c_mjd = mjd
         for name in ["EDFS_a", "COSMOS", "M49"]:
@@ -108,14 +108,11 @@ def first_alert_obs(science_program: str) -> ScheduledObservationArray:
                 n_per_cycle = 1
                 n_cycles = 2
             if mjd >= first_alert_day:
-                if name == "EDFS_a":
-                    n_per_cycle = 1.6
-                    n_cycles = 1
-                elif name == "COSMOS":
-                    n_per_cycle = 2
+                if name == "COSMOS":
+                    n_per_cycle = 1.5
                     n_cycles = 3
                 elif name == "M49":
-                    n_per_cycle = 3
+                    n_per_cycle = 1.5
                     n_cycles = 3
 
             for cycle in range(n_cycles):
