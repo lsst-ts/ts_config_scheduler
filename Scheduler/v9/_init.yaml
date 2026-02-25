@@ -160,8 +160,19 @@ maintel:
   loop_sleep_time: 1.0
   max_scripts: 100
   observatory_status:
-    enable: false
-    components_to_monitor: []
+    enable: true
+    components_to_monitor: [
+      MTMount,
+      MTAOS,
+      MTM2,
+      MTDome,
+      "MTHexapod:1",
+      "MTHexapod:2",
+      MTPtg,
+      MTM1M3,
+      MTRotator,
+      MTDomeTrajectory,
+    ]
   mode: ADVANCE
   filter_names_separator: ","
   filter_band_mapping:
