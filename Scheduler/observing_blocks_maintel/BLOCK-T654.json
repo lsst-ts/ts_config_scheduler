@@ -8,8 +8,8 @@
             "standard": true,
             "parameters": {
                 "track_azel": {
-                    "az": -64.3507,
-                    "el": 29.0268
+                    "az": -62.9690,
+                    "el": 30.5331
                 },
                 "target_name": "EUTELSAT_117W_B",
                 "rot_value": -51.344,
@@ -22,7 +22,7 @@
             "parameters": {
                 "image_type": "ENGTEST",
                 "program": "$program",
-                "nimages": 40,
+                "nimages": 56,
                 "exp_times": 10,
                 "reason": "TimingCalibration"
             }
