@@ -172,6 +172,10 @@ maintel:
       MTM1M3,
       MTRotator,
       MTDomeTrajectory,
+      MTCamera,
+      MTOODS,
+      MTHeaderService,
+      WFOODS,
     ]
   mode: ADVANCE
   filter_names_separator: ","
