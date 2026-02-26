@@ -108,9 +108,12 @@ def first_alert_obs(science_program: str) -> ScheduledObservationArray:
                 n_per_cycle = 1
                 n_cycles = 2
             if mjd >= first_alert_day:
-                if name == "COSMOS":
+                if name == "EDFS_a":
                     n_per_cycle = 1.5
-                    n_cycles = 3
+                    n_cycles = 1
+                if name == "COSMOS":
+                    n_per_cycle = 0
+                    n_cycles = 0
                 elif name == "M49":
                     n_per_cycle = 1.5
                     n_cycles = 3
