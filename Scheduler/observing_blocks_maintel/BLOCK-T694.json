@@ -31,7 +31,7 @@
         "program": "BLOCK-T694",
         "reason": "Brush_stroke_scan_1.4deg",
         "exp_times": 30.0,
-        "image_type": "OBJECT",
+        "image_type": "ENGTEST",
         "reset_offsets_when_finished": false
       }
     },
@@ -62,7 +62,7 @@
         "program": "BLOCK-T694",
         "reason": "Brush_stroke_scan_1.5deg",
         "exp_times": 30.0,
-        "image_type": "OBJECT",
+        "image_type": "ENGTEST",
         "reset_offsets_when_finished": false
       }
     },
@@ -93,7 +93,7 @@
         "program": "BLOCK-T694",
         "reason": "Brush_stroke_scan_1.6deg",
         "exp_times": 30.0,
-        "image_type": "OBJECT",
+        "image_type": "ENGTEST",
         "reset_offsets_when_finished": false
       }
     },
@@ -124,7 +124,7 @@
         "program": "BLOCK-T694",
         "reason": "Brush_stroke_scan_1.7deg",
         "exp_times": 30.0,
-        "image_type": "OBJECT",
+        "image_type": "ENGTEST",
         "reset_offsets_when_finished": false
       }
     },
@@ -155,7 +155,7 @@
         "program": "BLOCK-T694",
         "reason": "Brush_stroke_scan_1.8deg",
         "exp_times": 30.0,
-        "image_type": "OBJECT",
+        "image_type": "ENGTEST",
         "reset_offsets_when_finished": false
       }
     },
@@ -186,7 +186,7 @@
         "program": "BLOCK-T694",
         "reason": "Brush_stroke_scan_1.9deg",
         "exp_times": 30.0,
-        "image_type": "OBJECT",
+        "image_type": "ENGTEST",
         "reset_offsets_when_finished": false
       }
     },
@@ -217,7 +217,7 @@
         "program": "BLOCK-T694",
         "reason": "Brush_stroke_scan_2deg",
         "exp_times": 30.0,
-        "image_type": "OBJECT",
+        "image_type": "ENGTEST",
         "reset_offsets_when_finished": false
       }
     },
@@ -248,7 +248,7 @@
         "program": "BLOCK-T694",
         "reason": "Brush_stroke_scan_2.1deg",
         "exp_times": 30.0,
-        "image_type": "OBJECT",
+        "image_type": "ENGTEST",
         "reset_offsets_when_finished": false
       }
     },
@@ -279,7 +279,7 @@
         "program": "BLOCK-T694",
         "reason": "Brush_stroke_scan_2.2deg",
         "exp_times": 30.0,
-        "image_type": "OBJECT",
+        "image_type": "ENGTEST",
         "reset_offsets_when_finished": false
       }
     },
@@ -310,7 +310,7 @@
         "program": "BLOCK-T694",
         "reason": "Brush_stroke_scan_2.3deg",
         "exp_times": 30.0,
-        "image_type": "OBJECT",
+        "image_type": "ENGTEST",
         "reset_offsets_when_finished": false
       }
     }
