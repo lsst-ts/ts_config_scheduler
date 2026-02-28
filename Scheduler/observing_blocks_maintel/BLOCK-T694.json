@@ -10,7 +10,7 @@
       "parameters": {
         "offset_azel": {
           "az": 0,
-          "el": 5040
+          "el": 4680
         },
         "relative": true
       }
@@ -26,6 +26,36 @@
             0,
             -10,
             -15
+          ]
+        },
+        "program": "BLOCK-T694",
+        "reason": "Brush_stroke_scan_1.3deg",
+        "exp_times": 30.0,
+        "image_type": "ENGTEST",
+        "reset_offsets_when_finished": false
+      }
+    },
+    {
+      "name": "maintel/offset_mtcs.py",
+      "standard": true,
+      "parameters": {
+        "offset_azel": {
+          "az": 0,
+          "el": 360
+        },
+        "relative": true
+      }
+    },
+    {
+      "name": "maintel/offset_and_take_images_lsstcam.py",
+      "standard": false,
+      "parameters": {
+        "offset_rot": {
+          "rot": [
+            -30,
+            -15,
+            5,
+            25
           ]
         },
         "program": "BLOCK-T694",
@@ -52,11 +82,10 @@
       "parameters": {
         "offset_rot": {
           "rot": [
-            -30,
-            -20,
-            -5,
-            15,
-            25
+            10,
+            0,
+            -10,
+            10
           ]
         },
         "program": "BLOCK-T694",
@@ -83,11 +112,10 @@
       "parameters": {
         "offset_rot": {
           "rot": [
-            30,
+            20,
             15,
             5,
-            -15,
-            -25
+            -15
           ]
         },
         "program": "BLOCK-T694",
@@ -116,7 +144,6 @@
           "rot": [
             -20,
             -9,
-            7,
             14,
             22
           ]
@@ -147,7 +174,6 @@
           "rot": [
             33,
             15,
-            4,
             -6,
             -17
           ]
@@ -178,9 +204,8 @@
           "rot": [
             -27,
             -16,
-            5,
-            12,
-            24
+            7,
+            22
           ]
         },
         "program": "BLOCK-T694",
@@ -208,9 +233,8 @@
         "offset_rot": {
           "rot": [
             30,
-            15,
-            -5,
-            -12,
+            10,
+            -8,
             -20
           ]
         },
@@ -239,7 +263,6 @@
         "offset_rot": {
           "rot": [
             -10,
-            6,
             13,
             -5,
             -20
@@ -271,9 +294,8 @@
           "rot": [
             -32,
             -20,
-            -5,
-            12,
-            27
+            5,
+            23
           ]
         },
         "program": "BLOCK-T694",
@@ -302,8 +324,7 @@
           "rot": [
             20,
             13,
-            -5,
-            -12,
+            -10,
             -22
           ]
         },
