@@ -8,8 +8,8 @@
             "standard": true,
             "parameters": {
                 "track_azel": {
-                    "az": -62.9690,
-                    "el": 30.5331
+                    "az": -62.9615,
+                    "el": 30.5414
                 },
                 "target_name": "EUTELSAT_117W_B",
                 "rot_value": -51.344,
