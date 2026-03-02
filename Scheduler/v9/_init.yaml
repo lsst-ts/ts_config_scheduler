@@ -172,7 +172,6 @@ maintel:
       MTM1M3,
       MTRotator,
       MTDomeTrajectory,
-      MTCamera,
       MTOODS,
       MTHeaderService,
       WFOODS,
