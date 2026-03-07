@@ -179,6 +179,7 @@ maintel:
     ]
   mode: ADVANCE
   filter_names_separator: ","
+  instrument_name: MTCamera
   filter_band_mapping:
     NONE: ""
     ph_5: ""
@@ -314,7 +315,7 @@ maintel:
   n_targets: 2
   observing_script: standard_visit.py
   observing_script_is_standard: true
-  predicted_scheduler_window: 2.0
+  predicted_scheduler_window: 0.75
   startup_database: ' '
   startup_type: HOT
   telemetry:

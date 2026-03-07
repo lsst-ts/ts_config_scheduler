@@ -53,14 +53,6 @@ auxtel:
     observation_database_name: /home/saluser/rubin_sim_data/fbs_observation_database_auxtel.sql
     scheduler_config: /net/obs-env/auto_base_packages/ts_config_scheduler/Scheduler/feature_scheduler/fbs_config_test_anytime_survey.py
 maintel:
-  instrument_name: MTCamera
-  filter_band_mapping:
-    NONE: ""
-    ph_5: ""
-    y_10: y
-    r_57: r
-    ef_43: ""
-    g_6 : g
   telemetry:
     efd_name: base_efd
     streams:
@@ -88,7 +80,6 @@ maintel:
   mode: ADVANCE
   startup_type: COLD
   startup_database: /home/saluser/rubin_sim_data/fbs_observation_database.sql
-  predicted_scheduler_window: 0.05
   models:
     observatory_model:
       camera:
