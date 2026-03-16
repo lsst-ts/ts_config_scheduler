@@ -70,7 +70,7 @@ def get_scheduler():
     # Change the alt/az here if necessary.
     alt = 70.0
     az_1 = 0.0
-    az_2 = -90.0
+    az_2 = -180.0
 
     target_name_1 = f"AOS alt:{alt:.1f} az:{az_1:.1f}"
     target_name_2 = f"AOS alt:{alt:.1f} az:{az_2:.1f}"
@@ -94,7 +94,7 @@ def get_scheduler():
         basis_functions=[
             RewardNObsSequence(n_obs_survey=100, note_survey=target_name_1),
             BalanceVisits(
-                nobs_reference=240,
+                nobs_reference=200,
                 note_survey=target_name_1,
                 note_interest="AOS alt",
                 nside=nside,
@@ -121,7 +121,7 @@ def get_scheduler():
         basis_functions=[
             RewardNObsSequence(n_obs_survey=100, note_survey=target_name_2),
             BalanceVisits(
-                nobs_reference=240,
+                nobs_reference=200,
                 note_survey=target_name_2,
                 note_interest="AOS alt",
                 nside=nside,
