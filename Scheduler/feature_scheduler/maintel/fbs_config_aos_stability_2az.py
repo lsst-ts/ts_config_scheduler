@@ -1,4 +1,4 @@
-# This file is part of ts_config_ocs.
+# This file is part of ts_config_scheduler.
 #
 # Developed for the Vera Rubin Observatory Telescope and Site System.
 # This product includes software developed by the LSST Project
@@ -19,21 +19,11 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
-from lsst.ts.fbs.utils.maintel.lsst_surveys import safety_masks
-from rubin_scheduler.scheduler.basis_functions import (
-    BalanceVisits,
-    RewardNObsSequence,
-)
-from rubin_scheduler.scheduler.detailers import (
-    AltAz2RaDecDetailer,
-    CopyValueDetailer,
-    Rottep2RotspDesiredDetailer,
-)
+from lsst.ts.fbs.utils.maintel.stability_surveys import gen_az_el_rot_stability_survey
 from rubin_scheduler.scheduler.schedulers import CoreScheduler
-from rubin_scheduler.scheduler.surveys import FieldAltAzSurvey
 
 
-def get_scheduler():
+def get_scheduler() -> tuple[int, CoreScheduler]:
     """Construct feature based scheduler.
 
     Returns
@@ -59,7 +49,7 @@ def get_scheduler():
 
     safety_mask_params = {
         "nside": nside,
-        "wind_speed_maximum": 20,
+        "wind_speed_maximum": None,
         "shadow_minutes": 0,
         "apply_time_limited_shadow": False,
         "time_to_sunrise": 3.0,
@@ -67,89 +57,25 @@ def get_scheduler():
         "max_az_sunrise": 255,
     }
 
-    # Change the alt/az here if necessary.
-    alt = 70.0
-    az_1 = 0.0
-    az_2 = -180.0
+    az_values = [0.0, -180.0]
+    el_values = [70.0, 70.0]
+    rot_values = [0.0, 0.0]
 
-    target_name_1 = f"AOS alt:{alt:.1f} az:{az_1:.1f}"
-    target_name_2 = f"AOS alt:{alt:.1f} az:{az_2:.1f}"
     block_name = "BLOCK-T703"
 
     sequence = ["i"]
-    nvisits = {"u": 1, "g": 1, "r": 1, "i": 1, "z": 1, "y": 1}
-    exptimes = {"u": 38, "g": 30, "r": 30, "i": 30, "z": 30, "y": 30}
+    nvis_per_cycle = 100
 
-    detailers = [
-        AltAz2RaDecDetailer(),
-        Rottep2RotspDesiredDetailer(),
-        CopyValueDetailer(source="rotSkyPos_desired", destination="rotSkyPos"),
-    ]
-
-    safety_masks_basis_functions = safety_masks(**safety_mask_params)
-    # Remove avoid wind basis function
-    safety_masks_basis_functions.pop(2)
-
-    aos_stability_survey_1 = FieldAltAzSurvey(
-        basis_functions=[
-            RewardNObsSequence(n_obs_survey=100, note_survey=target_name_1),
-            BalanceVisits(
-                nobs_reference=200,
-                note_survey=target_name_1,
-                note_interest="AOS alt",
-                nside=nside,
-            ),
-        ]
-        + safety_masks_basis_functions,
-        alt=alt,
-        az=az_1,
-        sequence=sequence,
-        nvisits=nvisits,
-        exptimes=exptimes,
-        ignore_obs=None,
-        survey_name=target_name_1,
-        target_name=target_name_1,
+    survey_lists = gen_az_el_rot_stability_survey(
+        az_values=az_values,
+        el_values=el_values,
+        rot_values=rot_values,
         science_program=block_name,
         observation_reason="fbs driven aos stability test",
-        scheduler_note=target_name_1,
-        nside=nside,
-        flush_pad=30.0,
-        detailers=detailers,
-    )
-
-    aos_stability_survey_2 = FieldAltAzSurvey(
-        basis_functions=[
-            RewardNObsSequence(n_obs_survey=100, note_survey=target_name_2),
-            BalanceVisits(
-                nobs_reference=200,
-                note_survey=target_name_2,
-                note_interest="AOS alt",
-                nside=nside,
-            ),
-        ]
-        + safety_masks_basis_functions,
-        alt=alt,
-        az=az_2,
         sequence=sequence,
-        nvisits=nvisits,
-        exptimes=exptimes,
-        ignore_obs=None,
-        survey_name=target_name_2,
-        target_name=target_name_2,
-        science_program=block_name,
-        observation_reason="fbs driven aos stability test",
-        scheduler_note=target_name_2,
-        nside=nside,
-        flush_pad=30.0,
-        detailers=detailers,
+        nvis_per_cycle=nvis_per_cycle,
+        safety_mask_params=safety_mask_params,
     )
-
-    survey_lists = [
-        [
-            aos_stability_survey_1,
-            aos_stability_survey_2,
-        ],
-    ]
 
     return nside, CoreScheduler(
         survey_lists,

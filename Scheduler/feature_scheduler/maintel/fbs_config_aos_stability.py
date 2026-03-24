@@ -1,4 +1,4 @@
-# This file is part of ts_config_ocs.
+# This file is part of ts_config_scheduler.
 #
 # Developed for the Vera Rubin Observatory Telescope and Site System.
 # This product includes software developed by the LSST Project
@@ -19,17 +19,11 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
-from lsst.ts.fbs.utils.maintel.lsst_surveys import safety_masks
-from rubin_scheduler.scheduler.detailers import (
-    AltAz2RaDecDetailer,
-    CopyValueDetailer,
-    Rottep2RotspDesiredDetailer,
-)
+from lsst.ts.fbs.utils.maintel.stability_surveys import gen_az_el_rot_stability_survey
 from rubin_scheduler.scheduler.schedulers import CoreScheduler
-from rubin_scheduler.scheduler.surveys import FieldAltAzSurvey
 
 
-def get_scheduler():
+def get_scheduler() -> tuple[int, CoreScheduler]:
     """Construct feature based scheduler.
 
     Returns
@@ -55,7 +49,7 @@ def get_scheduler():
 
     safety_mask_params = {
         "nside": nside,
-        "wind_speed_maximum": 20,
+        "wind_speed_maximum": None,
         "shadow_minutes": 0,
         "apply_time_limited_shadow": False,
         "time_to_sunrise": 3.0,
@@ -63,44 +57,25 @@ def get_scheduler():
         "max_az_sunrise": 255,
     }
 
-    # Change the alt/az here if necessary.
-    alt = 70.0
-    az = 0.0
+    az_values = [0.0]
+    el_values = [70.0]
+    rot_values = [0.0]
 
-    target_name = f"AOS alt:{alt:.1f} az:{az:.1f}"
     block_name = "BLOCK-T698"
 
     sequence = ["i"]
-    nvisits = {"u": 1, "g": 1, "r": 1, "i": 1, "z": 1, "y": 1}
-    exptimes = {"u": 38, "g": 30, "r": 30, "i": 30, "z": 30, "y": 30}
+    nvis_per_cycle = 100
 
-    detailers = [
-        AltAz2RaDecDetailer(),
-        Rottep2RotspDesiredDetailer(),
-        CopyValueDetailer(source="rotSkyPos_desired", destination="rotSkyPos"),
-    ]
-
-    aos_stability_survey = FieldAltAzSurvey(
-        basis_functions=safety_masks(**safety_mask_params),
-        alt=alt,
-        az=az,
-        sequence=sequence,
-        nvisits=nvisits,
-        exptimes=exptimes,
-        ignore_obs=None,
-        survey_name=target_name,
-        target_name=target_name,
+    survey_lists = gen_az_el_rot_stability_survey(
+        az_values=az_values,
+        el_values=el_values,
+        rot_values=rot_values,
         science_program=block_name,
         observation_reason="fbs driven aos stability test",
-        scheduler_note=target_name,
-        nside=nside,
-        flush_pad=30.0,
-        detailers=detailers,
+        sequence=sequence,
+        nvis_per_cycle=nvis_per_cycle,
+        safety_mask_params=safety_mask_params,
     )
-
-    survey_lists = [
-        [aos_stability_survey],
-    ]
 
     return nside, CoreScheduler(
         survey_lists,
