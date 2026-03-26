@@ -52,7 +52,7 @@ def get_scheduler():
     else:
         wind_speed_maximum = 30
 
-    sun_alt_limit = -8
+    sun_alt_limit = -20
     min_alt = 27
 
     # Detailers - for now, just simple image or spectroscopy detailers.
@@ -87,7 +87,9 @@ def get_scheduler():
     imaging_backup_targets = []
 
     # Spectroscopy priority - high priority spectroscopy - tier 1
-    spectroscopy_priority_targets = ["HD60753", "HD111980"]
+    spectroscopy_priority_targets = [
+        "HD60753",
+    ]
     # Standard spectroscopy - tier 2
     spectroscopy_standard_targets = ["HD185975"]
 
@@ -268,10 +270,7 @@ def get_scheduler():
 
     # assemble surveys into list of lists
     surveys = [
-        [cwfs_survey],
         spectroscopy_priority,
-        spectroscopy_standard,
-        spectroscopy_backup,
     ]
 
     scheduler = CoreScheduler(
