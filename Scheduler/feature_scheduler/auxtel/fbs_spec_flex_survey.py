@@ -52,7 +52,7 @@ def get_scheduler():
     else:
         wind_speed_maximum = 30
 
-    sun_alt_limit = -30
+    sun_alt_limit = -40
     min_alt = 27
 
     # Detailers - for now, just simple image or spectroscopy detailers.
