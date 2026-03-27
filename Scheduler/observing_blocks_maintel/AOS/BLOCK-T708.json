@@ -1,0 +1,182 @@
+{
+  "name": "BLOCK-T708",
+  "id": "00f6a5d0-8ec3-4b94-a32f-85ad3daeabea",
+  "program": "BLOCK-T708",
+  "constraints": [],
+  "scripts": [
+    {
+      "name": "maintel/track_target.py",
+      "standard": true,
+      "parameters": {
+        "track_azel": {
+          "az": "$azimuth",
+          "el": "$elevation"
+        },
+        "rot_value": "$rotator_angle",
+        "rot_type": "PhysicalSky"
+      }
+    },
+    {
+      "name": "maintel/parameter_march_lsstcam.py",
+      "standard": false,
+      "parameters": {
+        "az": "$azimuth",
+        "el": "$elevation",
+        "exp_time": 60.0,
+        "dofs": [37.597132, 0.0, 0.0, -1e-06, -0.0, 86.166931, -0.0, -0.0, -0.0, -1e-06, -0.000127, 0.000706, -0.009496, 4e-05, 0.0, 1e-06, -0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -1.6e-05, 6e-06, -0.0, -0.000129, -0.006995, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0],
+        "step_sequence": [-0.5, 1.0, 0.5, -1.0, 0.0],
+        "program": "$program",
+        "reason": "giant_sensitivity_8mm_extra_vmode_5"
+      }
+    },
+    {
+      "name": "maintel/parameter_march_lsstcam.py",
+      "standard": false,
+      "parameters": {
+        "az": "$azimuth",
+        "el": "$elevation",
+        "exp_time": 60.0,
+        "dofs": [142.993723, -0.037688, 0.000279, 2.3e-05, 0.003032, -254.96263, 0.004494, -3.4e-05, 2.1e-05, 0.002885, -0.003672, 0.025742, -0.494515, 0.004164, -4.8e-05, -0.099108, 0.001075, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.036431, -0.01095, -0.000266, -0.001125, -0.343125, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0],
+        "step_sequence": [-0.5, 1.0, 0.5, -1.0, 0.0],
+        "program": "$program",
+        "reason": "giant_sensitivity_8mm_extra_vmode_10"
+      }
+    },
+    {
+      "name": "maintel/parameter_march_lsstcam.py",
+      "standard": false,
+      "parameters": {
+        "az": "$azimuth",
+        "el": "$elevation",
+        "exp_time": 60.0,
+        "dofs": [115.711195, 0.210396, 0.00084, 5.7e-05, -0.013633, -205.328593, -0.025242, -0.000101, 5.1e-05, -0.012821, 0.002716, -0.057681, -0.424537, 0.004327, -0.000978, 0.43359, 7.4e-05, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -0.074378, 0.015189, 0.000564, 0.002066, -0.244893, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0],
+        "step_sequence": [-0.5, 1.0, 0.5, -1.0, 0.0],
+        "program": "$program",
+        "reason": "giant_sensitivity_8mm_extra_vmode_11"
+      }
+    },
+    {
+      "name": "maintel/parameter_march_lsstcam.py",
+      "standard": false,
+      "parameters": {
+        "az": "$azimuth",
+        "el": "$elevation",
+        "exp_time": 60.0,
+        "dofs": [-2.797376, -0.000977, 0.511327, 0.027189, 5.1e-05, 4.912709, 0.00012, -0.06099, 0.025099, 4.9e-05, 0.104165, -0.007101, 0.01047, 0.024792, -0.003249, 0.001545, 0.851801, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.011109, 0.141725, 0.001757, 0.070848, 0.004328, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0],
+        "step_sequence": [-0.5, 1.0, 0.5, -1.0, 0.0],
+        "program": "$program",
+        "reason": "giant_sensitivity_8mm_extra_vmode_12"
+      }
+    },
+    {
+      "name": "maintel/parameter_march_lsstcam.py",
+      "standard": false,
+      "parameters": {
+        "az": "$azimuth",
+        "el": "$elevation",
+        "exp_time": 60.0,
+        "dofs": [-0.05274, -0.0, 1e-06, -0.0, 1.9e-05, -0.129308, 0.0, -0.0, -1e-06, 1.4e-05, -0.94327, 0.065832, 3e-06, 1e-05, -1.2e-05, 7e-06, 4.1e-05, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.120221, 1.460156, 1e-05, -1e-06, 5e-06, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0],
+        "step_sequence": [-0.5, 1.0, 0.5, -1.0, 0.0],
+        "program": "$program",
+        "reason": "giant_sensitivity_8mm_extra_vmode_6"
+      }
+    },
+    {
+      "name": "maintel/parameter_march_lsstcam.py",
+      "standard": false,
+      "parameters": {
+        "az": "$azimuth",
+        "el": "$elevation",
+        "exp_time": 60.0,
+        "dofs": [-0.213692, -0.0, 0.0, -2.5e-05, -1.1e-05, -0.526011, -0.0, 0.0, -1.8e-05, -8e-06, 0.066849, 0.938322, -0.00012, -8e-06, -2e-06, 6.7e-05, -5e-06, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -1.454326, 0.121878, 4e-06, -6e-06, 2.1e-05, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0],
+        "step_sequence": [-0.5, 1.0, 0.5, -1.0, 0.0],
+        "program": "$program",
+        "reason": "giant_sensitivity_8mm_extra_vmode_7"
+      }
+    },
+    {
+      "name": "maintel/parameter_march_lsstcam.py",
+      "standard": false,
+      "parameters": {
+        "az": "$azimuth",
+        "el": "$elevation",
+        "exp_time": 60.0,
+        "dofs": [0.01513, -4.9e-05, -3.8e-05, -1e-05, 1.1e-05, -0.050279, 4e-06, 4e-06, -1e-05, 1e-05, -0.003015, 0.001542, 0.000406, 0.083641, 0.844896, 0.0001, -3.4e-05, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.001533, -0.004478, 1.023826, -0.001871, -3.6e-05, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0],
+        "step_sequence": [-0.5, 1.0, 0.5, -1.0, 0.0],
+        "program": "$program",
+        "reason": "giant_sensitivity_8mm_extra_vmode_8"
+      }
+    },
+    {
+      "name": "maintel/parameter_march_lsstcam.py",
+      "standard": false,
+      "parameters": {
+        "az": "$azimuth",
+        "el": "$elevation",
+        "exp_time": 60.0,
+        "dofs": [0.0725, 0.000124, 0.001795, 0.000535, -3.7e-05, -0.629347, -1.5e-05, -0.000218, 0.000461, -3.3e-05, 0.000391, 0.002218, 0.002703, 0.851068, -0.084085, 0.000207, 0.00335, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.003107, -0.000263, -0.002064, -0.957309, 0.011831, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0],
+        "step_sequence": [-0.5, 1.0, 0.5, -1.0, 0.0],
+        "program": "$program",
+        "reason": "giant_sensitivity_8mm_extra_vmode_9"
+      }
+    },
+    {
+      "name": "maintel/parameter_march_lsstcam.py",
+      "standard": false,
+      "parameters": {
+        "az": "$azimuth",
+        "el": "$elevation",
+        "exp_time": 60.0,
+        "dofs": [-0.0, 0.0, 0.0, -0.000232, 0.021753, -0.0, -0.0, -0.0, 0.0, -1.8e-05, 0.0, 0.0, -0.0, 0.0, -0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -0.0, -0.0, -0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0],
+        "step_sequence": [-0.5, 1.0, 0.5, -1.0, 0.0],
+        "program": "$program",
+        "reason": "giant_sensitivity_8mm_extra_vmode_1"
+      }
+    },
+    {
+      "name": "maintel/parameter_march_lsstcam.py",
+      "standard": false,
+      "parameters": {
+        "az": "$azimuth",
+        "el": "$elevation",
+        "exp_time": 60.0,
+        "dofs": [0.0, 0.0, -0.0, 0.021753, 0.000232, 0.0, -0.0, 0.0, -1.8e-05, -0.0, 0.0, 0.0, -0.0, -0.0, 0.0, 0.0, -0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -0.0, 0.0, 0.0, -0.0, -0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0],
+        "step_sequence": [-0.5, 1.0, 0.5, -1.0, 0.0],
+        "program": "$program",
+        "reason": "giant_sensitivity_8mm_extra_vmode_2"
+      }
+    },
+    {
+      "name": "maintel/parameter_march_lsstcam.py",
+      "standard": false,
+      "parameters": {
+        "az": "$azimuth",
+        "el": "$elevation",
+        "exp_time": 60.0,
+        "dofs": [0.0, -0.0, -1e-06, 0.003418, -1.5e-05, 0.0, -0.0, -0.0, 0.019841, -9e-05, -0.0, 0.0, -0.0, -0.0, 0.0, -0.0, -2e-06, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -0.0, 0.0, 0.0, -0.0, -0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0],
+        "step_sequence": [-0.5, 1.0, 0.5, -1.0, 0.0],
+        "program": "$program",
+        "reason": "giant_sensitivity_8mm_extra_vmode_3"
+      }
+    },
+    {
+      "name": "maintel/parameter_march_lsstcam.py",
+      "standard": false,
+      "parameters": {
+        "az": "$azimuth",
+        "el": "$elevation",
+        "exp_time": 60.0,
+        "dofs": [0.0, -1e-06, 0.0, -1.5e-05, -0.003418, 0.0, -0.0, 0.0, -9e-05, -0.019841, -0.0, -0.0, 0.0, -0.0, 0.0, -2e-06, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -0.0, 0.0, -0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0],
+        "step_sequence": [-0.5, 1.0, 0.5, -1.0, 0.0],
+        "program": "$program",
+        "reason": "giant_sensitivity_8mm_extra_vmode_4"
+      }
+    },
+    {
+      "name": "maintel/stop_tracking.py",
+      "standard": true,
+      "parameters": {}
+    }
+  ],
+  "configuration_schema": "$schema: http://json-schema.org/draft-07/schema#\ntitle: BLOCK-T708 configuration\ndescription: Configuration for BLOCK-T708.\ntype: object\nproperties:\n  azimuth:\n    description: Target azimuth angle\n    type: \"number\"\n    default: 25\n  elevation:\n    description: Target elevation angle\n    type: \"number\"\n    default: 60\n  rotator_angle:\n    description: Target rotator angle\n    type: \"number\"\n    default: 0\n"
+}
