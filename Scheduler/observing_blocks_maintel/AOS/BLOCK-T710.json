@@ -1,6 +1,6 @@
 {
   "name": "BLOCK-T710",
-  "id": "372c676c-f1c5-4e15-8350-0d5c26e3d321",
+  "id": "68dde665-dab9-40f4-8c22-87ad3e67d7d9",
   "program": "BLOCK-T710",
   "constraints": [],
   "scripts": [
@@ -31,10 +31,22 @@
       "name": "maintel/apply_dof.py",
       "standard": true,
       "parameters": {
-        "M1M3_B12": 0.24,
-        "M1M3_B16": -0.16,
-        "M1M3_B20": 0.09,
-        "M2_B16": -0.09
+        "M1M3_B12": 0.216,
+        "M1M3_B16": -0.144,
+        "M1M3_B20": 0.081,
+        "M2_B16": -0.081
+      }
+    },
+    {
+      "name": "maintel/track_target.py",
+      "standard": true,
+      "parameters": {
+        "track_azel": {
+          "az": "$azimuth",
+          "el": "$elevation"
+        },
+        "rot_value": "$rotator_angle",
+        "rot_type": "PhysicalSky"
       }
     },
     {
@@ -52,10 +64,55 @@
       "name": "maintel/apply_dof.py",
       "standard": true,
       "parameters": {
-        "M1M3_B12": -0.48,
-        "M1M3_B16": 0.32,
-        "M1M3_B20": -0.18,
-        "M2_B16": 0.18
+        "M1M3_B12": -0.216,
+        "M1M3_B16": 0.144,
+        "M1M3_B20": -0.081,
+        "M2_B16": 0.081
+      }
+    },
+    {
+      "name": "maintel/track_target.py",
+      "standard": true,
+      "parameters": {
+        "track_azel": {
+          "az": "$azimuth",
+          "el": "$elevation"
+        },
+        "rot_value": "$rotator_angle",
+        "rot_type": "PhysicalSky"
+      }
+    },
+    {
+      "name": "maintel/take_aos_sequence_lsstcam.py",
+      "standard": true,
+      "parameters": {
+        "exposure_time": 30.0,
+        "n_sequences": 3,
+        "mode": "TRIPLET",
+        "program": "$program",
+        "reason": "high_order_bending_modes_reference"
+      }
+    },
+    {
+      "name": "maintel/apply_dof.py",
+      "standard": true,
+      "parameters": {
+        "M1M3_B12": -0.216,
+        "M1M3_B16": 0.144,
+        "M1M3_B20": -0.081,
+        "M2_B16": 0.081
+      }
+    },
+    {
+      "name": "maintel/track_target.py",
+      "standard": true,
+      "parameters": {
+        "track_azel": {
+          "az": "$azimuth",
+          "el": "$elevation"
+        },
+        "rot_value": "$rotator_angle",
+        "rot_type": "PhysicalSky"
       }
     },
     {
@@ -73,10 +130,22 @@
       "name": "maintel/apply_dof.py",
       "standard": true,
       "parameters": {
-        "M1M3_B12": 0.24,
-        "M1M3_B16": -0.16,
-        "M1M3_B20": 0.09,
-        "M2_B16": -0.09
+        "M1M3_B12": 0.216,
+        "M1M3_B16": -0.144,
+        "M1M3_B20": 0.081,
+        "M2_B16": -0.081
+      }
+    },
+    {
+      "name": "maintel/track_target.py",
+      "standard": true,
+      "parameters": {
+        "track_azel": {
+          "az": "$azimuth",
+          "el": "$elevation"
+        },
+        "rot_value": "$rotator_angle",
+        "rot_type": "PhysicalSky"
       }
     },
     {
