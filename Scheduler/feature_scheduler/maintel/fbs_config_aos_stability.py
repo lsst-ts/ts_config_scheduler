@@ -57,7 +57,7 @@ def get_scheduler() -> tuple[int, CoreScheduler]:
         "max_az_sunrise": 255,
     }
 
-    az_values = [-180.0]
+    az_values = [90.0]
     el_values = [70.0]
     rot_values = [0.0]
 
