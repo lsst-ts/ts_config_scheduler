@@ -104,11 +104,6 @@
             }
         },
         {
-            "name": "maintel/close_mirror_covers.py",
-            "standard": true,
-            "parameters":{}
-        },
-        {
             "name": "set_summary_state.py",
             "standard": true,
             "parameters": {
