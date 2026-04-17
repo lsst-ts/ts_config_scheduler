@@ -1,0 +1,169 @@
+{
+  "name": "BLOCK-T710",
+  "id": "68dde665-dab9-40f4-8c22-87ad3e67d7d9",
+  "program": "BLOCK-T710",
+  "constraints": [],
+  "scripts": [
+    {
+      "name": "maintel/track_target.py",
+      "standard": true,
+      "parameters": {
+        "track_azel": {
+          "az": "$azimuth",
+          "el": "$elevation"
+        },
+        "rot_value": "$rotator_angle",
+        "rot_type": "PhysicalSky"
+      }
+    },
+    {
+      "name": "maintel/take_aos_sequence_lsstcam.py",
+      "standard": true,
+      "parameters": {
+        "exposure_time": 30.0,
+        "n_sequences": 3,
+        "mode": "TRIPLET",
+        "program": "$program",
+        "reason": "high_order_bending_modes_reference"
+      }
+    },
+    {
+      "name": "maintel/apply_dof.py",
+      "standard": true,
+      "parameters": {
+        "M1M3_B12": 0.216,
+        "M1M3_B16": -0.144,
+        "M1M3_B20": 0.081,
+        "M2_B16": -0.081
+      }
+    },
+    {
+      "name": "maintel/track_target.py",
+      "standard": true,
+      "parameters": {
+        "track_azel": {
+          "az": "$azimuth",
+          "el": "$elevation"
+        },
+        "rot_value": "$rotator_angle",
+        "rot_type": "PhysicalSky"
+      }
+    },
+    {
+      "name": "maintel/take_aos_sequence_lsstcam.py",
+      "standard": true,
+      "parameters": {
+        "exposure_time": 30.0,
+        "n_sequences": 3,
+        "mode": "TRIPLET",
+        "program": "$program",
+        "reason": "high_order_bending_modes_positive"
+      }
+    },
+    {
+      "name": "maintel/apply_dof.py",
+      "standard": true,
+      "parameters": {
+        "M1M3_B12": -0.216,
+        "M1M3_B16": 0.144,
+        "M1M3_B20": -0.081,
+        "M2_B16": 0.081
+      }
+    },
+    {
+      "name": "maintel/track_target.py",
+      "standard": true,
+      "parameters": {
+        "track_azel": {
+          "az": "$azimuth",
+          "el": "$elevation"
+        },
+        "rot_value": "$rotator_angle",
+        "rot_type": "PhysicalSky"
+      }
+    },
+    {
+      "name": "maintel/take_aos_sequence_lsstcam.py",
+      "standard": true,
+      "parameters": {
+        "exposure_time": 30.0,
+        "n_sequences": 3,
+        "mode": "TRIPLET",
+        "program": "$program",
+        "reason": "high_order_bending_modes_reference"
+      }
+    },
+    {
+      "name": "maintel/apply_dof.py",
+      "standard": true,
+      "parameters": {
+        "M1M3_B12": -0.216,
+        "M1M3_B16": 0.144,
+        "M1M3_B20": -0.081,
+        "M2_B16": 0.081
+      }
+    },
+    {
+      "name": "maintel/track_target.py",
+      "standard": true,
+      "parameters": {
+        "track_azel": {
+          "az": "$azimuth",
+          "el": "$elevation"
+        },
+        "rot_value": "$rotator_angle",
+        "rot_type": "PhysicalSky"
+      }
+    },
+    {
+      "name": "maintel/take_aos_sequence_lsstcam.py",
+      "standard": true,
+      "parameters": {
+        "exposure_time": 30.0,
+        "n_sequences": 3,
+        "mode": "TRIPLET",
+        "program": "$program",
+        "reason": "high_order_bending_modes_negative"
+      }
+    },
+    {
+      "name": "maintel/apply_dof.py",
+      "standard": true,
+      "parameters": {
+        "M1M3_B12": 0.216,
+        "M1M3_B16": -0.144,
+        "M1M3_B20": 0.081,
+        "M2_B16": -0.081
+      }
+    },
+    {
+      "name": "maintel/track_target.py",
+      "standard": true,
+      "parameters": {
+        "track_azel": {
+          "az": "$azimuth",
+          "el": "$elevation"
+        },
+        "rot_value": "$rotator_angle",
+        "rot_type": "PhysicalSky"
+      }
+    },
+    {
+      "name": "maintel/take_aos_sequence_lsstcam.py",
+      "standard": true,
+      "parameters": {
+        "exposure_time": 30.0,
+        "n_sequences": 3,
+        "mode": "TRIPLET",
+        "program": "$program",
+        "reason": "high_order_bending_modes_reference"
+      }
+    },
+    {
+      "name": "maintel/stop_tracking.py",
+      "standard": true,
+      "parameters": {}
+    }
+  ],
+  "configuration_schema": "$schema: http://json-schema.org/draft-07/schema#\ntitle: BLOCK-T710 configuration\ndescription: Configuration for BLOCK-T710.\ntype: object\nproperties:\n  azimuth:\n    description: Target azimuth angle\n    type: \"number\"\n    default: 0\n  elevation:\n    description: Target elevation angle\n    type: \"number\"\n    default: 70\n  rotator_angle:\n    description: Target rotator angle\n    type: \"number\"\n    default: 0\n"
+}

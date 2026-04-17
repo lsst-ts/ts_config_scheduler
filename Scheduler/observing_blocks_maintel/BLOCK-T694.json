@@ -1,0 +1,339 @@
+{
+  "name": "BLOCK-T694",
+  "id": "70e641e6-5a88-4d5d-aa3c-bd5082f547cc",
+  "program": "BLOCK-T694",
+  "constraints": [],
+  "scripts": [
+    {
+      "name": "maintel/offset_mtcs.py",
+      "standard": true,
+      "parameters": {
+        "offset_azel": {
+          "az": 0,
+          "el": 4680
+        },
+        "relative": true
+      }
+    },
+    {
+      "name": "maintel/offset_and_take_images_lsstcam.py",
+      "standard": false,
+      "parameters": {
+        "offset_rot": {
+          "rot": [
+            15,
+            5,
+            0,
+            -10,
+            -15
+          ]
+        },
+        "program": "BLOCK-T694",
+        "reason": "Brush_stroke_scan_1.3deg",
+        "exp_times": 30.0,
+        "image_type": "ENGTEST",
+        "reset_offsets_when_finished": false
+      }
+    },
+    {
+      "name": "maintel/offset_mtcs.py",
+      "standard": true,
+      "parameters": {
+        "offset_azel": {
+          "az": 0,
+          "el": 360
+        },
+        "relative": true
+      }
+    },
+    {
+      "name": "maintel/offset_and_take_images_lsstcam.py",
+      "standard": false,
+      "parameters": {
+        "offset_rot": {
+          "rot": [
+            -30,
+            -15,
+            5,
+            25
+          ]
+        },
+        "program": "BLOCK-T694",
+        "reason": "Brush_stroke_scan_1.4deg",
+        "exp_times": 30.0,
+        "image_type": "ENGTEST",
+        "reset_offsets_when_finished": false
+      }
+    },
+    {
+      "name": "maintel/offset_mtcs.py",
+      "standard": true,
+      "parameters": {
+        "offset_azel": {
+          "az": 0,
+          "el": 360
+        },
+        "relative": true
+      }
+    },
+    {
+      "name": "maintel/offset_and_take_images_lsstcam.py",
+      "standard": false,
+      "parameters": {
+        "offset_rot": {
+          "rot": [
+            10,
+            0,
+            -10,
+            10
+          ]
+        },
+        "program": "BLOCK-T694",
+        "reason": "Brush_stroke_scan_1.5deg",
+        "exp_times": 30.0,
+        "image_type": "ENGTEST",
+        "reset_offsets_when_finished": false
+      }
+    },
+    {
+      "name": "maintel/offset_mtcs.py",
+      "standard": true,
+      "parameters": {
+        "offset_azel": {
+          "az": 0,
+          "el": 360
+        },
+        "relative": true
+      }
+    },
+    {
+      "name": "maintel/offset_and_take_images_lsstcam.py",
+      "standard": false,
+      "parameters": {
+        "offset_rot": {
+          "rot": [
+            20,
+            15,
+            5,
+            -15
+          ]
+        },
+        "program": "BLOCK-T694",
+        "reason": "Brush_stroke_scan_1.6deg",
+        "exp_times": 30.0,
+        "image_type": "ENGTEST",
+        "reset_offsets_when_finished": false
+      }
+    },
+    {
+      "name": "maintel/offset_mtcs.py",
+      "standard": true,
+      "parameters": {
+        "offset_azel": {
+          "az": 0,
+          "el": 360
+        },
+        "relative": true
+      }
+    },
+    {
+      "name": "maintel/offset_and_take_images_lsstcam.py",
+      "standard": false,
+      "parameters": {
+        "offset_rot": {
+          "rot": [
+            -20,
+            -9,
+            14,
+            22
+          ]
+        },
+        "program": "BLOCK-T694",
+        "reason": "Brush_stroke_scan_1.7deg",
+        "exp_times": 30.0,
+        "image_type": "ENGTEST",
+        "reset_offsets_when_finished": false
+      }
+    },
+    {
+      "name": "maintel/offset_mtcs.py",
+      "standard": true,
+      "parameters": {
+        "offset_azel": {
+          "az": 0,
+          "el": 360
+        },
+        "relative": true
+      }
+    },
+    {
+      "name": "maintel/offset_and_take_images_lsstcam.py",
+      "standard": false,
+      "parameters": {
+        "offset_rot": {
+          "rot": [
+            33,
+            15,
+            -6,
+            -17
+          ]
+        },
+        "program": "BLOCK-T694",
+        "reason": "Brush_stroke_scan_1.8deg",
+        "exp_times": 30.0,
+        "image_type": "ENGTEST",
+        "reset_offsets_when_finished": false
+      }
+    },
+    {
+      "name": "maintel/offset_mtcs.py",
+      "standard": true,
+      "parameters": {
+        "offset_azel": {
+          "az": 0,
+          "el": 360
+        },
+        "relative": true
+      }
+    },
+    {
+      "name": "maintel/offset_and_take_images_lsstcam.py",
+      "standard": false,
+      "parameters": {
+        "offset_rot": {
+          "rot": [
+            -27,
+            -16,
+            7,
+            22
+          ]
+        },
+        "program": "BLOCK-T694",
+        "reason": "Brush_stroke_scan_1.9deg",
+        "exp_times": 30.0,
+        "image_type": "ENGTEST",
+        "reset_offsets_when_finished": false
+      }
+    },
+    {
+      "name": "maintel/offset_mtcs.py",
+      "standard": true,
+      "parameters": {
+        "offset_azel": {
+          "az": 0,
+          "el": 360
+        },
+        "relative": true
+      }
+    },
+    {
+      "name": "maintel/offset_and_take_images_lsstcam.py",
+      "standard": false,
+      "parameters": {
+        "offset_rot": {
+          "rot": [
+            30,
+            10,
+            -8,
+            -20
+          ]
+        },
+        "program": "BLOCK-T694",
+        "reason": "Brush_stroke_scan_2deg",
+        "exp_times": 30.0,
+        "image_type": "ENGTEST",
+        "reset_offsets_when_finished": false
+      }
+    },
+    {
+      "name": "maintel/offset_mtcs.py",
+      "standard": true,
+      "parameters": {
+        "offset_azel": {
+          "az": 0,
+          "el": 360
+        },
+        "relative": true
+      }
+    },
+    {
+      "name": "maintel/offset_and_take_images_lsstcam.py",
+      "standard": false,
+      "parameters": {
+        "offset_rot": {
+          "rot": [
+            -10,
+            13,
+            -5,
+            -20
+          ]
+        },
+        "program": "BLOCK-T694",
+        "reason": "Brush_stroke_scan_2.1deg",
+        "exp_times": 30.0,
+        "image_type": "ENGTEST",
+        "reset_offsets_when_finished": false
+      }
+    },
+    {
+      "name": "maintel/offset_mtcs.py",
+      "standard": true,
+      "parameters": {
+        "offset_azel": {
+          "az": 0,
+          "el": 360
+        },
+        "relative": true
+      }
+    },
+    {
+      "name": "maintel/offset_and_take_images_lsstcam.py",
+      "standard": false,
+      "parameters": {
+        "offset_rot": {
+          "rot": [
+            -32,
+            -20,
+            5,
+            23
+          ]
+        },
+        "program": "BLOCK-T694",
+        "reason": "Brush_stroke_scan_2.2deg",
+        "exp_times": 30.0,
+        "image_type": "ENGTEST",
+        "reset_offsets_when_finished": false
+      }
+    },
+    {
+      "name": "maintel/offset_mtcs.py",
+      "standard": true,
+      "parameters": {
+        "offset_azel": {
+          "az": 0,
+          "el": 360
+        },
+        "relative": true
+      }
+    },
+    {
+      "name": "maintel/offset_and_take_images_lsstcam.py",
+      "standard": false,
+      "parameters": {
+        "offset_rot": {
+          "rot": [
+            20,
+            13,
+            -10,
+            -22
+          ]
+        },
+        "program": "BLOCK-T694",
+        "reason": "Brush_stroke_scan_2.3deg",
+        "exp_times": 30.0,
+        "image_type": "ENGTEST",
+        "reset_offsets_when_finished": false
+      }
+    }
+  ]
+}

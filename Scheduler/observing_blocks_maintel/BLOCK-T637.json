@@ -4,13 +4,20 @@
     "constraints": [],
     "scripts": [
         {
+            "name": "maintel/change_filter_lsstcam.py",
+            "standard": true,
+            "parameters": {
+                "filter": "i_39"
+            }
+        },
+        {
             "name": "maintel/track_target.py",
             "standard": true,
             "parameters": {
-                "target_name": "EDFS",
+                "target_name": "COSMOS",
                 "slew_icrs": {
-                    "ra": 3.9267,
-                    "dec": -49.32
+                    "ra": 10.007,
+                    "dec": 2.23
                 },
                 "rot_value": 0,
                 "rot_type": "PhysicalSky",
@@ -18,11 +25,47 @@
             }
         },
         {
-          "name": "maintel/change_filter_lsstcam.py",
-          "standard": true,
-          "parameters": {
-            "filter": "i_39"
-          }
+            "name": "maintel/close_loop_lsstcam.py",
+            "standard": true,
+            "parameters": {
+                "program": "BLOCK-T637",
+                "reason": "Exposure time scan",
+                "note": "1 second exposure",
+                "exposure_time": 1.0,
+                "max_iter": 3,
+                "rot": 0,
+                "mode": "CWFS",
+                "used_dofs": [
+                    0,
+                    1,
+                    2,
+                    3,
+                    4,
+                    5,
+                    6,
+                    7,
+                    8,
+                    9,
+                    10,
+                    11,
+                    12,
+                    13,
+                    14,
+                    15,
+                    16,
+                    30,
+                    31,
+                    32,
+                    33,
+                    34
+                ],
+                "truncation_index": 12,
+                "gain_sequence": [
+                    0.5,
+                    0.3,
+                    0.3
+                ]
+            }
         },
         {
             "name": "maintel/take_image_lsstcam.py",
@@ -34,72 +77,55 @@
                 "image_type": "ACQ",
                 "program": "BLOCK-T637",
                 "reason": "Exposure time scan",
-                "note": "1s exposure"
+                "note": "1s exposure",
+                "visit_metadata": {
+                    "ra": 10.007,
+                    "dec": 2.23,
+                    "rot_sky": 0
+                }
             }
         },
         {
-            "name": "maintel/take_image_lsstcam.py",
+            "name": "maintel/close_loop_lsstcam.py",
             "standard": true,
             "parameters": {
-                "filter": "i_39",
-                "exp_times": 15,
-                "nimages": 4,
-                "image_type": "ACQ",
                 "program": "BLOCK-T637",
                 "reason": "Exposure time scan",
-                "note": "15s exposure"
-            }
-        },
-        {
-            "name": "maintel/take_image_lsstcam.py",
-            "standard": true,
-            "parameters": {
-                "filter": "i_39",
-                "exp_times": 30,
-                "nimages": 4,
-                "image_type": "ACQ",
-                "program": "BLOCK-T637",
-                "reason": "Exposure time scan",
-                "note": "30s exposure"
-            }
-        },
-        {
-            "name": "maintel/take_image_lsstcam.py",
-            "standard": true,
-            "parameters": {
-                "filter": "i_39",
-                "exp_times": 60,
-                "nimages": 4,
-                "image_type": "ACQ",
-                "program": "BLOCK-T637",
-                "reason": "Exposure time scan",
-                "note": "60s exposure"
-            }
-        },
-        {
-            "name": "maintel/take_image_lsstcam.py",
-            "standard": true,
-            "parameters": {
-                "filter": "i_39",
-                "exp_times": 90,
-                "nimages": 4,
-                "image_type": "ACQ",
-                "program": "BLOCK-T637",
-                "reason": "Exposure time scan",
-                "note": "90s exposure"
-            }
-        },
-        {
-            "name": "maintel/take_image_lsstcam.py",
-            "standard": true,
-            "parameters": {
-                "filter": "i_39",
-                "exp_times": 120,
-                "nimages": 4,
-                "image_type": "ACQ",
-                "program": "BLOCK-T637",
-                "reason": "Exposure time scan",
-                "note": "120s exposure"
+                "note": "180 second exposure",
+                "exposure_time": 180.0,
+                "max_iter": 3,
+                "rot": 0,
+                "mode": "CWFS",
+                "used_dofs": [
+                    0,
+                    1,
+                    2,
+                    3,
+                    4,
+                    5,
+                    6,
+                    7,
+                    8,
+                    9,
+                    10,
+                    11,
+                    12,
+                    13,
+                    14,
+                    15,
+                    16,
+                    30,
+                    31,
+                    32,
+                    33,
+                    34
+                ],
+                "truncation_index": 12,
+                "gain_sequence": [
+                    0.5,
+                    0.3,
+                    0.3
+                ]
             }
         },
         {
@@ -112,7 +138,317 @@
                 "image_type": "ACQ",
                 "program": "BLOCK-T637",
                 "reason": "Exposure time scan",
-                "note": "180s exposure"
+                "note": "180s exposure",
+                "visit_metadata": {
+                    "ra": 10.007,
+                    "dec": 2.23,
+                    "rot_sky": 0
+                }
+            }
+        },
+        {
+            "name": "maintel/close_loop_lsstcam.py",
+            "standard": true,
+            "parameters": {
+                "program": "BLOCK-T637",
+                "reason": "Exposure time scan",
+                "note": "30 second exposure",
+                "exposure_time": 30.0,
+                "max_iter": 3,
+                "rot": 0,
+                "mode": "CWFS",
+                "used_dofs": [
+                    0,
+                    1,
+                    2,
+                    3,
+                    4,
+                    5,
+                    6,
+                    7,
+                    8,
+                    9,
+                    10,
+                    11,
+                    12,
+                    13,
+                    14,
+                    15,
+                    16,
+                    30,
+                    31,
+                    32,
+                    33,
+                    34
+                ],
+                "truncation_index": 12,
+                "gain_sequence": [
+                    0.5,
+                    0.3,
+                    0.3
+                ]
+            }
+        },
+        {
+            "name": "maintel/take_image_lsstcam.py",
+            "standard": true,
+            "parameters": {
+                "filter": "i_39",
+                "exp_times": 30,
+                "nimages": 4,
+                "image_type": "ACQ",
+                "program": "BLOCK-T637",
+                "reason": "Exposure time scan",
+                "note": "30s exposure",
+                "visit_metadata": {
+                    "ra": 10.007,
+                    "dec": 2.23,
+                    "rot_sky": 0
+                }
+            }
+        },
+        {
+            "name": "maintel/close_loop_lsstcam.py",
+            "standard": true,
+            "parameters": {
+                "program": "BLOCK-T637",
+                "reason": "Exposure time scan",
+                "note": "60 second exposure",
+                "exposure_time": 60.0,
+                "max_iter": 3,
+                "rot": 0,
+                "mode": "CWFS",
+                "used_dofs": [
+                    0,
+                    1,
+                    2,
+                    3,
+                    4,
+                    5,
+                    6,
+                    7,
+                    8,
+                    9,
+                    10,
+                    11,
+                    12,
+                    13,
+                    14,
+                    15,
+                    16,
+                    30,
+                    31,
+                    32,
+                    33,
+                    34
+                ],
+                "truncation_index": 12,
+                "gain_sequence": [
+                    0.5,
+                    0.3,
+                    0.3
+                ]
+            }
+        },
+        {
+            "name": "maintel/take_image_lsstcam.py",
+            "standard": true,
+            "parameters": {
+                "filter": "i_39",
+                "exp_times": 60,
+                "nimages": 4,
+                "image_type": "ACQ",
+                "program": "BLOCK-T637",
+                "reason": "Exposure time scan",
+                "note": "60s exposure",
+                "visit_metadata": {
+                    "ra": 10.007,
+                    "dec": 2.23,
+                    "rot_sky": 0
+                }
+            }
+        },
+        {
+            "name": "maintel/close_loop_lsstcam.py",
+            "standard": true,
+            "parameters": {
+                "program": "BLOCK-T637",
+                "reason": "Exposure time scan",
+                "note": "90 second exposure",
+                "exposure_time": 90.0,
+                "max_iter": 3,
+                "rot": 0,
+                "mode": "CWFS",
+                "used_dofs": [
+                    0,
+                    1,
+                    2,
+                    3,
+                    4,
+                    5,
+                    6,
+                    7,
+                    8,
+                    9,
+                    10,
+                    11,
+                    12,
+                    13,
+                    14,
+                    15,
+                    16,
+                    30,
+                    31,
+                    32,
+                    33,
+                    34
+                ],
+                "truncation_index": 12,
+                "gain_sequence": [
+                    0.5,
+                    0.3,
+                    0.3
+                ]
+            }
+        },
+        {
+            "name": "maintel/take_image_lsstcam.py",
+            "standard": true,
+            "parameters": {
+                "filter": "i_39",
+                "exp_times": 90,
+                "nimages": 4,
+                "image_type": "ACQ",
+                "program": "BLOCK-T637",
+                "reason": "Exposure time scan",
+                "note": "90s exposure",
+                "visit_metadata": {
+                    "ra": 10.007,
+                    "dec": 2.23,
+                    "rot_sky": 0
+                }
+            }
+        },
+        {
+            "name": "maintel/close_loop_lsstcam.py",
+            "standard": true,
+            "parameters": {
+                "program": "BLOCK-T637",
+                "reason": "Exposure time scan",
+                "note": "120 second exposure",
+                "exposure_time": 120.0,
+                "max_iter": 3,
+                "rot": 0,
+                "mode": "CWFS",
+                "used_dofs": [
+                    0,
+                    1,
+                    2,
+                    3,
+                    4,
+                    5,
+                    6,
+                    7,
+                    8,
+                    9,
+                    10,
+                    11,
+                    12,
+                    13,
+                    14,
+                    15,
+                    16,
+                    30,
+                    31,
+                    32,
+                    33,
+                    34
+                ],
+                "truncation_index": 12,
+                "gain_sequence": [
+                    0.5,
+                    0.3,
+                    0.3
+                ]
+            }
+        },
+        {
+            "name": "maintel/take_image_lsstcam.py",
+            "standard": true,
+            "parameters": {
+                "filter": "i_39",
+                "exp_times": 120,
+                "nimages": 4,
+                "image_type": "ACQ",
+                "program": "BLOCK-T637",
+                "reason": "Exposure time scan",
+                "note": "120s exposure",
+                "visit_metadata": {
+                    "ra": 10.007,
+                    "dec": 2.23,
+                    "rot_sky": 0
+                }
+            }
+        },
+        {
+            "name": "maintel/close_loop_lsstcam.py",
+            "standard": true,
+            "parameters": {
+                "program": "BLOCK-T637",
+                "reason": "Exposure time scan",
+                "note": "15 second exposure",
+                "exposure_time": 15.0,
+                "max_iter": 3,
+                "rot": 0,
+                "mode": "CWFS",
+                "used_dofs": [
+                    0,
+                    1,
+                    2,
+                    3,
+                    4,
+                    5,
+                    6,
+                    7,
+                    8,
+                    9,
+                    10,
+                    11,
+                    12,
+                    13,
+                    14,
+                    15,
+                    16,
+                    30,
+                    31,
+                    32,
+                    33,
+                    34
+                ],
+                "truncation_index": 12,
+                "gain_sequence": [
+                    0.5,
+                    0.3,
+                    0.3
+                ]
+            }
+        },
+        {
+            "name": "maintel/take_image_lsstcam.py",
+            "standard": true,
+            "parameters": {
+                "filter": "i_39",
+                "exp_times": 15,
+                "nimages": 4,
+                "image_type": "ACQ",
+                "program": "BLOCK-T637",
+                "reason": "Exposure time scan",
+                "note": "15s exposure",
+                "visit_metadata": {
+                    "ra": 10.007,
+                    "dec": 2.23,
+                    "rot_sky": 0
+                }
             }
         }
     ]

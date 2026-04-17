@@ -52,8 +52,7 @@
                             ["OCPS:1", "ENABLED"],
                             ["OCPS:2", "ENABLED"],
                             ["OCPS:3", "ENABLED"],
-                            ["FiberSpectrograph:101", "ENABLED"],
-                            ["FiberSpectrograph:102", "ENABLED"],
+                            ["Electrometer:103", "ENABLED"],
                             ["LinearStage:101", "ENABLED"],
                             ["LinearStage:102", "ENABLED"],
                             ["LinearStage:103", "ENABLED"],
@@ -73,6 +72,7 @@
             "name": "maintel/setup_calsys_flats.py",
             "standard": false,
             "parameters":{
+                "use_electrometer": "$use_electrometer",
                 "ignore": "$ignore"
             }
         },
@@ -81,6 +81,9 @@
             "standard": false,
             "parameters": {
                 "sequence_names": "$sequence_names",
+                "use_electrometer": "$use_electrometer",
+                "use_fiberspectrograph_blue": "$use_fiberspectrograph_blue",
+                "use_fiberspectrograph_red": "$use_fiberspectrograph_red",
                 "reason": "min_daily_flat",
                 "program": "$program"
             }
@@ -101,17 +104,11 @@
             }
         },
         {
-            "name": "maintel/close_mirror_covers.py",
-            "standard": true,
-            "parameters":{}
-        },
-        {
             "name": "set_summary_state.py",
             "standard": true,
             "parameters": {
                 "data": [["LEDProjector", "STANDBY"],
-                        ["FiberSpectrograph:101", "STANDBY"],
-                        ["FiberSpectrograph:102", "STANDBY"],
+                        ["Electrometer:103", "STANDBY"],
                         ["LinearStage:101", "STANDBY"],
                         ["LinearStage:102", "STANDBY"],
                         ["LinearStage:103", "STANDBY"],
@@ -121,6 +118,6 @@
         }
 
     ],
-     "configuration_schema": "$schema: http://json-schema.org/draft-07/schema#\ntitle: BLOCK-T664_a configuration\ndescription: Configuration for BLOCK-T664_a.\ntype: object\nproperties:\n  program:\n    description: Name of program\n    type: string\n    default: BLOCK-T664_a\n  ignore:\n    description: Name of the CSCs we want to ignore\n    type: array\n    default: ['TunableLaser','CBP','Electrometer:101','Electrometer:102','Electrometer:103']\n  sequence_names:\n    description: List of sequence names to run for whitelight flats script.\n    type: array\n    default: ['whitelight_i_39_daily']\n"
+     "configuration_schema": "$schema: http://json-schema.org/draft-07/schema#\ntitle: BLOCK-T664_a configuration\ndescription: Configuration for BLOCK-T664_a.\ntype: object\nproperties:\n  program:\n    description: Name of program\n    type: string\n    default: BLOCK-T664_a\n  ignore:\n    description: Name of the CSCs we want to ignore\n    type: array\n    default: ['TunableLaser','CBP','Electrometer:101','Electrometer:102','FiberSpectrograph:101','FiberSpectrograph:102']\n  sequence_names:\n    description: List of sequence names to run for whitelight flats script.\n    type: array\n    default: ['whitelight_i_39_daily']\n  use_electrometer:\n    description: override for mtcalsys use_electrometer\n    type: boolean\n    default: True\n  use_fiberspectrograph_blue:\n    description: override for mtcalsys use_fiberspectrograph_blue\n    type: boolean\n    default: False\n  use_fiberspectrograph_red:\n    description: override for mtcalsys use_fiberspectrograph_red\n    type: boolean\n    default: False\n"
 }
 

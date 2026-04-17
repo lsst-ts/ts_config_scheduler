@@ -20,6 +20,8 @@
                 "reason": "$observation_reason",
                 "targetid": "$targetid",
                 "note": "$note",
+                "roi_size": 200,
+                "roi_time_ms": 50,
                 "ignore": ["mtaos"]
             }
         }

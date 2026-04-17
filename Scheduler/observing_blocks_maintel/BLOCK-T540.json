@@ -32,7 +32,7 @@
         "program": "BLOCK-T540",
         "reason": "L2_pads_rot_scan_4.5deg",
         "exp_times": 30.0,
-        "image_type": "OBJECT",
+        "image_type": "ENGTEST",
         "reset_offsets_when_finished": false
       }
     },
@@ -64,7 +64,7 @@
         "program": "BLOCK-T540",
         "reason": "L2_pads_rot_scan_4.6deg",
         "exp_times": 30.0,
-        "image_type": "OBJECT",
+        "image_type": "ENGTEST",
         "reset_offsets_when_finished": false
       }
     },
@@ -96,7 +96,7 @@
         "program": "BLOCK-T540",
         "reason": "L2_pads_rot_scan_4.7deg",
         "exp_times": 30.0,
-        "image_type": "OBJECT",
+        "image_type": "ENGTEST",
         "reset_offsets_when_finished": false
       }
     },
@@ -128,7 +128,7 @@
         "program": "BLOCK-T540",
         "reason": "L2_pads_rot_scan_4.8deg",
         "exp_times": 30.0,
-        "image_type": "OBJECT",
+        "image_type": "ENGTEST",
         "reset_offsets_when_finished": false
       }
     },
@@ -160,7 +160,7 @@
         "program": "BLOCK-T540",
         "reason": "L2_pads_rot_scan_4.9deg",
         "exp_times": 30.0,
-        "image_type": "OBJECT",
+        "image_type": "ENGTEST",
         "reset_offsets_when_finished": false
       }
     },
@@ -192,7 +192,7 @@
         "program": "BLOCK-T540",
         "reason": "L2_pads_rot_scan_5deg",
         "exp_times": 30.0,
-        "image_type": "OBJECT",
+        "image_type": "ENGTEST",
         "reset_offsets_when_finished": false
       }
     },
@@ -224,7 +224,7 @@
         "program": "BLOCK-T540",
         "reason": "L2_pads_rot_scan_5.1deg",
         "exp_times": 30.0,
-        "image_type": "OBJECT",
+        "image_type": "ENGTEST",
         "reset_offsets_when_finished": false
       }
     },
@@ -256,7 +256,7 @@
         "program": "BLOCK-T540",
         "reason": "L2_pads_rot_scan_5.2deg",
         "exp_times": 30.0,
-        "image_type": "OBJECT",
+        "image_type": "ENGTEST",
         "reset_offsets_when_finished": false
       }
     },
@@ -288,7 +288,7 @@
         "program": "BLOCK-T540",
         "reason": "L2_pads_rot_scan_5.3deg",
         "exp_times": 30.0,
-        "image_type": "OBJECT",
+        "image_type": "ENGTEST",
         "reset_offsets_when_finished": false
       }
     },
@@ -320,7 +320,7 @@
         "program": "BLOCK-T540",
         "reason": "L2_pads_rot_scan_5.4deg",
         "exp_times": 30.0,
-        "image_type": "OBJECT",
+        "image_type": "ENGTEST",
         "reset_offsets_when_finished": false
       }
     }

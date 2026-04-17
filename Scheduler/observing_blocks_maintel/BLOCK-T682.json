@@ -1,0 +1,51 @@
+{
+    "name": "BLOCK-T682",
+    "program": "BLOCK-T682",
+    "constraints": [],
+    "scripts": [
+        {
+            "name": "maintel/mtrotator/move_rotator.py",
+            "standard": true,
+            "parameters": {
+                "angle": 0.0
+            }
+        },
+        {
+            "name": "maintel/take_calsys_flats_lsstcam.py",
+            "standard": false,
+            "parameters": {
+                "sequence_names": ["electrometer_ptc_stability_low"],
+                "use_electrometer": "$use_electrometer",
+                "use_fiberspectrograph_blue": "$use_fiberspectrograph_blue",
+                "use_fiberspectrograph_red": "$use_fiberspectrograph_red",
+                "reason": "PTC Stability - low level",
+                "program": "$program"
+            }
+        }, 
+        {
+            "name": "maintel/take_calsys_flats_lsstcam.py",
+            "standard": false,
+            "parameters": {
+                "sequence_names": ["electrometer_ptc_stability_mid_2"],
+                "use_electrometer": "$use_electrometer",
+                "use_fiberspectrograph_blue": "$use_fiberspectrograph_blue",
+                "use_fiberspectrograph_red": "$use_fiberspectrograph_red",
+                "reason": "PTC Stability - mid level, 2",
+                "program": "$program"
+            }
+        }, 
+        {
+            "name": "maintel/take_calsys_flats_lsstcam.py",
+            "standard": false,
+            "parameters": {
+                "sequence_names": ["electrometer_ptc_stability_mid_1"],
+                "use_electrometer": "$use_electrometer",
+                "use_fiberspectrograph_blue": "$use_fiberspectrograph_blue",
+                "use_fiberspectrograph_red": "$use_fiberspectrograph_red",
+                "reason": "PTC Stability - mid level, 1",
+                "program": "$program"
+            }
+        }
+    ],
+    "configuration_schema": "$schema: http://json-schema.org/draft-07/schema#\ntitle: BLOCK-T682 configuration\ndescription: Configuration for BLOCK-T682.\ntype: object\nproperties:\n  program:\n    description: Name of program\n    type: string\n    default: BLOCK-T682\n  use_electrometer:\n    description: override for mtcalsys use_electrometer\n    type: boolean\n    default: True\n  use_fiberspectrograph_blue:\n    description: override for mtcalsys use_fiberspectrograph_blue\n    type: boolean\n    default: False\n  use_fiberspectrograph_red:\n    description: override for mtcalsys use_fiberspectrograph_red\n    type: boolean\n    default: False\n"
+}

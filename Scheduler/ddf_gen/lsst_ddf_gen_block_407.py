@@ -24,7 +24,11 @@ from gen_ddf_presched_observations import gen_ddf_presched_observations
 
 if __name__ == "__main__":
     science_program = "BLOCK-407"
+    survey_start_mjd = 60980.5
+    # Fixed at first on-sky time so that the ddf array keeps the same note
 
     gen_ddf_presched_observations(
         science_program=science_program,
+        survey_start=survey_start_mjd,
+        additional_hash_files=[__file__],
     )

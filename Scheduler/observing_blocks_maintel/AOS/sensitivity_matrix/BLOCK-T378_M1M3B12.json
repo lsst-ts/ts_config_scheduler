@@ -1,0 +1,36 @@
+{
+  "name": "BLOCK-T378",
+  "program": "BLOCK-T378_M1M3B12",
+  "constraints": [],
+  "scripts": [
+    {
+      "name": "maintel/track_target.py",
+      "standard": true,
+      "parameters": {
+        "track_azel": {
+          "az": "$azimuth",
+          "el": "$elevation"
+        },
+        "rot_type": "PhysicalSky"
+      }
+    },
+    {
+      "name": "maintel/parameter_march_triplet_lsstcam.py",
+      "standard": false,
+      "parameters": {
+        "exp_time": "$exp_time",
+        "dof_index": 21,
+        "rotation_sequence": "$rotation_sequence",
+        "range": 0.25,
+        "n_steps": "$num_steps",
+        "program": "$program",
+        "filter": "$filter",
+        "reason": "sensitivity_m1m3_b12",
+        "az": "$azimuth",
+        "el": "$elevation"
+      }
+    }
+  ],
+  "configuration_schema": "$schema: http://json-schema.org/draft-07/schema#\ndescription: Configuration for BLOCK-T378.\nproperties:\n  azimuth:\n    default: 0.0\n    description: Azimuth.\n    type: number\n  elevation:\n    default: 60.0\n    description: Elevation.\n    type: number\n  exp_time:\n    default: 15.0\n    description: Exposure time.\n    type: number\n  filter:\n    default: i_39\n    description: Filter to use.\n    type: string\n  num_steps:\n    default: 9\n    description: Number of steps for the sensitivity matrix.\n    type: integer\n  rotation_sequence:\n    anyOf:\n    - type: number\n    - items:\n        type: number\n      minItems: 2\n      type: array\n    default: 0.0\ntitle: BLOCK-T378 configuration\ntype: object\n"
+}
+

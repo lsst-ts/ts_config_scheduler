@@ -1,0 +1,249 @@
+{
+  "name": "BLOCK-T676_3",
+  "program": "BLOCK-T676_3",
+  "constraints": [],
+  "scripts": [
+    {
+      "name": "maintel/track_target.py",
+      "standard": true,
+      "parameters": {
+        "track_azel": {
+          "az": 189.0106,
+          "el": 41.6388
+        },
+        "target_name": "offset_obstime_2026-03-13T07:30:00.000_UTC"
+      }
+    },
+    {
+      "name": "maintel/take_image_lsstcam.py",
+      "standard": true,
+      "parameters": {
+        "exp_times": 30.0,
+        "nimages": 1,
+        "image_type": "ACQ",
+        "program": "BLOCK-T676_3",
+        "reason": "stray_light_mid_baffle"
+      }
+    },
+    {
+      "name": "maintel/track_target.py",
+      "standard": true,
+      "parameters": {
+        "track_azel": {
+          "az": 189.5603,
+          "el": 41.2443
+        },
+        "target_name": "offset_obstime_2026-03-13T07:30:37.000_UTC"
+      }
+    },
+    {
+      "name": "maintel/take_image_lsstcam.py",
+      "standard": true,
+      "parameters": {
+        "exp_times": 30.0,
+        "nimages": 1,
+        "image_type": "ACQ",
+        "program": "BLOCK-T676_3",
+        "reason": "stray_light_mid_baffle"
+      }
+    },
+    {
+      "name": "maintel/track_target.py",
+      "standard": true,
+      "parameters": {
+        "track_azel": {
+          "az": 190.11,
+          "el": 40.8502
+        },
+        "target_name": "offset_obstime_2026-03-13T07:31:14.000_UTC"
+      }
+    },
+    {
+      "name": "maintel/take_image_lsstcam.py",
+      "standard": true,
+      "parameters": {
+        "exp_times": 30.0,
+        "nimages": 1,
+        "image_type": "ACQ",
+        "program": "BLOCK-T676_3",
+        "reason": "stray_light_mid_baffle"
+      }
+    },
+    {
+      "name": "maintel/track_target.py",
+      "standard": true,
+      "parameters": {
+        "track_azel": {
+          "az": 190.6598,
+          "el": 40.4565
+        },
+        "target_name": "offset_obstime_2026-03-13T07:31:51.000_UTC"
+      }
+    },
+    {
+      "name": "maintel/take_image_lsstcam.py",
+      "standard": true,
+      "parameters": {
+        "exp_times": 30.0,
+        "nimages": 1,
+        "image_type": "ACQ",
+        "program": "BLOCK-T676_3",
+        "reason": "stray_light_mid_baffle"
+      }
+    },
+    {
+      "name": "maintel/track_target.py",
+      "standard": true,
+      "parameters": {
+        "track_azel": {
+          "az": 191.0098,
+          "el": 40.268
+        },
+        "target_name": "offset_obstime_2026-03-13T07:32:28.000_UTC"
+      }
+    },
+    {
+      "name": "maintel/take_image_lsstcam.py",
+      "standard": true,
+      "parameters": {
+        "exp_times": 30.0,
+        "nimages": 1,
+        "image_type": "ACQ",
+        "program": "BLOCK-T676_3",
+        "reason": "stray_light_mid_baffle"
+      }
+    },
+    {
+      "name": "maintel/track_target.py",
+      "standard": true,
+      "parameters": {
+        "track_azel": {
+          "az": 191.36,
+          "el": 40.0794
+        },
+        "target_name": "offset_obstime_2026-03-13T07:33:05.000_UTC"
+      }
+    },
+    {
+      "name": "maintel/take_image_lsstcam.py",
+      "standard": true,
+      "parameters": {
+        "exp_times": 30.0,
+        "nimages": 1,
+        "image_type": "ACQ",
+        "program": "BLOCK-T676_3",
+        "reason": "stray_light_mid_baffle"
+      }
+    },
+    {
+      "name": "maintel/track_target.py",
+      "standard": true,
+      "parameters": {
+        "track_azel": {
+          "az": 191.7103,
+          "el": 39.8906
+        },
+        "target_name": "offset_obstime_2026-03-13T07:33:42.000_UTC"
+      }
+    },
+    {
+      "name": "maintel/take_image_lsstcam.py",
+      "standard": true,
+      "parameters": {
+        "exp_times": 30.0,
+        "nimages": 1,
+        "image_type": "ACQ",
+        "program": "BLOCK-T676_3",
+        "reason": "stray_light_mid_baffle"
+      }
+    },
+    {
+      "name": "maintel/track_target.py",
+      "standard": true,
+      "parameters": {
+        "track_azel": {
+          "az": 192.0608,
+          "el": 39.7017
+        },
+        "target_name": "offset_obstime_2026-03-13T07:34:19.000_UTC"
+      }
+    },
+    {
+      "name": "maintel/take_image_lsstcam.py",
+      "standard": true,
+      "parameters": {
+        "exp_times": 30.0,
+        "nimages": 1,
+        "image_type": "ACQ",
+        "program": "BLOCK-T676_3",
+        "reason": "stray_light_mid_baffle"
+      }
+    },
+    {
+      "name": "maintel/track_target.py",
+      "standard": true,
+      "parameters": {
+        "track_azel": {
+          "az": 192.4112,
+          "el": 39.5126
+        },
+        "target_name": "offset_obstime_2026-03-13T07:34:56.000_UTC"
+      }
+    },
+    {
+      "name": "maintel/take_image_lsstcam.py",
+      "standard": true,
+      "parameters": {
+        "exp_times": 30.0,
+        "nimages": 1,
+        "image_type": "ACQ",
+        "program": "BLOCK-T676_3",
+        "reason": "stray_light_mid_baffle"
+      }
+    },
+    {
+      "name": "maintel/track_target.py",
+      "standard": true,
+      "parameters": {
+        "track_azel": {
+          "az": 192.7617,
+          "el": 39.3234
+        },
+        "target_name": "offset_obstime_2026-03-13T07:35:33.000_UTC"
+      }
+    },
+    {
+      "name": "maintel/take_image_lsstcam.py",
+      "standard": true,
+      "parameters": {
+        "exp_times": 30.0,
+        "nimages": 1,
+        "image_type": "ACQ",
+        "program": "BLOCK-T676_3",
+        "reason": "stray_light_mid_baffle"
+      }
+    },
+    {
+      "name": "maintel/track_target.py",
+      "standard": true,
+      "parameters": {
+        "track_azel": {
+          "az": 193.3116,
+          "el": 38.9304
+        },
+        "target_name": "offset_obstime_2026-03-13T07:36:10.000_UTC"
+      }
+    },
+    {
+      "name": "maintel/take_image_lsstcam.py",
+      "standard": true,
+      "parameters": {
+        "exp_times": 30.0,
+        "nimages": 1,
+        "image_type": "ACQ",
+        "program": "BLOCK-T676_3",
+        "reason": "stray_light_mid_baffle"
+      }
+    }
+  ]
+}
