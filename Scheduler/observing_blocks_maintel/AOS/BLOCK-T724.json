@@ -1,0 +1,302 @@
+{
+  "name": "BLOCK-T724",
+  "id": "1764fa48-3dd3-4658-b5d4-26493f70d490",
+  "program": "BLOCK-T724",
+  "constraints": [],
+  "scripts": [
+    {
+      "name": "maintel/track_target.py",
+      "standard": true,
+      "parameters": {
+        "track_azel": {
+          "az": "$azimuth",
+          "el": "$elevation"
+        },
+        "rot_value": "$rot_value_1",
+        "rot_type": "PhysicalSky",
+        "target_name": "alternating_rot_1"
+      }
+    },
+    {
+      "name": "maintel/take_aos_sequence_lsstcam.py",
+      "standard": true,
+      "parameters": {
+        "exposure_time": 30.0,
+        "n_sequences": 1,
+        "program": "$program",
+        "reason": "alternating_rotator_stability",
+        "note": "$block_note"
+      }
+    },
+    {
+      "name": "maintel/track_target.py",
+      "standard": true,
+      "parameters": {
+        "track_azel": {
+          "az": "$azimuth",
+          "el": "$elevation"
+        },
+        "rot_value": "$rot_value_2",
+        "rot_type": "PhysicalSky",
+        "target_name": "alternating_rot_2"
+      }
+    },
+    {
+      "name": "maintel/take_aos_sequence_lsstcam.py",
+      "standard": true,
+      "parameters": {
+        "exposure_time": 30.0,
+        "n_sequences": 1,
+        "program": "$program",
+        "reason": "alternating_rotator_stability",
+        "note": "$block_note"
+      }
+    },
+    {
+      "name": "maintel/track_target.py",
+      "standard": true,
+      "parameters": {
+        "track_azel": {
+          "az": "$azimuth",
+          "el": "$elevation"
+        },
+        "rot_value": "$rot_value_1",
+        "rot_type": "PhysicalSky",
+        "target_name": "alternating_rot_1"
+      }
+    },
+    {
+      "name": "maintel/take_aos_sequence_lsstcam.py",
+      "standard": true,
+      "parameters": {
+        "exposure_time": 30.0,
+        "n_sequences": 1,
+        "program": "$program",
+        "reason": "alternating_rotator_stability",
+        "note": "$block_note"
+      }
+    },
+    {
+      "name": "maintel/track_target.py",
+      "standard": true,
+      "parameters": {
+        "track_azel": {
+          "az": "$azimuth",
+          "el": "$elevation"
+        },
+        "rot_value": "$rot_value_2",
+        "rot_type": "PhysicalSky",
+        "target_name": "alternating_rot_2"
+      }
+    },
+    {
+      "name": "maintel/take_aos_sequence_lsstcam.py",
+      "standard": true,
+      "parameters": {
+        "exposure_time": 30.0,
+        "n_sequences": 1,
+        "program": "$program",
+        "reason": "alternating_rotator_stability",
+        "note": "$block_note"
+      }
+    },
+    {
+      "name": "maintel/track_target.py",
+      "standard": true,
+      "parameters": {
+        "track_azel": {
+          "az": "$azimuth",
+          "el": "$elevation"
+        },
+        "rot_value": "$rot_value_1",
+        "rot_type": "PhysicalSky",
+        "target_name": "alternating_rot_1"
+      }
+    },
+    {
+      "name": "maintel/take_aos_sequence_lsstcam.py",
+      "standard": true,
+      "parameters": {
+        "exposure_time": 30.0,
+        "n_sequences": 1,
+        "program": "$program",
+        "reason": "alternating_rotator_stability",
+        "note": "$block_note"
+      }
+    },
+    {
+      "name": "maintel/track_target.py",
+      "standard": true,
+      "parameters": {
+        "track_azel": {
+          "az": "$azimuth",
+          "el": "$elevation"
+        },
+        "rot_value": "$rot_value_2",
+        "rot_type": "PhysicalSky",
+        "target_name": "alternating_rot_2"
+      }
+    },
+    {
+      "name": "maintel/take_aos_sequence_lsstcam.py",
+      "standard": true,
+      "parameters": {
+        "exposure_time": 30.0,
+        "n_sequences": 1,
+        "program": "$program",
+        "reason": "alternating_rotator_stability",
+        "note": "$block_note"
+      }
+    },
+    {
+      "name": "maintel/track_target.py",
+      "standard": true,
+      "parameters": {
+        "track_azel": {
+          "az": "$azimuth",
+          "el": "$elevation"
+        },
+        "rot_value": "$rot_value_1",
+        "rot_type": "PhysicalSky",
+        "target_name": "alternating_rot_1"
+      }
+    },
+    {
+      "name": "maintel/take_aos_sequence_lsstcam.py",
+      "standard": true,
+      "parameters": {
+        "exposure_time": 30.0,
+        "n_sequences": 1,
+        "program": "$program",
+        "reason": "alternating_rotator_stability",
+        "note": "$block_note"
+      }
+    },
+    {
+      "name": "maintel/track_target.py",
+      "standard": true,
+      "parameters": {
+        "track_azel": {
+          "az": "$azimuth",
+          "el": "$elevation"
+        },
+        "rot_value": "$rot_value_2",
+        "rot_type": "PhysicalSky",
+        "target_name": "alternating_rot_2"
+      }
+    },
+    {
+      "name": "maintel/take_aos_sequence_lsstcam.py",
+      "standard": true,
+      "parameters": {
+        "exposure_time": 30.0,
+        "n_sequences": 1,
+        "program": "$program",
+        "reason": "alternating_rotator_stability",
+        "note": "$block_note"
+      }
+    },
+    {
+      "name": "maintel/track_target.py",
+      "standard": true,
+      "parameters": {
+        "track_azel": {
+          "az": "$azimuth",
+          "el": "$elevation"
+        },
+        "rot_value": "$rot_value_1",
+        "rot_type": "PhysicalSky",
+        "target_name": "alternating_rot_1"
+      }
+    },
+    {
+      "name": "maintel/take_aos_sequence_lsstcam.py",
+      "standard": true,
+      "parameters": {
+        "exposure_time": 30.0,
+        "n_sequences": 1,
+        "program": "$program",
+        "reason": "alternating_rotator_stability",
+        "note": "$block_note"
+      }
+    },
+    {
+      "name": "maintel/track_target.py",
+      "standard": true,
+      "parameters": {
+        "track_azel": {
+          "az": "$azimuth",
+          "el": "$elevation"
+        },
+        "rot_value": "$rot_value_2",
+        "rot_type": "PhysicalSky",
+        "target_name": "alternating_rot_2"
+      }
+    },
+    {
+      "name": "maintel/take_aos_sequence_lsstcam.py",
+      "standard": true,
+      "parameters": {
+        "exposure_time": 30.0,
+        "n_sequences": 1,
+        "program": "$program",
+        "reason": "alternating_rotator_stability",
+        "note": "$block_note"
+      }
+    },
+    {
+      "name": "maintel/track_target.py",
+      "standard": true,
+      "parameters": {
+        "track_azel": {
+          "az": "$azimuth",
+          "el": "$elevation"
+        },
+        "rot_value": "$rot_value_1",
+        "rot_type": "PhysicalSky",
+        "target_name": "alternating_rot_1"
+      }
+    },
+    {
+      "name": "maintel/take_aos_sequence_lsstcam.py",
+      "standard": true,
+      "parameters": {
+        "exposure_time": 30.0,
+        "n_sequences": 1,
+        "program": "$program",
+        "reason": "alternating_rotator_stability",
+        "note": "$block_note"
+      }
+    },
+    {
+      "name": "maintel/track_target.py",
+      "standard": true,
+      "parameters": {
+        "track_azel": {
+          "az": "$azimuth",
+          "el": "$elevation"
+        },
+        "rot_value": "$rot_value_2",
+        "rot_type": "PhysicalSky",
+        "target_name": "alternating_rot_2"
+      }
+    },
+    {
+      "name": "maintel/take_aos_sequence_lsstcam.py",
+      "standard": true,
+      "parameters": {
+        "exposure_time": 30.0,
+        "n_sequences": 1,
+        "program": "$program",
+        "reason": "alternating_rotator_stability",
+        "note": "$block_note"
+      }
+    },
+    {
+      "name": "maintel/stop_tracking.py",
+      "standard": true,
+      "parameters": {}
+    }
+  ],
+  "configuration_schema": "$schema: http://json-schema.org/draft-07/schema#\ntitle: BLOCK-T724 configuration\ndescription: Configuration for BLOCK-T724.\ntype: object\nproperties:\n  elevation:\n    description: Elevation position (degrees)\n    type: \"number\"\n    default: 70\n  azimuth:\n    description: Azimuth position (degrees)\n    type: \"number\"\n    default: 90\n  rot_value_1:\n    description: First rotator angle (degrees)\n    type: \"number\"\n    default: 0\n  rot_value_2:\n    description: Second rotator angle (degrees)\n    type: \"number\"\n    default: 60\n  block_note:\n    description: A note about the block\n    type: \"string\"\n    default: \"alternating_rotator_stability\"\n"
+}
