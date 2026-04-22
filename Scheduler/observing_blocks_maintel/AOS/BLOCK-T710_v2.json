@@ -1,0 +1,117 @@
+{
+  "name": "BLOCK-T710_v2",
+  "id": "68dde665-dab9-40f4-8c22-87ad3e67d7d9",
+  "program": "BLOCK-T710_v2",
+  "constraints": [],
+  "scripts": [
+    {
+      "name": "maintel/track_target.py",
+      "standard": true,
+      "parameters": {
+        "track_azel": {
+          "az": "$azimuth",
+          "el": "$elevation"
+        },
+        "rot_value": "$rotator_angle",
+        "rot_type": "PhysicalSky"
+      }
+    },
+    {
+      "name": "maintel/take_aos_sequence_lsstcam.py",
+      "standard": true,
+      "parameters": {
+        "exposure_time": 30.0,
+        "n_sequences": 9,
+        "mode": "TRIPLET",
+        "program": "$program",
+        "reason": "all_dof_lut_reference"
+      }
+    },
+    {
+      "name": "maintel/apply_dof.py",
+      "standard": true,
+      "parameters": {
+        "dofs": "$dofs"
+      }
+    },
+    {
+      "name": "maintel/track_target.py",
+      "standard": true,
+      "parameters": {
+        "track_azel": {
+          "az": "$azimuth",
+          "el": "$elevation"
+        },
+        "rot_value": "$rotator_angle",
+        "rot_type": "PhysicalSky"
+      }
+    },
+    {
+      "name": "maintel/take_aos_sequence_lsstcam.py",
+      "standard": true,
+      "parameters": {
+        "exposure_time": 30.0,
+        "n_sequences": 9,
+        "mode": "TRIPLET",
+        "program": "$program",
+        "reason": "all_dof_lut"
+      }
+    },
+    {
+      "name": "maintel/close_loop_lsstcam.py",
+      "standard": true,
+      "parameters": {
+        "program": "$program",
+        "reason": "closed_loop_all_dof_lut",
+        "exposure_time": 30.0,
+        "max_iter": 5,
+        "az": "$azimuth",
+        "el": "$elevation",
+        "rot": "$rotator_angle",
+        "used_dofs": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          30,
+          31,
+          32,
+          33,
+          34
+        ],
+        "truncation_index": 12,
+        "gain_sequence": [
+          0.75,
+          0.75,
+          0.75,
+          0.5
+        ]
+      }
+    },
+    {
+      "name": "maintel/take_aos_sequence_lsstcam.py",
+      "standard": true,
+      "parameters": {
+        "exposure_time": 30.0,
+        "n_sequences": 9,
+        "mode": "TRIPLET",
+        "program": "$program",
+        "reason": "all_dof_lut_after_closed_loop"
+      }
+    }
+  ],
+  "configuration_schema": "$schema: http://json-schema.org/draft-07/schema#\ntitle: BLOCK-T710 configuration\ndescription: Configuration for BLOCK-T710.\ntype: object\nproperties:\n  azimuth:\n    description: Target azimuth angle\n    type: \"number\"\n    default: 0\n  dofs:\n    description: Degrees of freedom offset to use.\n    type: array\n    default: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]\n    items:\n      type: number\n  elevation:\n    description: Target elevation angle\n    type: \"number\"\n    default: 70\n  rotator_angle:\n    description: Target rotator angle\n    type: \"number\"\n    default: 0\n"
+}
