@@ -150,6 +150,9 @@ def get_scheduler() -> tuple[int, CoreScheduler]:
     for key in footprints_hp_array.dtype.names:
         footprints_hp[key] = footprints_hp_array[key]
 
+    # Remove y band from footprint
+    footprints_hp["y"] = np.zeros(len(footprints_hp["y"]))
+
     # Set up a mask to contain some surveys within this region
     footprint_mask = footprints_hp["r"] * 0
     footprint_mask[np.where(footprints_hp["r"] > 0)] = 1
@@ -265,7 +268,9 @@ def get_scheduler() -> tuple[int, CoreScheduler]:
             before_twi_check=False,
         )
     ]
-    ddfs[0].set_script(obs_array)
+    # Remove y band
+    indx = np.where(obs_array["band"] != "y")
+    ddfs[0].set_script(obs_array[indx])
 
     # Define the greedy surveys (single-visit per call)
     greedy = lsst_surveys.gen_greedy_surveys(
@@ -359,7 +364,10 @@ def get_scheduler() -> tuple[int, CoreScheduler]:
     template_fp = Footprint(survey_start_mjd, sun_ra_start, nside=nside)
     for key in footprints_hp_array.dtype.names:
         tmp_fp = np.where(footprints_hp_array[key] > 0, 1, np.nan)
+        if key == "y":
+            tmp_fp = tmp_fp * np.nan
         template_fp.set_footprint(key, tmp_fp)
+
     # Define template surveys
     template_surveys = lsst_surveys.gen_template_surveys(
         template_fp,
