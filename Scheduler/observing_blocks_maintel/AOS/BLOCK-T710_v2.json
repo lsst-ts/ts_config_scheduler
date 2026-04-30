@@ -470,14 +470,210 @@
       }
     },
     {
+      "name": "maintel/track_target.py",
+      "standard": true,
+      "parameters": {
+      "track_azel": {
+        "az": "$azimuth",
+        "el": "$elevation"
+      },
+      "rot_value": "$rotator_angle",
+      "rot_type": "PhysicalSky"
+      }
+    },
+    {
       "name": "maintel/take_aos_sequence_lsstcam.py",
       "standard": true,
       "parameters": {
-        "exposure_time": 30.0,
-        "n_sequences": 9,
-        "mode": "TRIPLET",
-        "program": "$program",
-        "reason": "all_dof_lut_after_closed_loop"
+      "exposure_time": 30.0,
+      "n_sequences": 1,
+      "mode": "TRIPLET",
+      "program": "$program",
+      "reason": "all_dof_lut_after_closed_loop"
+      }
+    },
+    {
+      "name": "maintel/track_target.py",
+      "standard": true,
+      "parameters": {
+      "track_azel": {
+        "az": "$azimuth",
+        "el": "$elevation"
+      },
+      "rot_value": "$rotator_angle",
+      "rot_type": "PhysicalSky"
+      }
+    },
+    {
+      "name": "maintel/take_aos_sequence_lsstcam.py",
+      "standard": true,
+      "parameters": {
+      "exposure_time": 30.0,
+      "n_sequences": 1,
+      "mode": "TRIPLET",
+      "program": "$program",
+      "reason": "all_dof_lut_after_closed_loop"
+      }
+    },
+    {
+      "name": "maintel/track_target.py",
+      "standard": true,
+      "parameters": {
+      "track_azel": {
+        "az": "$azimuth",
+        "el": "$elevation"
+      },
+      "rot_value": "$rotator_angle",
+      "rot_type": "PhysicalSky"
+      }
+    },
+    {
+      "name": "maintel/take_aos_sequence_lsstcam.py",
+      "standard": true,
+      "parameters": {
+      "exposure_time": 30.0,
+      "n_sequences": 1,
+      "mode": "TRIPLET",
+      "program": "$program",
+      "reason": "all_dof_lut_after_closed_loop"
+      }
+    },
+    {
+      "name": "maintel/track_target.py",
+      "standard": true,
+      "parameters": {
+      "track_azel": {
+        "az": "$azimuth",
+        "el": "$elevation"
+      },
+      "rot_value": "$rotator_angle",
+      "rot_type": "PhysicalSky"
+      }
+    },
+    {
+      "name": "maintel/take_aos_sequence_lsstcam.py",
+      "standard": true,
+      "parameters": {
+      "exposure_time": 30.0,
+      "n_sequences": 1,
+      "mode": "TRIPLET",
+      "program": "$program",
+      "reason": "all_dof_lut_after_closed_loop"
+      }
+    },
+    {
+      "name": "maintel/track_target.py",
+      "standard": true,
+      "parameters": {
+      "track_azel": {
+        "az": "$azimuth",
+        "el": "$elevation"
+      },
+      "rot_value": "$rotator_angle",
+      "rot_type": "PhysicalSky"
+      }
+    },
+    {
+      "name": "maintel/take_aos_sequence_lsstcam.py",
+      "standard": true,
+      "parameters": {
+      "exposure_time": 30.0,
+      "n_sequences": 1,
+      "mode": "TRIPLET",
+      "program": "$program",
+      "reason": "all_dof_lut_after_closed_loop"
+      }
+    },
+    {
+      "name": "maintel/track_target.py",
+      "standard": true,
+      "parameters": {
+      "track_azel": {
+        "az": "$azimuth",
+        "el": "$elevation"
+      },
+      "rot_value": "$rotator_angle",
+      "rot_type": "PhysicalSky"
+      }
+    },
+    {
+      "name": "maintel/take_aos_sequence_lsstcam.py",
+      "standard": true,
+      "parameters": {
+      "exposure_time": 30.0,
+      "n_sequences": 1,
+      "mode": "TRIPLET",
+      "program": "$program",
+      "reason": "all_dof_lut_after_closed_loop"
+      }
+    },
+    {
+      "name": "maintel/track_target.py",
+      "standard": true,
+      "parameters": {
+      "track_azel": {
+        "az": "$azimuth",
+        "el": "$elevation"
+      },
+      "rot_value": "$rotator_angle",
+      "rot_type": "PhysicalSky"
+      }
+    },
+    {
+      "name": "maintel/take_aos_sequence_lsstcam.py",
+      "standard": true,
+      "parameters": {
+      "exposure_time": 30.0,
+      "n_sequences": 1,
+      "mode": "TRIPLET",
+      "program": "$program",
+      "reason": "all_dof_lut_after_closed_loop"
+      }
+    },
+    {
+      "name": "maintel/track_target.py",
+      "standard": true,
+      "parameters": {
+      "track_azel": {
+        "az": "$azimuth",
+        "el": "$elevation"
+      },
+      "rot_value": "$rotator_angle",
+      "rot_type": "PhysicalSky"
+      }
+    },
+    {
+      "name": "maintel/take_aos_sequence_lsstcam.py",
+      "standard": true,
+      "parameters": {
+      "exposure_time": 30.0,
+      "n_sequences": 1,
+      "mode": "TRIPLET",
+      "program": "$program",
+      "reason": "all_dof_lut_after_closed_loop"
+      }
+    },
+    {
+      "name": "maintel/track_target.py",
+      "standard": true,
+      "parameters": {
+      "track_azel": {
+        "az": "$azimuth",
+        "el": "$elevation"
+      },
+      "rot_value": "$rotator_angle",
+      "rot_type": "PhysicalSky"
+      }
+    },
+    {
+      "name": "maintel/take_aos_sequence_lsstcam.py",
+      "standard": true,
+      "parameters": {
+      "exposure_time": 30.0,
+      "n_sequences": 1,
+      "mode": "TRIPLET",
+      "program": "$program",
+      "reason": "all_dof_lut_after_closed_loop"
       }
     }
   ],
