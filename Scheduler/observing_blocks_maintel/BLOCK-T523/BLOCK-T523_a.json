@@ -9,8 +9,6 @@
             "parameters": {
                 "data": [["TunableLaser", "ENABLED"],
                         ["LEDProjector", "ENABLED"],
-                        ["FiberSpectrograph:101","ENABLED"],
-                        ["FiberSpectrograph:102","ENABLED"],
                         ["Electrometer:103","ENABLED"],
                         ["LinearStage:101", "ENABLED"],
                         ["LinearStage:102", "ENABLED"],
