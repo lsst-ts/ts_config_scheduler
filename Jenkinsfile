@@ -3,6 +3,7 @@ DevelopPipeline(
     name: "ts_config_scheduler",
     idl_names: [], 
     module_name: "",
+    require_scons: true,
     has_doc_site: false,
     extra_packages: [
         "lsst-ts/ts_fbs_utils",
