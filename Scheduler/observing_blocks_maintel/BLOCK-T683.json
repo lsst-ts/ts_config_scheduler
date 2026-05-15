@@ -1,0 +1,193 @@
+{
+    "name": "BLOCK-T683",
+    "program": "BLOCK-T683",
+    "constraints": [],
+    "scripts": [
+        {
+            "name": "set_summary_state.py",
+            "standard": true,
+            "parameters": {
+                "data": [["LEDProjector", "ENABLED"],
+                        ["TunableLaser", "ENABLED"],
+                        ["Electrometer:103", "ENABLED"],
+                        ["Electrometer:102", "ENABLED"],
+                        ["LinearStage:101", "ENABLED"],
+                        ["LinearStage:102", "ENABLED"],
+                        ["LinearStage:103", "ENABLED"],
+                        ["LinearStage:104", "ENABLED"],
+                        ["CBP", "ENABLED"]]
+            }
+        },
+        {
+            "name": "maintel/setup_calsys_flats.py",
+            "standard": false,
+            "parameters":{
+                "sequence_name": "laser_functional",
+                "ignore": "$ignore"
+            }
+        },
+        {
+            "name": "maintel/take_calsys_flats_lsstcam.py",
+            "standard": false,
+            "parameters":{
+                "sequence_names": ["laser_functional"],
+                "config_tcs": false,
+                "use_camera": false,
+                "ignore": "$ignore"
+            }
+        },
+        {
+            "name": "maintel/park_calibration_projector.py",
+            "standard": false,
+            "parameters":{
+                "ignore": "$ignore"
+            }
+        },
+        {
+            "name": "maintel/setup_calsys_flats.py",
+            "standard": false,
+            "parameters":{
+                "sequence_name": "setup_cbp",
+                "ignore": "$ignore"
+            }
+        },
+        {
+            "name": "run_command.py",
+            "standard": true,
+            "parameters": {
+              "component": "CBP",
+              "cmd": "unpark"
+              }
+          },
+        {
+            "name": "run_command.py",
+            "standard": true,
+            "parameters": {
+              "component": "CBP",
+              "cmd": "move",
+              "parameters":{
+                "azimuth": 15.0,
+                "elevation": 0.0
+              }
+            }
+          },
+          {
+            "name": "run_command.py",
+            "standard": true,
+            "parameters": {
+              "component": "CBP",
+              "cmd": "move",
+              "parameters":{
+                "azimuth": -15.0,
+                "elevation": -20.0
+              }
+            }
+          },
+          {
+            "name": "run_command.py",
+            "standard": true,
+            "parameters": {
+              "component": "CBP",
+              "cmd": "setFocus",
+              "parameters":{
+                "focus": 5000
+              }
+            }
+          },
+          {
+            "name": "run_command.py",
+            "standard": true,
+            "parameters": {
+              "component": "CBP",
+              "cmd": "setFocus",
+              "parameters":{
+                "focus": 3800
+              }
+            }
+          },
+          {
+            "name": "run_command.py",
+            "standard": true,
+            "parameters": {
+              "component": "CBP",
+              "cmd": "changeMask",
+              "parameters":{
+                "mask": "5"
+              }
+            }
+          },
+          {
+            "name": "run_command.py",
+            "standard": true,
+            "parameters": {
+              "component": "CBP",
+              "cmd": "changeMask",
+              "parameters":{
+                "mask": "1"
+              }
+            }
+          },
+          {
+            "name": "run_command.py",
+            "standard": true,
+            "parameters": {
+              "component": "CBP",
+              "cmd": "changeMaskRotation",
+              "parameters":{
+                "mask_rotation": 275.0
+              }
+            }
+          },
+          {
+            "name": "run_command.py",
+            "standard": true,
+            "parameters": {
+              "component": "CBP",
+              "cmd": "changeMaskRotation",
+              "parameters":{
+                "mask_rotation": 96.5
+              }
+            }
+          },
+          {
+            "name": "run_command.py",
+            "standard": true,
+            "parameters": {
+              "component": "CBP",
+              "cmd": "park"
+          }
+        },
+        {
+            "name": "maintel/take_calsys_flats_lsstcam.py",
+            "standard": false,
+            "parameters":{
+                "sequence_names": ["laser_cbp"],
+                "config_tcs": false,
+                "use_camera": false,
+                "ignore": "$ignore"
+            }
+        },
+        {
+            "name": "maintel/calibration/power_off_tunablelaser.py",
+            "standard": true,
+            "parameters": {}
+          },
+          {
+            "name": "set_summary_state.py",
+            "standard": true,
+            "parameters": {
+                "data": [["LEDProjector", "STANDBY"],
+                        ["TunableLaser", "STANDBY"],
+                        ["Electrometer:103", "STANDBY"],
+                        ["Electrometer:102", "STANDBY"],
+                        ["LinearStage:101", "STANDBY"],
+                        ["LinearStage:102", "STANDBY"],
+                        ["LinearStage:103", "STANDBY"],
+                        ["LinearStage:104", "STANDBY"],
+                        ["CBP", "STANDBY"]]
+            }
+        }
+    ],
+     "configuration_schema": "$schema: http://json-schema.org/draft-07/schema#\ntitle: BLOCK-T683 configuration\ndescription: Configuration for BLOCK-T601.\ntype: object\nproperties:\n  ignore:\n    description: Name of the CSCs we want to ignore\n    type: array\n    default: ['Electrometer:101','FiberSpectrograph:101','FiberSpectrograph:102']\n"
+}
+
