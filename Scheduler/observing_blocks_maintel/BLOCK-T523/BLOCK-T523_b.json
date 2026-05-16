@@ -32,8 +32,6 @@
             "parameters": {
                 "data": [["TunableLaser", "STANDBY"],
                         ["LEDProjector", "STANDBY"],
-                        ["FiberSpectrograph:101", "STANDBY"],
-                        ["FiberSpectrograph:102", "STANDBY"],
                         ["Electrometer:103", "STANDBY"],
                         ["LinearStage:101", "STANDBY"],
                         ["LinearStage:102", "STANDBY"],

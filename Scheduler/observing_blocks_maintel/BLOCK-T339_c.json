@@ -1,0 +1,30 @@
+{
+    "name": "BLOCK-T339_c",
+    "program": "BLOCK-T339_c",
+    "constraints": [],
+    "scripts": [
+        {
+            "name": "maintel/calibration/power_off_tunablelaser.py",
+            "standard": true,
+            "parameters":{}
+          },
+        {
+            "name": "run_command.py",
+            "standard": true,
+            "parameters": {
+              "component": "CBP",
+              "cmd": "park"
+            }
+          },
+        {
+            "name": "set_summary_state.py",
+            "standard": true,
+            "parameters": {
+                "data": [["TunableLaser", "STANDBY"],
+                        ["Electrometer:102","STANDBY"],
+                        ["CBP", "STANDBY"]]
+            }
+        }
+    ]
+}
+

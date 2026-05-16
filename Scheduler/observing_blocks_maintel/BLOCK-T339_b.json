@@ -1,0 +1,38 @@
+{
+    "name": "BLOCK-T339_b",
+    "program": "BLOCK-T339_b",
+    "constraints": [],
+    "scripts": [
+        {
+            "name": "maintel/point_azel.py",
+            "standard": true,
+            "parameters":{
+                "az": 211,
+                "el": 44,
+                "target_name": "CBP",
+                "ignore": ["mtdome","mtdometrajectory"]
+            }
+        },
+        {
+          "name": "run_command.py",
+          "standard": true,
+          "parameters": {
+            "component": "CBP",
+            "cmd": "unpark"
+          }
+        },
+        {
+            "name": "run_command.py",
+            "standard": true,
+            "parameters": {
+              "component": "CBP",
+              "cmd": "move",
+              "parameters":{
+                "azimuth": -0.05,
+                "elevation": -44.5
+              }
+            }
+          }
+    ]
+}
+
