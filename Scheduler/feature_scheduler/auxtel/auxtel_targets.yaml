@@ -143,6 +143,368 @@ auxtel_candidate_catalog_targets:
     nexp: 3
     visit_gap: 20
     priority: 1
+
+  # ---- Gaia DDF targets (46 unique sources from gaia_ddf_target (1).csv; g<=7.0 -> BLOCK-312, else BLOCK-311) ----
+  Gaia_COSMOS_3823:
+    # type B9V, g=7.38, DDF=COSMOS, src=GAIA DR3 3823289525082974464
+    ra: "09:53:43"
+    dec: "-03:52:48.0"
+    block: "BLOCK-311"
+    exptime: 480
+    nexp: 3
+    visit_gap: 29
+    priority: 1
+  Gaia_COSMOS_38279:
+    # type F8/G0V, g=7.75, DDF=COSMOS, src=GAIA DR3 3827965056545783424
+    ra: "09:46:58"
+    dec: "-00:39:00.0"
+    block: "BLOCK-311"
+    exptime: 480
+    nexp: 3
+    visit_gap: 29
+    priority: 1
+  Gaia_COSMOS_3836:
+    # type F6V, g=7.83, DDF=COSMOS, src=GAIA DR3 3836824650659925120
+    ra: "10:06:31"
+    dec: "+03:28:12.0"
+    block: "BLOCK-311"
+    exptime: 480
+    nexp: 3
+    visit_gap: 29
+    priority: 1
+  Gaia_COSMOS_3875:
+    # type F5, g=7.88, DDF=COSMOS, src=GAIA DR3 3875138542078665472
+    ra: "10:03:24"
+    dec: "+08:14:24.0"
+    block: "BLOCK-311"
+    exptime: 480
+    nexp: 3
+    visit_gap: 29
+    priority: 1
+  Gaia_COSMOS_38275:
+    # type F6V, g=7.97, DDF=COSMOS, src=GAIA DR3 3827549651604112256
+    ra: "09:45:50"
+    dec: "-01:54:36.0"
+    block: "BLOCK-311"
+    exptime: 480
+    nexp: 3
+    visit_gap: 29
+    priority: 1
+  Gaia_ECDFS_5080:
+    # type A2V, g=5.89, DDF=ECDFS, src=GAIA DR3 5080104261356834304
+    ra: "03:46:34"
+    dec: "-29:20:24.0"
+    block: "BLOCK-312"
+    exptime: 400
+    nexp: 3
+    visit_gap: 20
+    priority: 1
+  Gaia_ECDFS_48870:
+    # type A1V, g=5.92, DDF=ECDFS, src=GAIA DR3 4887069052181688192
+    ra: "04:00:48"
+    dec: "-30:30:36.0"
+    block: "BLOCK-312"
+    exptime: 400
+    nexp: 3
+    visit_gap: 20
+    priority: 1
+  Gaia_ECDFS_5071:
+    # type A3V, g=6.16, DDF=ECDFS, src=GAIA DR3 5071668533270215040
+    ra: "03:07:50"
+    dec: "-27:50:24.0"
+    block: "BLOCK-312"
+    exptime: 400
+    nexp: 3
+    visit_gap: 20
+    priority: 1
+  Gaia_ECDFS_50734:
+    # type A1V, g=6.24, DDF=ECDFS, src=GAIA DR3 5073486644466270592
+    ra: "03:14:53"
+    dec: "-26:03:36.0"
+    block: "BLOCK-312"
+    exptime: 400
+    nexp: 3
+    visit_gap: 20
+    priority: 1
+  Gaia_ECDFS_5061:
+    # type A1V, g=6.35, DDF=ECDFS, src=GAIA DR3 5061926069975057408
+    ra: "03:22:07"
+    dec: "-25:36:36.0"
+    block: "BLOCK-312"
+    exptime: 400
+    nexp: 3
+    visit_gap: 20
+    priority: 1
+  Gaia_ECDFS_48878:
+    # type F6+V, g=6.42, DDF=ECDFS, src=GAIA DR3 4887899527058717696
+    ra: "03:47:19"
+    dec: "-29:52:12.0"
+    block: "BLOCK-312"
+    exptime: 400
+    nexp: 3
+    visit_gap: 20
+    priority: 1
+  Gaia_ECDFS_5081:
+    # type A3V, g=6.95, DDF=ECDFS, src=GAIA DR3 5081897633541187072
+    ra: "03:47:48"
+    dec: "-26:18:00.0"
+    block: "BLOCK-312"
+    exptime: 400
+    nexp: 3
+    visit_gap: 20
+    priority: 1
+  Gaia_ECDFS_50733:
+    # type A2V, g=7.64, DDF=ECDFS, src=GAIA DR3 5073393185976634752
+    ra: "03:09:17"
+    dec: "-26:43:48.0"
+    block: "BLOCK-311"
+    exptime: 480
+    nexp: 3
+    visit_gap: 29
+    priority: 1
+  Gaia_ECDFS_4886:
+    # type A1V(n), g=7.93, DDF=ECDFS, src=GAIA DR3 4886526340114562432
+    ra: "03:56:34"
+    dec: "-31:38:24.0"
+    block: "BLOCK-311"
+    exptime: 480
+    nexp: 3
+    visit_gap: 29
+    priority: 1
+  Gaia_EDFS_4834:
+    # type A3V, g=6.88, DDF=EDFS, in EDFS_a & EDFS_b, src=GAIA DR3 4834818953960017792
+    ra: "03:54:36"
+    dec: "-46:22:48.0"
+    block: "BLOCK-312"
+    exptime: 400
+    nexp: 3
+    visit_gap: 20
+    priority: 1
+  Gaia_EDFS_4791a:
+    # type A0V, g=7.27, DDF=EDFS, in EDFS_a & EDFS_b, src=GAIA DR3 4791606562143607808
+    ra: "04:30:26"
+    dec: "-43:25:12.0"
+    block: "BLOCK-311"
+    exptime: 480
+    nexp: 3
+    visit_gap: 29
+    priority: 1
+  Gaia_EDFS_4791b:
+    # type A0V, g=7.35, DDF=EDFS, in EDFS_a & EDFS_b, src=GAIA DR3 4791615877929360896
+    ra: "04:30:17"
+    dec: "-43:13:12.0"
+    block: "BLOCK-311"
+    exptime: 480
+    nexp: 3
+    visit_gap: 29
+    priority: 1
+  Gaia_EDFS_4782:
+    # type A3Vs, g=7.37, DDF=EDFS, in EDFS_a & EDFS_b, src=GAIA DR3 4782733438884513152
+    ra: "04:21:02"
+    dec: "-48:45:36.0"
+    block: "BLOCK-311"
+    exptime: 480
+    nexp: 3
+    visit_gap: 29
+    priority: 1
+  Gaia_EDFS_4790:
+    # type A3V, g=7.48, DDF=EDFS, in EDFS_a & EDFS_b, src=GAIA DR3 4790234887028442240
+    ra: "04:40:41"
+    dec: "-45:45:00.0"
+    block: "BLOCK-311"
+    exptime: 480
+    nexp: 3
+    visit_gap: 29
+    priority: 1
+  Gaia_EDFS_a_4683:
+    # type A3V, g=7.62, DDF=EDFS_a, src=GAIA DR3 4683638922639072768
+    ra: "04:03:48"
+    dec: "-55:24:36.0"
+    block: "BLOCK-311"
+    exptime: 480
+    nexp: 3
+    visit_gap: 29
+    priority: 1
+  Gaia_EDFS_4780:
+    # type F5V, g=7.63, DDF=EDFS, in EDFS_a & EDFS_b, src=GAIA DR3 4780194185500379008
+    ra: "04:18:29"
+    dec: "-52:53:24.0"
+    block: "BLOCK-311"
+    exptime: 480
+    nexp: 3
+    visit_gap: 29
+    priority: 1
+  Gaia_EDFS_4848:
+    # type F3V, g=7.73, DDF=EDFS, in EDFS_a & EDFS_b, src=GAIA DR3 4848147543149497216
+    ra: "03:34:50"
+    dec: "-44:37:12.0"
+    block: "BLOCK-311"
+    exptime: 480
+    nexp: 3
+    visit_gap: 29
+    priority: 1
+  Gaia_EDFS_4831:
+    # type A1IV, g=7.88, DDF=EDFS, in EDFS_a & EDFS_b, src=GAIA DR3 4831294980536449792
+    ra: "03:59:22"
+    dec: "-48:52:48.0"
+    block: "BLOCK-311"
+    exptime: 480
+    nexp: 3
+    visit_gap: 29
+    priority: 1
+  Gaia_EDFS_4846:
+    # type F5V, g=7.92, DDF=EDFS, in EDFS_a & EDFS_b, src=GAIA DR3 4846714054864670848
+    ra: "03:32:14"
+    dec: "-44:25:48.0"
+    block: "BLOCK-311"
+    exptime: 480
+    nexp: 3
+    visit_gap: 29
+    priority: 1
+  Gaia_EDFSb_48156:
+    # type A3V(s), g=6.37, DDF=EDFS_b, src=GAIA DR3 4815692674316652544
+    ra: "04:37:17"
+    dec: "-41:51:36.0"
+    block: "BLOCK-312"
+    exptime: 400
+    nexp: 3
+    visit_gap: 20
+    priority: 1
+  Gaia_EDFS_b_4842:
+    # type F6V, g=7.10, DDF=EDFS_b, src=GAIA DR3 4842770347173769728
+    ra: "03:53:19"
+    dec: "-41:15:00.0"
+    block: "BLOCK-311"
+    exptime: 480
+    nexp: 3
+    visit_gap: 29
+    priority: 1
+  Gaia_EDFSb_48151:
+    # type A2V, g=7.61, DDF=EDFS_b, src=GAIA DR3 4815192843202871808
+    ra: "04:45:38"
+    dec: "-42:33:00.0"
+    block: "BLOCK-311"
+    exptime: 480
+    nexp: 3
+    visit_gap: 29
+    priority: 1
+  Gaia_EDFS_b_4848:
+    # type A4V, g=7.62, DDF=EDFS_b, src=GAIA DR3 4848914830466824320
+    ra: "03:41:22"
+    dec: "-41:42:36.0"
+    block: "BLOCK-311"
+    exptime: 480
+    nexp: 3
+    visit_gap: 29
+    priority: 1
+  Gaia_ELAISS1_49267:
+    # type A3V, g=6.85, DDF=ELAISS1, src=GAIA DR3 4926770218038164480
+    ra: "00:44:26"
+    dec: "-49:22:12.0"
+    block: "BLOCK-312"
+    exptime: 400
+    nexp: 3
+    visit_gap: 20
+    priority: 1
+  Gaia_ELAISS1_4993:
+    # type A5IV, g=6.86, DDF=ELAISS1, src=GAIA DR3 4993090148083955328
+    ra: "00:34:26"
+    dec: "-42:26:24.0"
+    block: "BLOCK-312"
+    exptime: 400
+    nexp: 3
+    visit_gap: 20
+    priority: 1
+  Gaia_ELAISS1_4987:
+    # type F9V, g=6.88, DDF=ELAISS1, src=GAIA DR3 4987736999629756800
+    ra: "01:07:31"
+    dec: "-41:45:00.0"
+    block: "BLOCK-312"
+    exptime: 400
+    nexp: 3
+    visit_gap: 20
+    priority: 1
+  Gaia_ELAISS1_4977:
+    # type A5IV, g=6.94, DDF=ELAISS1, src=GAIA DR3 4977328236586031872
+    ra: "00:13:43"
+    dec: "-48:43:12.0"
+    block: "BLOCK-312"
+    exptime: 400
+    nexp: 3
+    visit_gap: 20
+    priority: 1
+  Gaia_ELAISS1_4932:
+    # type F7V, g=7.82, DDF=ELAISS1, src=GAIA DR3 4932651505735298560
+    ra: "00:54:24"
+    dec: "-48:56:24.0"
+    block: "BLOCK-311"
+    exptime: 480
+    nexp: 3
+    visit_gap: 29
+    priority: 1
+  Gaia_ELAISS1_49262:
+    # type A4V, g=7.94, DDF=ELAISS1, src=GAIA DR3 4926271417716145792
+    ra: "00:38:00"
+    dec: "-50:45:00.0"
+    block: "BLOCK-311"
+    exptime: 480
+    nexp: 3
+    visit_gap: 29
+    priority: 1
+  Gaia_XMM_LSS_2489:
+    # type A2V, g=6.49, DDF=XMM_LSS, src=GAIA DR3 2489860097032460416
+    ra: "02:19:46"
+    dec: "-04:22:12.0"
+    block: "BLOCK-312"
+    exptime: 400
+    nexp: 3
+    visit_gap: 20
+    priority: 1
+  Gaia_XMM_LSS_2504:
+    # type A7V, g=6.89, DDF=XMM_LSS, src=GAIA DR3 2504754425139821312
+    ra: "02:02:55"
+    dec: "-02:22:12.0"
+    block: "BLOCK-312"
+    exptime: 400
+    nexp: 3
+    visit_gap: 20
+    priority: 1
+  Gaia_XMM_LSS_2461:
+    # type A6V, g=6.95, DDF=XMM_LSS, src=GAIA DR3 2461880751625342208
+    ra: "02:08:22"
+    dec: "-10:04:48.0"
+    block: "BLOCK-312"
+    exptime: 400
+    nexp: 3
+    visit_gap: 20
+    priority: 1
+  Gaia_XMM_LSS_2487:
+    # type A1V, g=7.30, DDF=XMM_LSS, src=GAIA DR3 2487724982890304768
+    ra: "02:16:58"
+    dec: "-06:33:36.0"
+    block: "BLOCK-311"
+    exptime: 480
+    nexp: 3
+    visit_gap: 29
+    priority: 1
+  Gaia_XMM_LSS_2466:
+    # type A5IV, g=7.51, DDF=XMM_LSS, src=GAIA DR3 2466730392473402112
+    ra: "01:57:31"
+    dec: "-06:51:00.0"
+    block: "BLOCK-311"
+    exptime: 480
+    nexp: 3
+    visit_gap: 29
+    priority: 1
+  Gaia_XMM_LSS_2486:
+    # type F5V, g=7.95, DDF=XMM_LSS, src=GAIA DR3 2486706972561857792
+    ra: "02:24:17"
+    dec: "-07:23:24.0"
+    block: "BLOCK-311"
+    exptime: 480
+    nexp: 3
+    visit_gap: 29
+    priority: 1
 auxtel_standard_catalog_targets:
   HD2811:
     # type A3V, V=7.5
