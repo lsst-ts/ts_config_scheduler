@@ -7,7 +7,7 @@
             "name": "maintel/point_azel.py",
             "standard": true,
             "parameters":{
-                "az": 269,
+                "az": -91,
                 "el": 46,
                 "target_name": "CBP",
                 "ignore": ["mtdome","mtdometrajectory"]
