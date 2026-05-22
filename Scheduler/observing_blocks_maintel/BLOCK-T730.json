@@ -1,0 +1,231 @@
+{
+  "name": "BLOCK-T730",
+  "id": "f4d54beb-773b-4e40-bd90-f2a1241df836",
+  "program": "BLOCK-T730",
+  "constraints": [],
+  "scripts": [
+    {
+      "name": "maintel/track_target.py",
+      "standard": true,
+      "parameters": {
+        "track_azel": {
+          "az": -90.0,
+          "el": 70.0
+        },
+        "rot_value": 0.0,
+        "rot_type": "PhysicalSky",
+        "ignore": [
+          "mtdome",
+          "mtdometrajectory"
+        ]
+      }
+    },
+    {
+      "name": "maintel/take_image_lsstcam.py",
+      "standard": true,
+      "parameters": {
+        "exp_times": 30.0,
+        "nimages": 1,
+        "image_type": "INDOME",
+        "reason": "Check_Hexapod_Idle",
+        "program": "$program",
+        "ignore": [
+          "mtdome",
+          "mtdometrajectory"
+        ]
+      }
+    },
+    {
+      "name": "maintel/track_target.py",
+      "standard": true,
+      "parameters": {
+        "track_azel": {
+          "az": -90.0,
+          "el": 40.0
+        },
+        "rot_value": 0.0,
+        "rot_type": "PhysicalSky",
+        "ignore": [
+          "mtdome",
+          "mtdometrajectory"
+        ]
+      }
+    },
+    {
+      "name": "maintel/take_image_lsstcam.py",
+      "standard": true,
+      "parameters": {
+        "exp_times": 30.0,
+        "nimages": 1,
+        "image_type": "INDOME",
+        "reason": "Check_Hexapod_Idle",
+        "program": "$program",
+        "ignore": [
+          "mtdome",
+          "mtdometrajectory"
+        ]
+      }
+    },
+    {
+      "name": "maintel/track_target.py",
+      "standard": true,
+      "parameters": {
+        "track_azel": {
+          "az": -90.0,
+          "el": 40.0
+        },
+        "rot_value": -45.0,
+        "rot_type": "PhysicalSky",
+        "ignore": [
+          "mtdome",
+          "mtdometrajectory"
+        ]
+      }
+    },
+    {
+      "name": "maintel/take_image_lsstcam.py",
+      "standard": true,
+      "parameters": {
+        "exp_times": 30.0,
+        "nimages": 1,
+        "image_type": "INDOME",
+        "reason": "Check_Hexapod_Idle",
+        "program": "$program",
+        "ignore": [
+          "mtdome",
+          "mtdometrajectory"
+        ]
+      }
+    },
+    {
+      "name": "maintel/track_target.py",
+      "standard": true,
+      "parameters": {
+        "track_azel": {
+          "az": -90.0,
+          "el": 70.0
+        },
+        "rot_value": 0.0,
+        "rot_type": "PhysicalSky",
+        "ignore": [
+          "mtdome",
+          "mtdometrajectory"
+        ]
+      }
+    },
+    {
+      "name": "maintel/take_image_lsstcam.py",
+      "standard": true,
+      "parameters": {
+        "exp_times": 30.0,
+        "nimages": 1,
+        "image_type": "INDOME",
+        "reason": "Check_Hexapod_Idle",
+        "program": "$program",
+        "ignore": [
+          "mtdome",
+          "mtdometrajectory"
+        ]
+      }
+    },
+    {
+      "name": "maintel/track_target.py",
+      "standard": true,
+      "parameters": {
+        "track_azel": {
+          "az": 0.0,
+          "el": 70.0
+        },
+        "rot_value": 0.0,
+        "rot_type": "PhysicalSky",
+        "ignore": [
+          "mtdome",
+          "mtdometrajectory"
+        ]
+      }
+    },
+    {
+      "name": "maintel/take_image_lsstcam.py",
+      "standard": true,
+      "parameters": {
+        "exp_times": 30.0,
+        "nimages": 1,
+        "image_type": "INDOME",
+        "reason": "Check_Hexapod_Idle",
+        "program": "$program",
+        "ignore": [
+          "mtdome",
+          "mtdometrajectory"
+        ]
+      }
+    },
+    {
+      "name": "maintel/track_target.py",
+      "standard": true,
+      "parameters": {
+        "track_azel": {
+          "az": 0.0,
+          "el": 40.0
+        },
+        "rot_value": 0.0,
+        "rot_type": "PhysicalSky",
+        "ignore": [
+          "mtdome",
+          "mtdometrajectory"
+        ]
+      }
+    },
+    {
+      "name": "maintel/take_image_lsstcam.py",
+      "standard": true,
+      "parameters": {
+        "exp_times": 30.0,
+        "nimages": 1,
+        "image_type": "INDOME",
+        "reason": "Check_Hexapod_Idle",
+        "program": "$program",
+        "ignore": [
+          "mtdome",
+          "mtdometrajectory"
+        ]
+      }
+    },
+    {
+      "name": "maintel/track_target.py",
+      "standard": true,
+      "parameters": {
+        "track_azel": {
+          "az": 0.0,
+          "el": 40.0
+        },
+        "rot_value": -45.0,
+        "rot_type": "PhysicalSky",
+        "ignore": [
+          "mtdome",
+          "mtdometrajectory"
+        ]
+      }
+    },
+    {
+      "name": "maintel/take_image_lsstcam.py",
+      "standard": true,
+      "parameters": {
+        "exp_times": 30.0,
+        "nimages": 1,
+        "image_type": "INDOME",
+        "reason": "Check_Hexapod_Idle",
+        "program": "$program",
+        "ignore": [
+          "mtdome",
+          "mtdometrajectory"
+        ]
+      }
+    },
+    {
+      "name": "maintel/stop_tracking.py",
+      "standard": true,
+      "parameters": {}
+    }
+  ],
+  "configuration_schema": ""
+}
