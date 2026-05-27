@@ -49,6 +49,6 @@
             }
         }
     ],
-     "configuration_schema": "$schema: http://json-schema.org/draft-07/schema#\ntitle: BLOCK-T339_a configuration\ndescription: Configuration for BLOCK-T339_a.\ntype: object\nproperties:\n  ignore:\n    description: Name of the CSCs we want to ignore\n    type: array\n    default: ['Electrometer:101','Electrometer:103']\n  use_electrometer:\n    description: override for mtcalsys use_electrometer\n    type: boolean\n    default: True\n  filter:\n    description: filter that the test image was on\n    type: string\n    default: 'g_6'\n"
+     "configuration_schema": "$schema: http://json-schema.org/draft-07/schema#\ntitle: BLOCK-T339_a configuration\ndescription: Configuration for BLOCK-T339_a.\ntype: object\nproperties:\n  ignore:\n    description: Name of the CSCs we want to ignore\n    type: array\n    default: ['LEDProjector','LinearStage:101','LinearStage:102','LinearStage:103','LinearStage:104','Electrometer:101','Electrometer:103']\n  use_electrometer:\n    description: override for mtcalsys use_electrometer\n    type: boolean\n    default: True\n  filter:\n    description: filter that the test image was on\n    type: string\n    default: 'g_6'\n"
 }
 
