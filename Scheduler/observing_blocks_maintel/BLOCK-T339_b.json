@@ -7,8 +7,8 @@
             "name": "maintel/point_azel.py",
             "standard": true,
             "parameters":{
-                "az": -91,
-                "el": 44,
+                "az": "$tma_az",
+                "el": "$tma_el",
                 "target_name": "CBP",
                 "ignore": ["mtdome","mtdometrajectory"]
             }
@@ -22,17 +22,48 @@
           }
         },
         {
-            "name": "run_command.py",
-            "standard": true,
-            "parameters": {
-              "component": "CBP",
-              "cmd": "move",
-              "parameters":{
-                "azimuth": -0.05,
-                "elevation": -44.5
-              }
+          "name": "run_command.py",
+          "standard": true,
+          "parameters": {
+            "component": "CBP",
+            "cmd": "move",
+            "parameters":{
+              "azimuth": "$cbp_az", 
+              "elevation": "$cbp_el" 
             }
           }
-    ]
+        },
+        {
+          "name": "run_command.py",
+          "standard": true,
+          "parameters": {
+            "component": "TunableLaser",
+            "cmd": "changeWavelength",
+            "parameters":{
+              "wavelength": "$wavelength"
+            }
+          }
+        },
+        {
+          "name": "maintel/change_filter_lsstcam.py",
+          "standard": true,
+          "parameters": {
+              "filter": "$filter"
+          }
+      },
+        {
+          "name": "maintel/take_image_lsstcam.py",
+          "standard": true,
+          "parameters":{
+              "nimages": 1,
+              "exp_times": 1,
+              "filter": "$filter",
+              "image_type": "FLAT",
+              "program": "BLOCK-T339",
+              "note": "CBP_test_image"
+          }
+        }
+    ],
+    "configuration_schema": "$schema: http://json-schema.org/draft-07/schema#\ntitle: BLOCK-T339_b configuration\ndescription: Configuration for BLOCK-T339_b.\ntype: object\nproperties:\n  filter:\n    description: Filter used\n    type: string\n    default: r_57\n  tma_az:\n    description: Azimuth for TMA\n    type: number\n    default: -91.0\n  tma_el:\n    description: Elevation for TMA\n    type: number\n    default: 44.0\n  cbp_az:\n    description: Azimuth of CBP\n    type: number\n    default: -0.05\n  cbp_el:\n    description: Elevation of CBP\n    type: number\n    default: -44.5\n  wavelength:\n    description: Laser wavelength for test exposure\n    type: number\n    default: 615.0\n"
 }
 
