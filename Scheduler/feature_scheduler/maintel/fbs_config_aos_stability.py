@@ -63,7 +63,7 @@ def get_scheduler() -> tuple[int, CoreScheduler]:
 
     block_name = "BLOCK-T698"
 
-    sequence = ["i"]
+    sequence = ["y"]
     nvis_per_cycle = 100
 
     survey_lists = gen_az_el_rot_stability_survey(
