@@ -32,7 +32,8 @@
                     "holo4_003",
                     "holo4_003"
                 ],
-                "program": "spec-survey"
+                "program": "spec-survey",
+                "reason": "prism"
             }
         },
         {
