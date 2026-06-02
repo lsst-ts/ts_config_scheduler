@@ -38,6 +38,14 @@
           "standard": true,
           "parameters": {
             "component": "TunableLaser",
+            "cmd": "setContinuousMode"
+          }
+        },
+        {
+          "name": "run_command.py",
+          "standard": true,
+          "parameters": {
+            "component": "TunableLaser",
             "cmd": "changeWavelength",
             "parameters":{
               "wavelength": "$wavelength"
