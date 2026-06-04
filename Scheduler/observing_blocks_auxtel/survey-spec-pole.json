@@ -45,10 +45,10 @@
                     60.0
                 ],
                 "filter_sequence": [
-                    "empty_1"
+                    "nonanotch1"
                 ],
                 "grating_sequence": [
-                    "blue300lpmm_qn1"
+                    "300lpmm"
                 ]
             }
         },
@@ -72,10 +72,10 @@
                     60.0
                 ],
                 "filter_sequence": [
-                    "empty_1"
+                    "nonanotch1"
                 ],
                 "grating_sequence": [
-                    "blue300lpmm_qn1"
+                    "300lpmm"
                 ]
             }
         },
@@ -99,10 +99,10 @@
                     60.0
                 ],
                 "filter_sequence": [
-                    "empty_1"
+                    "nonanotch1"
                 ],
                 "grating_sequence": [
-                    "blue300lpmm_qn1"
+                    "300lpmm"
                 ]
             }
         },

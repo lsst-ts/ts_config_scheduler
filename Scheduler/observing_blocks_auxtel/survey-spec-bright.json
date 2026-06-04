@@ -11,7 +11,7 @@
                 "object_dec": "$dec",
                 "object_name": "$name",
                 "do_acquire": true,
-                "acq_filter": "SDSSr_65mm",
+                "acq_filter": "empty_1",
                 "acq_grating": "holo4_003",
                 "acq_exposure_time": 1.0,
                 "do_blind_offset": true,
@@ -27,7 +27,7 @@
                 ],
                 "filter_sequence": [
                     "empty_1",
-                    "BG40_65mm_1",
+                    "prism",
                     "OG550_65mm_1"
                 ],
                 "grating_sequence": [
@@ -48,10 +48,10 @@
                     20.0
                 ],
                 "filter_sequence": [
-                    "empty_1"
+                    "nonanotch1"
                 ],
                 "grating_sequence": [
-                    "blue300lpmm_qn1"
+                    "300lpmm"
                 ]
             }
         },
@@ -75,10 +75,10 @@
                     20.0
                 ],
                 "filter_sequence": [
-                    "empty_1"
+                    "nonanotch1"
                 ],
                 "grating_sequence": [
-                    "blue300lpmm_qn1"
+                    "300lpmm"
                 ]
             }
         },
@@ -102,10 +102,10 @@
                     20.0
                 ],
                 "filter_sequence": [
-                    "empty_1"
+                    "nonanotch1"
                 ],
                 "grating_sequence": [
-                    "blue300lpmm_qn1"
+                    "300lpmm"
                 ]
             }
         },
