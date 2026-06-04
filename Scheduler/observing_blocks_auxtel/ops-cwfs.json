@@ -9,7 +9,7 @@
             "parameters": {
                 "az": "$az",
                 "el": "$alt",
-                "filter": "SDSSr_65mm",
+                "filter": "empty_1",
                 "mag_limit": 6.0,
                 "mag_range": 4.0,
                 "radius": 10.0
@@ -19,7 +19,7 @@
             "name": "auxtel/latiss_wep_align.py",
             "standard": false,
             "parameters": {
-                "filter": "SDSSr_65mm",
+                "filter": "empty_1",
                 "program": "$program"
             }
         },
@@ -29,7 +29,7 @@
             "parameters": {
                 "az": "$az",
                 "el": "$alt",
-                "filter": "SDSSr_65mm",
+                "filter": "empty_1",
                 "mag_limit": 6.0,
                 "mag_range": 4.0,
                 "radius": 10.0,
