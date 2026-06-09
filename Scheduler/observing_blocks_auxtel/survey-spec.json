@@ -37,6 +37,88 @@
                 ],
                 "program": "spec-survey"
             }
+        },
+        {
+            "name": "auxtel/latiss_take_sequence.py",
+            "standard": true,
+            "parameters": {
+                "program": "spec-survey",
+                "reason": "x_offset_0",
+                "exposure_time_sequence": [
+                    60.0
+                ],
+                "filter_sequence": [
+                    "nonanotch1"
+                ],
+                "grating_sequence": [
+                    "300lpmm"
+                ]
+            }
+        },
+        {
+            "name": "auxtel/offset_atcs.py",
+            "standard": true,
+            "parameters": {
+                "offset_xy": {
+                    "y": 0,
+                    "x": -50
+                }
+            }
+        },
+        {
+            "name": "auxtel/latiss_take_sequence.py",
+            "standard": true,
+            "parameters": {
+                "program": "spec-survey",
+                "reason": "x_offset_-50",
+                "exposure_time_sequence": [
+                    60.0
+                ],
+                "filter_sequence": [
+                    "nonanotch1"
+                ],
+                "grating_sequence": [
+                    "300lpmm"
+                ]
+            }
+        },
+        {
+            "name": "auxtel/offset_atcs.py",
+            "standard": true,
+            "parameters": {
+                "offset_xy": {
+                    "y": 0,
+                    "x": 100
+                }
+            }
+        },
+        {
+            "name": "auxtel/latiss_take_sequence.py",
+            "standard": true,
+            "parameters": {
+                "program": "spec-survey",
+                "reason": "x_offset_50",
+                "exposure_time_sequence": [
+                    60.0
+                ],
+                "filter_sequence": [
+                    "nonanotch1"
+                ],
+                "grating_sequence": [
+                    "300lpmm"
+                ]
+            }
+        },
+        {
+            "name": "auxtel/offset_atcs.py",
+            "standard": true,
+            "parameters": {
+                "offset_xy": {
+                    "y": 0,
+                    "x": 0
+                },
+                "relative": false
+            }
         }
     ]
 }
