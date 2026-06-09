@@ -32,7 +32,6 @@ auxtel:
 maintel:
   driver_type: feature_scheduler
   mode: ADVANCE
-  startup_type: COLD
   predicted_scheduler_window: 0.5
   startup_database: ' '
   instrument_name: MTCamera
@@ -103,7 +102,6 @@ maintel:
 ocs:
   driver_type: feature_scheduler
   mode: ADVANCE
-  startup_type: COLD
   predicted_scheduler_window: 0.5
   startup_database: ' '
   instrument_name: MTCamera

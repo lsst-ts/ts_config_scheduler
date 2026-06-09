@@ -28,7 +28,6 @@ auxtel:
         csc_index: 301
   driver_type: feature_scheduler
   mode: ADVANCE
-  startup_type: COLD
   startup_database: /home/saluser/rubin_sim_data/fbs_observation_database_auxtel.sql
   predicted_scheduler_window: 0.05
   models:
@@ -86,7 +85,6 @@ maintel:
         csc_index: 301
   driver_type: feature_scheduler
   mode: ADVANCE
-  startup_type: COLD
   startup_database: /home/saluser/rubin_sim_data/fbs_observation_database.sql
   predicted_scheduler_window: 0.05
   models:
@@ -133,7 +131,6 @@ ocs:
         csc_index: 301
   driver_type: feature_scheduler
   mode: ADVANCE
-  startup_type: COLD
   startup_database: /home/saluser/rubin_sim_data/fbs_observation_database.sql
   predicted_scheduler_window: 0.05
   models:
