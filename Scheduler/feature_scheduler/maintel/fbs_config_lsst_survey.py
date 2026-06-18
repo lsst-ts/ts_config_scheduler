@@ -42,7 +42,6 @@ from rubin_scheduler.scheduler.utils import (
     make_rolling_footprints,
 )
 from rubin_scheduler.site_models import Almanac
-from rubin_scheduler.utils import SURVEY_START_MJD
 
 
 def get_scheduler() -> tuple[int, CoreScheduler]:
@@ -72,8 +71,9 @@ def get_scheduler() -> tuple[int, CoreScheduler]:
     u_exptime = 38
     u_nexp = 1
 
-    survey_start_mjd = SURVEY_START_MJD
-    # survey_start_mjd = 61100.5
+    # Fix survey start for this configuration to the rubin_scheduler value
+    # at v3.21.0 (used on summit at the bulk of this time).
+    survey_start_mjd = 60980.5
 
     # Safety mask parameters - constraints on all survey pointings
     # Generally shadow_minutes value is set by the survey, but can
