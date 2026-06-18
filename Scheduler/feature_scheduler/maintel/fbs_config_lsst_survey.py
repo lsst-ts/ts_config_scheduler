@@ -37,7 +37,6 @@ from rubin_scheduler.scheduler.schedulers import CoreScheduler
 from rubin_scheduler.scheduler.surveys import ScriptedSurvey
 from rubin_scheduler.scheduler.utils import (
     CurrentAreaMap,
-    Footprint,
     ScheduledObservationArray,
     make_rolling_footprints,
 )
@@ -106,8 +105,6 @@ def get_scheduler() -> tuple[int, CoreScheduler]:
         "dither": "night",
         "twilight_scale": True,
     }
-    # Seeing (FWHM in ") max for template
-    fwhm_template_max = 1.4
 
     # Parameters for rolling cadence footprint definition
     nslice = 2  # N slices for rolling
@@ -353,29 +350,6 @@ def get_scheduler() -> tuple[int, CoreScheduler]:
         ),
     ]
 
-    # Create template footprint.
-    # Similar to rolling footprint but tracks visits separately
-    # (only good seeing visits) and no rolling.
-    template_fp = Footprint(survey_start_mjd, sun_ra_start, nside=nside)
-    for key in footprints_hp_array.dtype.names:
-        tmp_fp = np.where(footprints_hp_array[key] > 0, 1, np.nan)
-        template_fp.set_footprint(key, tmp_fp)
-    # Define template surveys
-    template_surveys = lsst_surveys.gen_template_surveys(
-        template_fp,
-        nside=nside,
-        seeing_fwhm_max=fwhm_template_max,
-        camera_rot_limits=camera_rot_limits,
-        exptime=exptime,
-        nexp=nexp,
-        u_exptime=u_exptime,
-        u_nexp=u_nexp,
-        n_obs_template={"u": 4, "g": 4, "r": 4, "i": 4, "z": 4, "y": 4},
-        science_program=science_program,
-        blob_survey_params=blob_survey_params,
-        safety_mask_params=safety_mask_params,
-    )
-
     # Define ToO surveys
     too_detailers = []
     too_detailers.append(
@@ -403,7 +377,6 @@ def get_scheduler() -> tuple[int, CoreScheduler]:
         toos,
         roman_micro,
         ddfs,
-        template_surveys,
         long_gaps,
         blobs,
         short_blobs,
