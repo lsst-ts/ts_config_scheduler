@@ -87,7 +87,7 @@ def get_scheduler():
     imaging_backup_targets = []
 
     # Spectroscopy priority - high priority spectroscopy - tier 1
-    spectroscopy_priority_targets = ["HD60753", "HD111980"]
+    spectroscopy_priority_targets = ["GAIA_COSMOS_3823", "GAIA_COSMOS_3827"]
     # Standard spectroscopy - tier 2
     spectroscopy_standard_targets = ["HD185975"]
 
@@ -109,6 +109,7 @@ def get_scheduler():
         "HD2811",
         "HD42525",
         "HD38666",
+        "HD111980",
     ]
 
     # CWFS - tier 0
