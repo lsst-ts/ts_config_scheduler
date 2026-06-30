@@ -87,7 +87,12 @@ def get_scheduler():
     imaging_backup_targets = []
 
     # Spectroscopy priority - high priority spectroscopy - tier 1
-    spectroscopy_priority_targets = ["GAIA_COSMOS_3823", "GAIA_COSMOS_3827"]
+    spectroscopy_priority_targets = [
+        "GAIA_COSMOS_3823",
+        "GAIA_COSMOS_3827",
+        "Gaia_ELAISS1_49267",
+        "Gaia_ELAISS1_4993",
+    ]
     # Standard spectroscopy - tier 2
     spectroscopy_standard_targets = ["HD185975"]
 
