@@ -60,8 +60,8 @@ def get_scheduler():
         # Dither up to half the FOV, per exposure.
         DitherDetailer(max_dither=(7 / 2 / 60), per_night=False)
     ]
-    spec_detailers_zero = [FixedSkyAngleDetailer(sky_angle=0)]
     spec_detailers_flip = [FixedSkyAngleDetailer(sky_angle=180)]
+    spec_detailers_zero = [FixedSkyAngleDetailer(sky_angle=0)]
     # HA used in rubin-scheduler runs 0-24
     # The limits here are the *allowed* values
     spec_default_ha_limits = None
