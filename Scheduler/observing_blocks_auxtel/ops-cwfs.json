@@ -20,6 +20,7 @@
             "standard": false,
             "parameters": {
                 "filter": "empty_1",
+                "grating": "SDSSy_65mm",
                 "program": "$program"
             }
         },

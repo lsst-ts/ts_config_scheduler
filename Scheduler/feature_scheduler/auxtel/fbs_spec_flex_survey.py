@@ -65,7 +65,7 @@ def get_scheduler():
     # HA used in rubin-scheduler runs 0-24
     # The limits here are the *allowed* values
     spec_default_ha_limits = None
-    flip_default = True
+    flip_default = False
 
     # Get target information - edit YAML file for updates
     # YAML file should be in the same directory as this .py config
@@ -87,7 +87,12 @@ def get_scheduler():
     imaging_backup_targets = []
 
     # Spectroscopy priority - high priority spectroscopy - tier 1
-    spectroscopy_priority_targets = ["HD60753", "HD111980"]
+    spectroscopy_priority_targets = [
+        "GAIA_COSMOS_3823",
+        "GAIA_COSMOS_3827",
+        "Gaia_ELAISS1_49267",
+        "Gaia_ELAISS1_4993",
+    ]
     # Standard spectroscopy - tier 2
     spectroscopy_standard_targets = ["HD185975"]
 
@@ -109,6 +114,7 @@ def get_scheduler():
         "HD2811",
         "HD42525",
         "HD38666",
+        "HD111980",
     ]
 
     # CWFS - tier 0
