@@ -65,7 +65,7 @@ def get_scheduler():
     # HA used in rubin-scheduler runs 0-24
     # The limits here are the *allowed* values
     spec_default_ha_limits = None
-    flip_default = True
+    flip_default = False
 
     # Get target information - edit YAML file for updates
     # YAML file should be in the same directory as this .py config
