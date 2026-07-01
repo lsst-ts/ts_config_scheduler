@@ -1,7 +1,7 @@
 maintel:
   driver_type: feature_scheduler
   mode: ADVANCE
-  startup_type: COLD
+  startup_type: HOT
   startup_database: /home/saluser/rubin_sim_data/preops_lsst_fbs_observations.sql
   models:
     observatory_model:
