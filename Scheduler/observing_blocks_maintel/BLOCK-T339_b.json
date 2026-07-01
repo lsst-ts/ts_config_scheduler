@@ -65,7 +65,6 @@
           "parameters":{
               "nimages": 1,
               "exp_times": 1,
-              "filter": "$filter",
               "image_type": "FLAT",
               "program": "BLOCK-T339",
               "note": "CBP_test_image"
