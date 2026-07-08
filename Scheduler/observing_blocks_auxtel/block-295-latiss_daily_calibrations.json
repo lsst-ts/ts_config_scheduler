@@ -10,8 +10,8 @@
                 "n_flat": 20,
                 "exp_times_flat": 6,
                 "script_mode": "BIAS_DARK_FLAT",
-                "filter": "SDSSr_65mm",
-                "grating": "empty_1",
+                "filter": "empty_1",
+                "grating": "SDSSr_65mm",
                 "program": "BLOCK-295"
             }
         },
@@ -35,8 +35,8 @@
             "standard": true,
             "parameters": {
                 "image_type": "FLAT",
-                "filter": "SDSSr_65mm",
-                "grating": "empty_1",
+                "filter": "empty_1",
+                "grating": "SDSSr_65mm",
                 "program": "BLOCK-295",
                 "reason": "daily_PTC",
                 "exp_times": [
