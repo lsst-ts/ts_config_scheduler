@@ -36,6 +36,10 @@ maintel:
       source: DREAM
       delta_time: 300.0
       db_name: efd
+    too_client:
+      topic_name: lsst.scimma.too_alert
+      delta_time: 345600
+      db_name: lsst.scimma
     streams:
       - name: seeing
         efd_table: lsst.sal.DIMM.logevent_dimmMeasurement
