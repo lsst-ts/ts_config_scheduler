@@ -37,12 +37,19 @@
             }
         },
         {
+            "name": "maintel/change_filter_lsstcam.py",
+            "standard":true,
+            "parameters":{
+                "filter":"$filter"
+            }
+
+        },
+        {
             "name": "maintel/take_image_lsstcam.py",
             "standard": true,
             "parameters":{
                 "nimages": 1,
                 "exp_times": 1,
-                "filter": "$filter",
                 "image_type": "FLAT",
                 "program": "BLOCK-T339",
                 "note": "CBP_test_image"
