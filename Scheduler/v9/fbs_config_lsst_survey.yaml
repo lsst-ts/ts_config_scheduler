@@ -38,7 +38,7 @@ maintel:
       db_name: efd
     too_client:
       topic_name: lsst.scimma.too_alert
-      delta_time: 345600
+      delta_time: 691200
       db_name: lsst.scimma
     streams:
       - name: seeing
