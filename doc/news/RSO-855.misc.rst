@@ -1,0 +1,1 @@
+Added fiber spectrographs and some extra steps to CBP mask changes to weekly test case.
