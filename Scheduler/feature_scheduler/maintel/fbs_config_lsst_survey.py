@@ -94,24 +94,29 @@ def get_scheduler() -> tuple[int, CoreScheduler]:
     u_template_exptime = 38
 
     # survey_start_mjd = Time("2026-06-29T12:00:00").mjd
-    survey_start_mjd = Time("2026-09-01T12:00:00").mjd
+    survey_start_mjd = Time("2026-10-01T12:00:00").mjd
 
     # Standard mask parameters - constraints on all survey pointings
     # Generally shadow_minutes value is set by the survey, but can
     # be set here as well (will be overwritten if too short for survey).
+    # Set cloud_limit here fairly conservatively, at limit
+    # where we want the survey to potentially stop entirely.
     standard_mask_params = {
         "nside": nside,
         "wind_speed_maximum": 40,
         "min_alt": 20,
         "max_alt": 86.5,
         "shadow_minutes": 2,
-        "apply_cloud_mask": False,
-        "cloud_limit": 1.5,
+        "apply_cloud_mask": True,
+        "cloud_limit": 2.0,
         "apply_time_limited_shadow": False,
         "time_to_sunrise": 3.0,
         "min_az_sunrise": 150,
         "max_az_sunrise": 250,
     }
+    # For wide area surveys, we want the same values, but also
+    # apply a lower max_alt to avoid long slew times near zenith.
+    blob_max_alt = 76.0
 
     # Camera rot limits for the surveys
     # The CAMERA_ROT_LIMITS are sent to the queue manager and will
@@ -121,6 +126,7 @@ def get_scheduler() -> tuple[int, CoreScheduler]:
 
     # General parameters for standard pairs
     pair_time = 33
+
     # Adjust these as the expected timing updates.
     # -- sets the expected time and number of pointings in a 'blob'.
     blob_survey_params = {
@@ -154,10 +160,9 @@ def get_scheduler() -> tuple[int, CoreScheduler]:
     }
 
     # Generate footprint over the sky
-    footprints, template_fp = lsst_footprints.get_footprints(nside=nside)
-    # Set up a mask to contain ToO and neomicro surveys within LSST footprint.
-    r_indx = footprints.bands["r"]
-    footprint_mask = np.where(footprints.footprints[r_indx] > 0, 1.0, 0.0)
+    footprints, template_fp, footprint_mask = lsst_footprints.get_footprints(
+        nside=nside, bandpasses=("u", "g", "r", "i", "z", "y")
+    )
 
     # Set up the ToO Surveys
     too_detailers = []
@@ -169,12 +174,15 @@ def get_scheduler() -> tuple[int, CoreScheduler]:
     too_detailers.append(detailers.BandSortDetailer())
     too_detailers.append(detailers.LabelRegionsAndDDFs())
 
+    too_mask_params = copy.deepcopy(standard_mask_params)
+    too_mask_params["cloud_limit"] = 3.0
+
     toos = too_surveys.gen_too_surveys(
         nside=nside,
         detailer_list=too_detailers,
         too_footprint=footprint_mask,
         science_program=science_program,
-        standard_mask_params=standard_mask_params,
+        standard_mask_params=too_mask_params,
     )
 
     # Set up DDF survey:
@@ -200,9 +208,12 @@ def get_scheduler() -> tuple[int, CoreScheduler]:
         detailers.TruncatePreTwiDetailer(),
     ]
 
-    standard_mask_params_ddf = copy.deepcopy(standard_mask_params)
-    standard_mask_params_ddf["shadow_minutes"] = 30
-    standard_mask_params_ddf["apply_cloud_mask"] = True
+    # For the DDFs, keep the standard max alt (no slew),
+    # but modify the shadow minutes and cloud masking.
+    ddf_mask_params = copy.deepcopy(standard_mask_params)
+    ddf_mask_params["shadow_minutes"] = 30
+    ddf_mask_params["apply_cloud_mask"] = True
+    ddf_mask_params["cloud_limit"] = 1.5
 
     ddf_ignore = [
         "blob",
@@ -217,7 +228,7 @@ def get_scheduler() -> tuple[int, CoreScheduler]:
 
     ddfs = [
         ScriptedSurvey(
-            lsst_surveys.standard_masks(**standard_mask_params_ddf),
+            lsst_surveys.standard_masks(**ddf_mask_params),
             nside=nside,
             detailers=detailer_list,
             survey_name="deep drilling",
@@ -273,24 +284,36 @@ def get_scheduler() -> tuple[int, CoreScheduler]:
         ),
     ]
 
-    # Define template surveys
+    # Define template surveys.
+    # Modify the max alt, but also apply stricter cloud limit.
+    template_mask_params = copy.deepcopy(standard_mask_params)
+    template_mask_params["apply_cloud_mask"] = True
+    template_mask_params["cloud_limit"] = 1.0
+    template_mask_params["max_alt"] = min(blob_max_alt, standard_mask_params["max_alt"])
+
     template_surveys = lsst_surveys.gen_template_surveys(
         template_fp,
         nside=nside,
         band1s=["u", "g", "g", "r", "r", "i", "r", "z", "y"],
         band2s=["u", "g", "r", "r", "i", "z", "z", "y", "y"],
         seeing_fwhm_max_zenith=fwhm_template_max_zenith,
+        median_cloud_limit=1.5,
         camera_rot_limits=camera_rot_limits,
         exptime=template_exptime,
         u_exptime=u_template_exptime,
         n_obs_template={"u": 6, "g": 6, "r": 6, "i": 6, "z": 6, "y": 6},
         science_program=science_program,
         blob_survey_params=blob_survey_params,
-        standard_mask_params=standard_mask_params,
+        standard_mask_params=template_mask_params,
     )
 
     # Set up long gaps (triplets) survey.
+    # Modify the max alt.
     gaps_night_pattern = (False, True, False, False)
+    long_gaps_mask_params = copy.deepcopy(standard_mask_params)
+    long_gaps_mask_params["max_alt"] = min(
+        blob_max_alt, standard_mask_params["max_alt"]
+    )
     long_gaps = lsst_surveys.gen_long_gaps_survey(
         footprints=footprints,
         nside=nside,
@@ -304,7 +327,11 @@ def get_scheduler() -> tuple[int, CoreScheduler]:
         standard_mask_params=standard_mask_params,
     )
 
-    # Define the standard pairs during the night survey
+    # Define the standard pairs during the night survey.
+    # Modify the max altitude limit.
+    # The shadow minutes limit will be modified in the survey by the pair time.
+    blob_mask_params = copy.deepcopy(standard_mask_params)
+    blob_mask_params["max_alt"] = min(blob_max_alt, standard_mask_params["max_alt"])
     blobs = lsst_surveys.generate_blobs(
         footprints=footprints,
         nside=nside,
@@ -315,10 +342,10 @@ def get_scheduler() -> tuple[int, CoreScheduler]:
         survey_start=survey_start_mjd,
         science_program=science_program,
         blob_survey_params=blob_survey_params,
-        standard_mask_params=standard_mask_params,
+        standard_mask_params=blob_mask_params,
     )
 
-    # Define the near-sun twilight microsurvey
+    # Define the near-sun twilight microsurvey.
     neo_micro = lsst_surveys.generate_twilight_near_sun(
         nside=nside,
         night_pattern=ei_night_pattern,
@@ -333,7 +360,14 @@ def get_scheduler() -> tuple[int, CoreScheduler]:
         standard_mask_params=standard_mask_params,
     )
 
-    # Define the greedy surveys (single-visit per call)
+    # Define the greedy surveys (single-visit per call).
+    # Modify the max altitude limit and TURN OFF the cloud mask.
+    # The greedy survey should dodge clouds (so this is turned on in
+    # the m5 basis function), but it should not prevent the greedy
+    # survey from executing if the sky is primarily cloudy.
+    greedy_mask_params = copy.deepcopy(standard_mask_params)
+    greedy_mask_params["apply_cloud_mask"] = False
+    greedy_mask_params["max_alt"] = min(blob_max_alt, standard_mask_params["max_alt"])
     greedy = lsst_surveys.gen_greedy_surveys(
         nside=nside,
         camera_rot_limits=camera_rot_limits,
@@ -341,7 +375,7 @@ def get_scheduler() -> tuple[int, CoreScheduler]:
         u_exptime=u_exptime,
         footprints=footprints,
         science_program=science_program,
-        standard_mask_params=standard_mask_params,
+        standard_mask_params=greedy_mask_params,
     )
 
     # Arrange the surveys in tiers.
