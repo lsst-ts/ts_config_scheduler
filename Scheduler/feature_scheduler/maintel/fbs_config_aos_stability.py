@@ -20,7 +20,26 @@
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 from lsst.ts.fbs.utils.maintel.stability_surveys import gen_az_el_rot_stability_survey
-from rubin_scheduler.scheduler.schedulers import CoreScheduler
+from rubin_scheduler.scheduler import detailers
+from rubin_scheduler.scheduler.schedulers import BaseQueueManager, CoreScheduler
+
+CAMERA_ROT_LIMITS = (-80.0, 80.0)
+
+
+def generate_qm(
+    rot_tel_pos_limits: tuple[float, float] = CAMERA_ROT_LIMITS,
+) -> BaseQueueManager:
+    """Generate a QueueManager object."""
+
+    detailer_list = []
+    # This detailer  calculates rotSkyPos at the last opportunity.
+    detailer_list.append(detailers.RotspUpdateDetailer(rot_limits=rot_tel_pos_limits))
+    # For this queue manager, we won't bother with other detailers
+    # or basis functions, as the surveys themselves are in alt/az.
+    qm = BaseQueueManager(
+        detailers=detailer_list, basis_functions=[], check_clouds=False
+    )
+    return qm
 
 
 def get_scheduler() -> tuple[int, CoreScheduler]:
@@ -77,10 +96,13 @@ def get_scheduler() -> tuple[int, CoreScheduler]:
         safety_mask_params=safety_mask_params,
     )
 
+    qm = generate_qm()
+
     return nside, CoreScheduler(
         survey_lists,
         nside=nside,
         band_to_filter=band_to_filter,
+        queue_manager=qm,
     )
 
 
