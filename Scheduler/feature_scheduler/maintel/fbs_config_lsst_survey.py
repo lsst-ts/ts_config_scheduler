@@ -30,10 +30,11 @@ import lsst.ts.fbs.utils.maintel.lsst_surveys as lsst_surveys
 import lsst.ts.fbs.utils.maintel.roman_surveys as roman_surveys
 import lsst.ts.fbs.utils.maintel.too_surveys as too_surveys
 import numpy as np
+import rubin_scheduler.scheduler.basis_functions as bf
 import rubin_scheduler.scheduler.detailers as detailers
 from lsst.ts.fbs.utils.maintel.lsst_surveys import safety_masks
 from rubin_scheduler.data import get_data_dir
-from rubin_scheduler.scheduler.schedulers import CoreScheduler
+from rubin_scheduler.scheduler.schedulers import BaseQueueManager, CoreScheduler
 from rubin_scheduler.scheduler.surveys import ScriptedSurvey
 from rubin_scheduler.scheduler.utils import (
     CurrentAreaMap,
@@ -41,6 +42,34 @@ from rubin_scheduler.scheduler.utils import (
     make_rolling_footprints,
 )
 from rubin_scheduler.site_models import Almanac
+from rubin_scheduler.utils import DEFAULT_NSIDE
+
+CAMERA_ROT_LIMITS = (-80.0, 80.0)
+
+
+def generate_qm(
+    rot_tel_pos_limits: tuple[float, float] = CAMERA_ROT_LIMITS,
+    nside: int = DEFAULT_NSIDE,
+    cloud_limit: float = 1.5,
+) -> BaseQueueManager:
+    """Generate a QueueManager object."""
+
+    detailer_list = []
+    # This detailer updates rotSkyPos if rotTelPos became
+    # out of bounds or if rotSkyPos was not (yet) calculated.
+    detailer_list.append(detailers.RotspUpdateDetailer(rot_limits=rot_tel_pos_limits))
+    bf_list = []
+    # This should get zenith masked without having to recalculate alt/az.
+    bf_list.append(bf.SlewtimeBasisFunction())
+    # Do not observe into any clouds currently at the pointing.
+    bf_list.append(
+        bf.MaskCloudMapBasisFunction(nside=nside, extinction_limit=cloud_limit)
+    )
+
+    qm = BaseQueueManager(
+        detailers=detailer_list, basis_functions=bf_list, check_clouds=True
+    )
+    return qm
 
 
 def get_scheduler() -> tuple[int, CoreScheduler]:
