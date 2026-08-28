@@ -1,0 +1,1 @@
+Clean up v10 configuration files, lifting several parameters that were previously unnecessarily defined in the site and specific configurations to default status.

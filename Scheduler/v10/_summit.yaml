@@ -1,0 +1,8 @@
+s3instance: cp
+script_paths:
+  standard: /net/obs-env/auto_base_packages/ts_standardscripts/python/lsst/ts/standardscripts/data/scripts
+  external: /net/obs-env/auto_base_packages/ts_externalscripts/python/lsst/ts/externalscripts/data/scripts
+auxtel:
+  driver_configuration:
+    parameters:
+      cwfs_block_name: BLOCK-305

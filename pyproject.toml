@@ -1,0 +1,8 @@
+[project]
+name = "ts_config_scheduler"
+description = "Configuration Files for the Vera C. Rubin Observatory Scheduler CSC."
+license = { text = "GPL" }
+classifiers = [ "Programming Language :: Python :: 3" ]
+urls = { documentation = "https://jira.lsstcorp.org/secure/Dashboard.jspa", repository = "https://github.com/lsst-ts/ts_config_scheduler" }
+dynamic = [ "version" ]
+

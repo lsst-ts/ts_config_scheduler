@@ -1,3 +1,8 @@
+__pycache__
+.ipynb_checkpoints
+*.ipynb
 .pre-commit-config.yaml
 .flake8
 .isort.cfg
+.LICENSE.txt
+towncrier.toml

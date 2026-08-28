@@ -1,0 +1,33 @@
+s3instance: ls
+script_paths:
+  standard: /net/obs-env/auto_base_packages/ts_standardscripts/python/lsst/ts/standardscripts/data/scripts
+  external: /net/obs-env/auto_base_packages/ts_externalscripts/python/lsst/ts/externalscripts/data/scripts
+auxtel:
+  telemetry:
+    efd_name: base_efd
+  driver_type: feature_scheduler
+  mode: ADVANCE
+  startup_type: COLD
+  startup_database: /home/saluser/rubin_sim_data/fbs_observation_database_auxtel.sql
+  predicted_scheduler_window: 0.05
+  feature_scheduler_driver_configuration:
+    observation_database_name: /home/saluser/rubin_sim_data/fbs_observation_database_auxtel.sql
+    scheduler_config: /net/obs-env/auto_base_packages/ts_config_scheduler/Scheduler/feature_scheduler/fbs_config_test_anytime_survey.py
+maintel:
+  telemetry:
+    efd_name: base_efd
+    too_client:
+      topic_name: lsst.scimma.too_alert
+      delta_time: 691200
+      db_name: lsst.scimma
+      ignore_test_alert: false
+  driver_type: feature_scheduler
+  mode: ADVANCE
+  startup_type: COLD
+  startup_database: /home/saluser/rubin_sim_data/fbs_observation_database.sql
+  feature_scheduler_driver_configuration:
+    observation_database_name: /home/saluser/rubin_sim_data/fbs_observation_database.sql
+    scheduler_config: /net/obs-env/auto_base_packages/ts_config_scheduler/Scheduler/feature_scheduler/fbs_config_test_anytime_survey.py
+ocs:
+  telemetry:
+    efd_name: base_efd
