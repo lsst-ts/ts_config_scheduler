@@ -1,1 +1,0 @@
-Removed Scheduler v8 configuration files.
