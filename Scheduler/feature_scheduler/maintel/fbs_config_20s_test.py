@@ -56,7 +56,7 @@ def get_scheduler() -> tuple[int, CoreScheduler]:
         Feature based scheduler.
     """
     nside = 32
-    science_program = "BLOCK-407"
+    science_program = "BLOCK-432"
     band_to_filter = {
         "u": "u_24",
         "g": "g_6",
@@ -65,9 +65,9 @@ def get_scheduler() -> tuple[int, CoreScheduler]:
         "z": "z_20",
         "y": "y_10",
     }
-    exptime = 30
+    exptime = 20
     nexp = 1
-    u_exptime = 38
+    u_exptime = 28
     u_nexp = 1
 
     # Fix survey start for this configuration to the rubin_scheduler value
@@ -225,13 +225,14 @@ def get_scheduler() -> tuple[int, CoreScheduler]:
     max_dither = 0.2  # Max radial dither for DDF (degrees)
     per_night = False  # Dither DDF per night (True) or per visit (False)
 
+    # Keep the DDFs the same for simplicity.
     band_expt = {
-        "u": u_exptime,
-        "g": exptime,
-        "r": exptime,
-        "i": exptime,
-        "z": exptime,
-        "y": exptime,
+        "u": 38,
+        "g": 30,
+        "r": 30,
+        "i": 30,
+        "z": 30,
+        "y": 30,
     }
     band_nexp = {"u": u_nexp, "g": nexp, "r": nexp, "i": nexp, "z": nexp, "y": nexp}
     u_nexp = band_nexp["u"]

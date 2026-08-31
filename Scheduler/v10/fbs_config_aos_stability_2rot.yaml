@@ -1,0 +1,7 @@
+maintel:
+  driver_type: feature_scheduler
+  startup_type: COLD
+  startup_database: /home/saluser/rubin_sim_data/maintel_test_database.sql
+  feature_scheduler_driver_configuration:
+    observation_database_name: /home/saluser/rubin_sim_data/maintel_test_database.sql
+    scheduler_config: /net/obs-env/auto_base_packages/ts_config_scheduler/Scheduler/feature_scheduler/maintel/fbs_config_aos_stability_2rot.py
