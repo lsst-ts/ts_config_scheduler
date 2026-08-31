@@ -1,0 +1,1 @@
+Added github workflow to enforce rebasing, linting and news fragment creation.
