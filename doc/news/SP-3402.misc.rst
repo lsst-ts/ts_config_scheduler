@@ -1,0 +1,1 @@
+Update FBS configurations to add queue_manager where appropriate.
