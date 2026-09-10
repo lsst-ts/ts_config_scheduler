@@ -136,9 +136,6 @@ def get_scheduler():
             max_rot=45.0,
             min_rot=-45.0,
             per_visit_rot=3.0,
-            # max_rot=15.0,
-            # min_rot=-15.0,
-            # per_visit_rot=1.0,
         ),
     ]
     tier = 0
@@ -154,6 +151,8 @@ def get_scheduler():
         **field_survey_kwargs,
     )
 
+    # This will only have the default queue manager which
+    # just add the skypos rotation limit check/update.
     return make_scheduler.get_scheduler()
 
 
