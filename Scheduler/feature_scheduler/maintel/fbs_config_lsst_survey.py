@@ -38,6 +38,7 @@ from rubin_scheduler.scheduler.surveys import ScriptedSurvey
 from rubin_scheduler.utils import DEFAULT_NSIDE
 
 CAMERA_ROT_LIMITS = (-80.0, 80.0)
+SURVEY_START_MJD = Time("2026-10-01T12:00:00").mjd
 
 
 def generate_qm(
@@ -65,7 +66,7 @@ def generate_qm(
     return qm
 
 
-def get_scheduler() -> tuple[int, CoreScheduler]:
+def get_scheduler(for_simulation=False) -> tuple[int, CoreScheduler]:
     """Construct the LSST survey scheduler.
 
     Returns
@@ -93,8 +94,7 @@ def get_scheduler() -> tuple[int, CoreScheduler]:
     template_exptime = 30
     u_template_exptime = 38
 
-    # survey_start_mjd = Time("2026-06-29T12:00:00").mjd
-    survey_start_mjd = Time("2026-10-01T12:00:00").mjd
+    survey_start_mjd = SURVEY_START_MJD
 
     # Standard mask parameters - constraints on all survey pointings
     # Generally shadow_minutes value is set by the survey, but can
@@ -185,6 +185,7 @@ def get_scheduler() -> tuple[int, CoreScheduler]:
         too_footprint=footprint_mask,
         science_program=science_program,
         standard_mask_params=too_mask_params,
+        for_simulation=for_simulation,
     )
 
     # Set up DDF survey:
