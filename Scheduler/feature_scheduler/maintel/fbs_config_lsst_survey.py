@@ -161,7 +161,9 @@ def get_scheduler() -> tuple[int, CoreScheduler]:
 
     # Generate footprint over the sky
     footprints, template_fp, footprint_mask = lsst_footprints.get_footprints(
-        nside=nside, bandpasses=("u", "g", "r", "i", "z", "y")
+        nside=nside,
+        bandpasses=("u", "g", "r", "i", "z", "y"),
+        survey_start_mjd=survey_start_mjd,
     )
 
     # Set up the ToO Surveys
@@ -301,7 +303,8 @@ def get_scheduler() -> tuple[int, CoreScheduler]:
         camera_rot_limits=camera_rot_limits,
         exptime=template_exptime,
         u_exptime=u_template_exptime,
-        n_obs_template={"u": 6, "g": 6, "r": 6, "i": 6, "z": 6, "y": 6},
+        n_obs_template={"u": 3, "g": 3, "r": 3, "i": 3, "z": 3, "y": 3},
+        night_max=365 * 2,
         science_program=science_program,
         blob_survey_params=blob_survey_params,
         standard_mask_params=template_mask_params,
