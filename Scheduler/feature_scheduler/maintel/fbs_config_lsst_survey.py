@@ -303,11 +303,69 @@ def get_scheduler(for_simulation=False) -> tuple[int, CoreScheduler]:
     template_mask_params = copy.deepcopy(standard_mask_params)
     template_mask_params["max_alt"] = min(blob_max_alt, standard_mask_params["max_alt"])
 
-    template_surveys = lsst_surveys.gen_template_surveys(
+    template_surveys_1 = lsst_surveys.gen_template_surveys(
         template_fp,
         nside=nside,
-        band1s=["u", "g", "g", "r", "r", "i", "r", "z", "y"],
-        band2s=["u", "g", "r", "r", "i", "z", "z", "y", "y"],
+        band1s=[
+            "u",
+            "g",
+            "g",
+            "r",
+            "r",
+            "i",
+            "r",
+            "z",
+            "y",
+        ],
+        band2s=[
+            "u",
+            "g",
+            "r",
+            "r",
+            "i",
+            "z",
+            "z",
+            "y",
+            "y",
+        ],
+        seeing_fwhm_max_zenith=fwhm_template_max_zenith,
+        median_cloud_limit=2.0,
+        extinction_limit=1.0,
+        camera_rot_limits=camera_rot_limits,
+        exptime=template_exptime,
+        u_exptime=u_template_exptime,
+        n_obs_template={"u": 3, "g": 3, "r": 3, "i": 3, "z": 3, "y": 3},
+        night_min=0,
+        night_max=365,
+        science_program=science_program,
+        blob_survey_params=blob_survey_params,
+        standard_mask_params=template_mask_params,
+    )
+    template_surveys_2 = lsst_surveys.gen_template_surveys(
+        template_fp,
+        nside=nside,
+        band1s=[
+            "u",
+            "g",
+            "g",
+            "r",
+            "r",
+            "i",
+            "r",
+            "z",
+            "y",
+        ],
+        band2s=[
+            "u",
+            "g",
+            "r",
+            "r",
+            "i",
+            "z",
+            "z",
+            "y",
+            "y",
+        ],
         seeing_fwhm_max_zenith=fwhm_template_max_zenith,
         median_cloud_limit=2.0,
         extinction_limit=1.0,
@@ -315,11 +373,13 @@ def get_scheduler(for_simulation=False) -> tuple[int, CoreScheduler]:
         exptime=template_exptime,
         u_exptime=u_template_exptime,
         n_obs_template={"u": 6, "g": 6, "r": 6, "i": 6, "z": 6, "y": 6},
+        night_min=366,
         night_max=365 * 2,
         science_program=science_program,
         blob_survey_params=blob_survey_params,
         standard_mask_params=template_mask_params,
     )
+    template_surveys = template_surveys_1 + template_surveys_2
 
     # Set up long gaps (triplets) survey.
     # Modify the max alt.
