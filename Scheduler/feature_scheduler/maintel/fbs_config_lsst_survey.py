@@ -31,14 +31,13 @@ import lsst.ts.fbs.utils.maintel.too_surveys as too_surveys
 import numpy as np
 import rubin_scheduler.scheduler.basis_functions as bf
 import rubin_scheduler.scheduler.detailers as detailers
-from astropy.time import Time
 from lsst.ts.fbs.utils.maintel.lsst_ddf_presched import read_ddf_obs_array
 from rubin_scheduler.scheduler.schedulers import BaseQueueManager, CoreScheduler
 from rubin_scheduler.scheduler.surveys import ScriptedSurvey
 from rubin_scheduler.utils import DEFAULT_NSIDE
 
 CAMERA_ROT_LIMITS = (-80.0, 80.0)
-SURVEY_START_MJD = Time("2026-10-15T12:00:00").mjd
+SURVEY_START_MJD = lsst_footprints.SURVEY_START_MJD
 
 
 def generate_qm(
@@ -93,8 +92,6 @@ def get_scheduler(for_simulation=False) -> tuple[int, CoreScheduler]:
 
     template_exptime = 30
     u_template_exptime = 38
-
-    survey_start_mjd = SURVEY_START_MJD
 
     # Standard mask parameters - constraints on all survey pointings
     # Generally shadow_minutes value is set by the survey, but can
@@ -161,7 +158,6 @@ def get_scheduler(for_simulation=False) -> tuple[int, CoreScheduler]:
     footprints, template_fp, footprint_mask = lsst_footprints.get_footprints(
         nside=nside,
         bandpasses=("u", "g", "r", "i", "z", "y"),
-        survey_start_mjd=survey_start_mjd,
     )
 
     # Set up the ToO Surveys
@@ -254,7 +250,7 @@ def get_scheduler(for_simulation=False) -> tuple[int, CoreScheduler]:
     # generates the pre-computed obs_array.
     # Execute that script (in ts_fbs_utils/Scheduler/ddf_gen)
     # and paste the provided value here.
-    expected_hex_digest = "d521393"
+    expected_hex_digest = "c9c9394"
     obs_array = read_ddf_obs_array(expected_hex_digest)
     ddfs[0].set_script(obs_array)
 
@@ -414,7 +410,6 @@ def get_scheduler(for_simulation=False) -> tuple[int, CoreScheduler]:
         exptime=exptime,
         u_exptime=u_exptime,
         pair_time=pair_time,
-        survey_start=survey_start_mjd,
         extinction_limit=2.0,
         science_program=science_program,
         blob_survey_params=blob_survey_params,
@@ -473,7 +468,7 @@ def get_scheduler(for_simulation=False) -> tuple[int, CoreScheduler]:
     scheduler = CoreScheduler(
         surveys,
         nside=nside,
-        survey_start_mjd=survey_start_mjd,
+        survey_start_mjd=SURVEY_START_MJD,
         band_to_filter=band_to_filter,
         queue_manager=qm,
     )
