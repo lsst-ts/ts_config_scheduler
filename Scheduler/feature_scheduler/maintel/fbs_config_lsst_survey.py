@@ -299,12 +299,7 @@ def get_scheduler(for_simulation=False) -> tuple[int, CoreScheduler]:
     template_mask_params = copy.deepcopy(standard_mask_params)
     template_mask_params["max_alt"] = min(blob_max_alt, standard_mask_params["max_alt"])
 
-    band1s = ["u", "g", "g", "r", "r", "i", "r", "z", "y"]
-    band2s = ["u", "g", "r", "r", "i", "z", "z", "y", "y"]
-
-    # In year 1, only use the default large area
-    # limit. 
-    template_surveys_1 = lsst_surveys.gen_template_surveys(
+    template_surveys_y1 = lsst_surveys.gen_template_surveys(
         template_fp,
         nside=nside,
         band1s=band1s,
@@ -318,6 +313,7 @@ def get_scheduler(for_simulation=False) -> tuple[int, CoreScheduler]:
         n_obs_template={"u": 3, "g": 3, "r": 3, "i": 3, "z": 3, "y": 3},
         night_min=0,
         night_max=365,
+        # No 'island' cleanup in year 1
         additional_area_limits=(),
         extra_HA_mins=(),
         extra_HA_maxes=(),
@@ -325,10 +321,7 @@ def get_scheduler(for_simulation=False) -> tuple[int, CoreScheduler]:
         blob_survey_params=blob_survey_params,
         standard_mask_params=template_mask_params,
     )
-
-    # In year 2, use the additional limits to fill small 
-    # islands that have not yet reached 6 template images
-    template_surveys_2 = lsst_surveys.gen_template_surveys(
+    template_surveys_y2 = lsst_surveys.gen_template_surveys(
         template_fp,
         nside=nside,
         band1s=band1s,
@@ -346,7 +339,7 @@ def get_scheduler(for_simulation=False) -> tuple[int, CoreScheduler]:
         blob_survey_params=blob_survey_params,
         standard_mask_params=template_mask_params,
     )
-    template_surveys = template_surveys_1 + template_surveys_2
+    template_surveys = template_surveys_y1 + template_surveys_y2
 
     # Set up long gaps (triplets) survey.
     # Modify the max alt.
