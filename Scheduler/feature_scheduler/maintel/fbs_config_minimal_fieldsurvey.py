@@ -21,7 +21,7 @@
 
 from pathlib import Path
 
-from lsst.ts.fbs.utils.maintel.lsst_surveys import safety_masks
+from lsst.ts.fbs.utils.maintel.lsst_surveys import standard_masks
 from lsst.ts.fbs.utils.maintel.make_fieldsurvey_scheduler import (
     MakeFieldSurveyScheduler,
     get_sv_targets,
@@ -69,7 +69,7 @@ def get_scheduler():
 
     # Defaults
 
-    config_basis_functions = safety_masks(
+    config_basis_functions = standard_masks(
         nside=nside,
         min_alt=30.0,
         max_alt=83.0,
