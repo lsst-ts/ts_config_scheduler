@@ -87,7 +87,7 @@ def get_scheduler() -> tuple[int, CoreScheduler]:
         "y": "y_10",
     }
 
-    safety_mask_params = {
+    standard_mask_params = {
         "nside": nside,
         "wind_speed_maximum": None,
         "shadow_minutes": 0,
@@ -114,7 +114,7 @@ def get_scheduler() -> tuple[int, CoreScheduler]:
         observation_reason="fbs driven aos stability test",
         sequence=sequence,
         nvis_per_cycle=nvis_per_cycle,
-        safety_mask_params=safety_mask_params,
+        standard_mask_params=standard_mask_params,
     )
 
     qm = generate_qm()
