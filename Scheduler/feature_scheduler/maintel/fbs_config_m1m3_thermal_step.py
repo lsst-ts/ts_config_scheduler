@@ -45,9 +45,31 @@ from rubin_scheduler.scheduler.basis_functions import (
     AvoidDirectWind,
     VisitGap,
 )
-from rubin_scheduler.scheduler.detailers import AltAz2RaDecDetailer, ZeroRotDetailer
-from rubin_scheduler.scheduler.schedulers import CoreScheduler
+from rubin_scheduler.scheduler.detailers import (
+    AltAz2RaDecDetailer,
+    RotspUpdateDetailer,
+    ZeroRotDetailer,
+)
+from rubin_scheduler.scheduler.schedulers import BaseQueueManager, CoreScheduler
 from rubin_scheduler.scheduler.surveys import FieldAltAzSurvey
+
+CAMERA_ROT_LIMITS = (-80.0, 80.0)
+
+
+def generate_qm(
+    rot_tel_pos_limits: tuple[float, float] = CAMERA_ROT_LIMITS,
+) -> BaseQueueManager:
+    """Generate a QueueManager object."""
+
+    detailer_list = []
+    # This detailer  calculates rotSkyPos at the last opportunity.
+    detailer_list.append(RotspUpdateDetailer(rot_limits=rot_tel_pos_limits))
+    # For this queue manager, we won't bother with other detailers
+    # or basis functions, as the surveys themselves are in alt/az.
+    qm = BaseQueueManager(
+        detailers=detailer_list, basis_functions=[], check_clouds=False
+    )
+    return qm
 
 
 def get_scheduler():
@@ -162,10 +184,13 @@ def get_scheduler():
         [regular_images_survey],
     ]
 
+    qm = generate_qm()
+
     return nside, CoreScheduler(
         survey_lists,
         nside=nside,
         band_to_filter=band_to_filter,
+        queue_manager=qm,
     )
 
 
