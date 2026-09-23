@@ -51,8 +51,30 @@ from lsst.ts.fbs.utils.auxtel.surveys import (
     generate_spectroscopic_survey,
     get_auxtel_targets,
 )
-from rubin_scheduler.scheduler.detailers import DitherDetailer, FixedSkyAngleDetailer
-from rubin_scheduler.scheduler.schedulers import CoreScheduler
+from rubin_scheduler.scheduler.detailers import (
+    DitherDetailer,
+    FixedSkyAngleDetailer,
+    RotspUpdateDetailer,
+)
+from rubin_scheduler.scheduler.schedulers import BaseQueueManager, CoreScheduler
+
+CAMERA_ROT_LIMITS = (-80.0, 80.0)
+
+
+def generate_qm(
+    rot_tel_pos_limits: tuple[float, float] = CAMERA_ROT_LIMITS,
+) -> BaseQueueManager:
+    """Generate a QueueManager object."""
+
+    detailer_list = []
+    # This detailer calculates or CHECKS ON rotSkyPos at the last opportunity.
+    detailer_list.append(RotspUpdateDetailer(rot_limits=rot_tel_pos_limits))
+    # For this queue manager, we won't bother with other detailers
+    # or basis functions, as the surveys themselves are in alt/az.
+    qm = BaseQueueManager(
+        detailers=detailer_list, basis_functions=[], check_clouds=False
+    )
+    return qm
 
 
 def get_scheduler():
@@ -301,10 +323,13 @@ def get_scheduler():
         spectroscopy_backup,
     ]
 
+    qm = generate_qm()
+
     scheduler = CoreScheduler(
         surveys=surveys,
         nside=nside,
         telescope="rubin",
+        queue_manager=qm,
     )
     return nside, scheduler
 
