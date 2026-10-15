@@ -130,7 +130,6 @@ def get_scheduler(for_simulation=False) -> tuple[int, CoreScheduler]:
         "read_approx": 3.07,
         "flush_time": 30.0,
         "smoothing_kernel": None,
-        "nside": nside,
         "seed": 42,
         "twilight_scale": True,
         "check_scheduled": True,
