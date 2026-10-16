@@ -247,7 +247,7 @@ def get_scheduler(for_simulation=False) -> tuple[int, CoreScheduler]:
     ]
     # This hash is provided by the script that
     # generates the pre-computed obs_array.
-    # Execute that script (in ts_fbs_utils/Scheduler/ddf_gen)
+    # Execute ts_config_scheduler/Scheduler/ddf_gen/lsst_ddf_gen_block_*.py
     # and paste the provided value here.
     expected_hex_digest = "f604ccd"
     obs_array = read_ddf_obs_array(expected_hex_digest)
