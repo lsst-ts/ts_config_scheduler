@@ -249,7 +249,7 @@ def get_scheduler(for_simulation=False) -> tuple[int, CoreScheduler]:
     # generates the pre-computed obs_array.
     # Execute that script (in ts_fbs_utils/Scheduler/ddf_gen)
     # and paste the provided value here.
-    expected_hex_digest = "223da4b"
+    expected_hex_digest = "f604ccd"
     obs_array = read_ddf_obs_array(expected_hex_digest)
     ddfs[0].set_script(obs_array)
 
