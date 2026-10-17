@@ -405,7 +405,7 @@ def get_scheduler(for_simulation=False) -> tuple[int, CoreScheduler]:
         extinction_limit=2.0,
         science_program=science_program,
         blob_survey_params=blob_survey_params,
-        standard_mask_params=standard_mask_params,
+        standard_mask_params=long_gaps_mask_params,
     )
 
     # Define the standard pairs during the night survey.
