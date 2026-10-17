@@ -278,6 +278,7 @@ def get_scheduler(for_simulation=False) -> tuple[int, CoreScheduler]:
             exptimes=exptime,
             science_program=science_program,
             standard_mask_params=standard_mask_params,
+            extinction_limit=2.0,
             ignore_obs=roman_ignore,
         ),
         roman_surveys.gen_roman_off_season(
@@ -289,6 +290,7 @@ def get_scheduler(for_simulation=False) -> tuple[int, CoreScheduler]:
             exptimes=exptime,
             science_program=science_program,
             standard_mask_params=standard_mask_params,
+            extinction_limit=1.8,
             ignore_obs=roman_ignore,
         ),
     ]
