@@ -43,7 +43,7 @@ SURVEY_START_MJD = lsst_footprints.SURVEY_START_MJD
 def generate_qm(
     rot_tel_pos_limits: tuple[float, float] = CAMERA_ROT_LIMITS,
     nside: int = DEFAULT_NSIDE,
-    cloud_limit: float = 1.5,
+    cloud_limit: float = 3.0,
 ) -> BaseQueueManager:
     """Generate a QueueManager object."""
 
@@ -211,7 +211,7 @@ def get_scheduler(for_simulation=False) -> tuple[int, CoreScheduler]:
         detailers.BandSortDetailer(),
         detailers.LabelRegionsAndDDFs(),
         detailers.TruncatePreTwiDetailer(),
-        detailers.ExtinctionLimitDetailer(extinction_limit=too_extinction),
+        detailers.ExtinctionLimitDetailer(extinction_limit=ddf_extinction),
     ]
 
     # For the DDFs, keep the standard max alt (no slew),
