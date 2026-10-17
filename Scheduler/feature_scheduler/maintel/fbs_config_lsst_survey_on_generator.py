@@ -54,11 +54,10 @@ def generate_qm(
     bf_list = []
     # This should get zenith masked without having to recalculate alt/az.
     bf_list.append(bf.SlewtimeBasisFunction())
-    # Do not observe into any clouds currently at the pointing.
-    bf_list.append(
-        bf.MaskCloudMapBasisFunction(nside=nside, extinction_limit=cloud_limit)
-    )
 
+    # The `check_clouds` flag indicates if the `extinction_limit` in
+    # the ObservationArray should be used to veto observations where
+    # the (DREAM) cloud extinction exceeds the specified limit.
     qm = BaseQueueManager(
         detailers=detailer_list, basis_functions=bf_list, check_clouds=True
     )
