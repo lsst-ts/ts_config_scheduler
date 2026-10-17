@@ -43,7 +43,6 @@ SURVEY_START_MJD = lsst_footprints.SURVEY_START_MJD
 def generate_qm(
     rot_tel_pos_limits: tuple[float, float] = CAMERA_ROT_LIMITS,
     nside: int = DEFAULT_NSIDE,
-    cloud_limit: float = 3.0,
 ) -> BaseQueueManager:
     """Generate a QueueManager object."""
 
@@ -53,7 +52,7 @@ def generate_qm(
     detailer_list.append(detailers.RotspUpdateDetailer(rot_limits=rot_tel_pos_limits))
     bf_list = []
     # This should get zenith masked without having to recalculate alt/az.
-    bf_list.append(bf.SlewtimeBasisFunction())
+    bf_list.append(bf.SlewtimeBasisFunction(nside=nside))
 
     # The `check_clouds` flag indicates if the `extinction_limit` in
     # the ObservationArray should be used to veto observations where
@@ -472,7 +471,7 @@ def get_scheduler(for_simulation=False) -> tuple[int, CoreScheduler]:
         greedy,
     ]
 
-    qm = generate_qm()
+    qm = generate_qm(rot_tel_pos_limits=camera_rot_limits, nside=nside)
 
     # Combine into CoreScheduler
     scheduler = CoreScheduler(
