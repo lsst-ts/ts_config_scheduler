@@ -18,7 +18,7 @@ maintel:
     efd_name: base_efd
     too_client:
       topic_name: lsst.scimma.too_alert
-      delta_time: 691200
+      delta_time: 21600
       db_name: lsst.scimma
       ignore_test_alert: false
   driver_type: feature_scheduler
