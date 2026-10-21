@@ -269,7 +269,7 @@ maintel:
         accel: 1.0
         decel: 1.0
         filter_change_pos: 0.0
-        follow_sky: true
+        follow_sky: false
         maxpos: 60.0
         maxspeed: 3.5
         minpos: -60.0
