@@ -104,6 +104,9 @@ def get_scheduler() -> tuple[int, CoreScheduler]:
         "min_az_sunrise": 150,
         "max_az_sunrise": 250,
     }
+    # For wide area surveys, we want the same values, but also
+    # apply a lower max_alt to avoid long slew times near zenith.
+    blob_max_alt = 76.0
 
     # Camera rot limits for the surveys
     # The CAMERA_ROT_LIMITS are sent to the queue manager and will
@@ -258,7 +261,12 @@ def get_scheduler() -> tuple[int, CoreScheduler]:
     ]
 
     # Set up long gaps (triplets) survey.
+    # Modify the max alt.
     gaps_night_pattern = (False, True, False, False)
+    long_gaps_mask_params = copy.deepcopy(standard_mask_params)
+    long_gaps_mask_params["max_alt"] = min(
+        blob_max_alt, standard_mask_params["max_alt"]
+    )
     long_gaps = lsst_surveys.gen_long_gaps_survey(
         footprints=footprints,
         nside=nside,
@@ -269,11 +277,14 @@ def get_scheduler() -> tuple[int, CoreScheduler]:
         night_pattern=gaps_night_pattern,
         science_program=science_program,
         blob_survey_params=blob_survey_params,
-        standard_mask_params=standard_mask_params,
+        standard_mask_params=long_gaps_mask_params,
     )
 
     # Define the standard pairs during the night survey.
+    # Modify the max altitude limit.
     # The shadow minutes limit will be modified in the survey by the pair time.
+    blob_mask_params = copy.deepcopy(standard_mask_params)
+    blob_mask_params["max_alt"] = min(blob_max_alt, standard_mask_params["max_alt"])
     blobs = lsst_surveys.generate_blobs(
         footprints=footprints,
         nside=nside,
@@ -283,7 +294,7 @@ def get_scheduler() -> tuple[int, CoreScheduler]:
         pair_time=pair_time,
         science_program=science_program,
         blob_survey_params=blob_survey_params,
-        standard_mask_params=standard_mask_params,
+        standard_mask_params=blob_mask_params,
     )
 
     # Define the near-sun twilight microsurvey.
@@ -302,6 +313,9 @@ def get_scheduler() -> tuple[int, CoreScheduler]:
     )
 
     # Define the greedy surveys (single-visit per call).
+    # Modify the max altitude limit.
+    greedy_mask_params = copy.deepcopy(standard_mask_params)
+    greedy_mask_params["max_alt"] = min(blob_max_alt, standard_mask_params["max_alt"])
     greedy = lsst_surveys.gen_greedy_surveys(
         nside=nside,
         camera_rot_limits=camera_rot_limits,
@@ -309,7 +323,7 @@ def get_scheduler() -> tuple[int, CoreScheduler]:
         u_exptime=u_exptime,
         footprints=footprints,
         science_program=science_program,
-        standard_mask_params=standard_mask_params,
+        standard_mask_params=greedy_mask_params,
     )
 
     # In all of the pairs-related surveys with u visits,
