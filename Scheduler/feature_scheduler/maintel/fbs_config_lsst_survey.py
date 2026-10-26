@@ -88,6 +88,9 @@ def get_scheduler() -> tuple[int, CoreScheduler]:
     exptime = 30
     u_exptime = 38
 
+    template_exptime = 30
+    u_template_exptime = 38
+
     # Standard mask parameters - constraints on all survey pointings
     # Generally shadow_minutes value is set by the survey, but can
     # be set here as well (will be overwritten if too short for survey).
@@ -137,6 +140,16 @@ def get_scheduler() -> tuple[int, CoreScheduler]:
     ei_am = 2.5  # Earth interior airmass limit
     ei_elong_req = 45.0  # Solar elongation required for inner solar system
     ei_area_req = 0.0  # Sky area required before attempting inner solar system
+
+    # Seeing (FWHM in ") max for template
+    fwhm_template_max_zenith = {
+        "u": 1.2,
+        "g": 1.2,
+        "r": 1.2,
+        "i": 1.2,
+        "z": 1.2,
+        "y": 1.2,
+    }
 
     # Generate footprint over the sky
     footprints, template_fp, footprint_mask = lsst_footprints.get_footprints(
@@ -279,6 +292,100 @@ def get_scheduler() -> tuple[int, CoreScheduler]:
         ),
     ]
 
+    # Define template surveys.
+    # Modify the max alt, but also apply stricter cloud limit.
+    template_mask_params = copy.deepcopy(standard_mask_params)
+    template_mask_params["max_alt"] = min(blob_max_alt, standard_mask_params["max_alt"])
+
+    band1s = ["u", "g", "g", "z", "y"]
+    band2s = ["u", "g", "r", "y", "y"]
+    fast_band1s = [
+        "r",
+        "r",
+        "i",
+        "r",
+    ]
+    fast_band2s = [
+        "r",
+        "i",
+        "z",
+        "z",
+    ]
+
+    # Fast bands (6 asap ending by year 2)
+    # No island cleanup, let it happen in slow year2
+    fast_template_surveys = lsst_surveys.gen_template_surveys(
+        template_fp,
+        nside=nside,
+        band1s=fast_band1s,
+        band2s=fast_band2s,
+        seeing_fwhm_max_zenith=fwhm_template_max_zenith,
+        median_cloud_limit=2.0,
+        extinction_limit=1.0,
+        camera_rot_limits=camera_rot_limits,
+        exptime=template_exptime,
+        u_exptime=u_template_exptime,
+        n_obs_template={"u": 6, "g": 6, "r": 6, "i": 6, "z": 6, "y": 6},
+        night_min=0,
+        night_max=365,
+        additional_area_limits=(),
+        extra_HA_mins=(),
+        extra_HA_maxes=(),
+        science_program=science_program,
+        blob_survey_params=blob_survey_params,
+        standard_mask_params=template_mask_params,
+    )
+
+    # In year 1, only use the default large area
+    # limit.
+    template_surveys_y1 = lsst_surveys.gen_template_surveys(
+        template_fp,
+        nside=nside,
+        band1s=band1s,
+        band2s=band2s,
+        seeing_fwhm_max_zenith=fwhm_template_max_zenith,
+        median_cloud_limit=2.0,
+        extinction_limit=1.0,
+        camera_rot_limits=camera_rot_limits,
+        exptime=template_exptime,
+        u_exptime=u_template_exptime,
+        n_obs_template={"u": 3, "g": 3, "r": 3, "i": 3, "z": 3, "y": 3},
+        night_min=0,
+        night_max=365,
+        # No 'island' cleanup in year 1
+        additional_area_limits=(),
+        extra_HA_mins=(),
+        extra_HA_maxes=(),
+        science_program=science_program,
+        blob_survey_params=blob_survey_params,
+        standard_mask_params=template_mask_params,
+    )
+
+    band1s = ["u", "g", "g", "r", "r", "i", "r", "z", "y"]
+    band2s = ["u", "g", "r", "r", "i", "z", "z", "y", "y"]
+
+    # In year 2, use the additional limits to fill small
+    # islands that have not yet reached 6 template images
+    template_surveys_y2 = lsst_surveys.gen_template_surveys(
+        template_fp,
+        nside=nside,
+        band1s=band1s,
+        band2s=band2s,
+        seeing_fwhm_max_zenith=fwhm_template_max_zenith,
+        median_cloud_limit=2.0,
+        extinction_limit=1.0,
+        camera_rot_limits=camera_rot_limits,
+        exptime=template_exptime,
+        u_exptime=u_template_exptime,
+        n_obs_template={"u": 6, "g": 6, "r": 6, "i": 6, "z": 6, "y": 6},
+        night_min=366,
+        night_max=365 * 2,
+        science_program=science_program,
+        blob_survey_params=blob_survey_params,
+        standard_mask_params=template_mask_params,
+    )
+    template_surveys = fast_template_surveys + template_surveys_y1 + template_surveys_y2
+
     # Set up long gaps (triplets) survey.
     # Modify the max alt.
     gaps_night_pattern = (False, True, False, False)
@@ -369,6 +476,7 @@ def get_scheduler() -> tuple[int, CoreScheduler]:
         toos,
         roman_micro,
         ddfs,
+        template_surveys,
         long_gaps,
         blobs,
         neo_micro,
