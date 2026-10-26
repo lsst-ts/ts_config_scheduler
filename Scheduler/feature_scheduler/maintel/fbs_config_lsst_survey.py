@@ -43,7 +43,6 @@ SURVEY_START_MJD = lsst_footprints.SURVEY_START_MJD
 def generate_qm(
     rot_tel_pos_limits: tuple[float, float] = CAMERA_ROT_LIMITS,
     nside: int = DEFAULT_NSIDE,
-    cloud_limit: float = 1.5,
 ) -> BaseQueueManager:
     """Generate a QueueManager object."""
 
@@ -54,11 +53,10 @@ def generate_qm(
     bf_list = []
     # This should get zenith masked without having to recalculate alt/az.
     bf_list.append(bf.SlewtimeBasisFunction(nside=nside))
-    # Do not observe into any clouds currently at the pointing.
-    bf_list.append(
-        bf.MaskCloudMapBasisFunction(nside=nside, extinction_limit=cloud_limit)
-    )
 
+    # The `check_clouds` flag indicates if the `extinction_limit` in
+    # the ObservationArray should be used to veto observations where
+    # the (DREAM) cloud extinction exceeds the specified limit.
     qm = BaseQueueManager(
         detailers=detailer_list, basis_functions=bf_list, check_clouds=True
     )
@@ -93,6 +91,8 @@ def get_scheduler() -> tuple[int, CoreScheduler]:
     # Standard mask parameters - constraints on all survey pointings
     # Generally shadow_minutes value is set by the survey, but can
     # be set here as well (will be overwritten if too short for survey).
+    # Set cloud_limit here fairly conservatively, at limit
+    # where we want the survey to potentially stop entirely.
     standard_mask_params = {
         "nside": nside,
         "wind_speed_maximum": 40,
@@ -145,6 +145,7 @@ def get_scheduler() -> tuple[int, CoreScheduler]:
     )
 
     # Set up the ToO Surveys
+    too_extinction = 3.0  # magnitudes of cloud extinction to mask
     too_detailers = []
     too_detailers.append(
         detailers.CameraRotDetailer(
@@ -153,12 +154,22 @@ def get_scheduler() -> tuple[int, CoreScheduler]:
     )
     too_detailers.append(detailers.BandSortDetailer())
     too_detailers.append(detailers.LabelRegionsAndDDFs())
+    too_detailers.append(
+        detailers.ExtinctionLimitDetailer(extinction_limit=too_extinction)
+    )
+
+    too_mask_params = copy.deepcopy(standard_mask_params)
+    too_masks = lsst_surveys.standard_masks(**too_mask_params)
+    # Add cloud extinction mask.
+    too_masks.append(
+        bf.MaskCloudMapBasisFunction(nside=nside, extinction_limit=too_extinction)
+    )
 
     toos = too_surveys.gen_too_surveys(
         nside=nside,
         detailer_list=too_detailers,
         too_footprint=footprint_mask,
-        masks=lsst_surveys.standard_masks(**standard_mask_params),
+        masks=too_masks,
         science_program=science_program,
     )
 
@@ -168,6 +179,7 @@ def get_scheduler() -> tuple[int, CoreScheduler]:
     camera_ddf_rot_per_visit = 3.0  # small rotation per visit (degrees) .. 3
     max_dither = 0.2  # Max radial dither for DDF (degrees)
     per_night = False  # Dither DDF per night (True) or per visit (False)
+    ddf_extinction = 1.5  # DDF cloud extinction to mask
 
     detailer_list = [
         detailers.CameraSmallRotPerObservationListDetailer(
@@ -183,13 +195,18 @@ def get_scheduler() -> tuple[int, CoreScheduler]:
         detailers.BandSortDetailer(),
         detailers.LabelRegionsAndDDFs(),
         detailers.TruncatePreTwiDetailer(),
+        detailers.ExtinctionLimitDetailer(extinction_limit=ddf_extinction),
     ]
 
     # For the DDFs, keep the standard max alt (no slew),
-    # but modify the shadow minutes.
+    # but modify the shadow minutes and cloud masking.
     ddf_mask_params = copy.deepcopy(standard_mask_params)
     ddf_mask_params["shadow_minutes"] = 30
     ddf_masks = lsst_surveys.standard_masks(**ddf_mask_params)
+    # Add cloud extinction mask.
+    ddf_masks.append(
+        bf.MaskCloudMapBasisFunction(nside=nside, extinction_limit=ddf_extinction)
+    )
 
     ddf_ignore = [
         "blob",
@@ -245,6 +262,7 @@ def get_scheduler() -> tuple[int, CoreScheduler]:
             exptimes=exptime,
             science_program=science_program,
             standard_mask_params=standard_mask_params,
+            extinction_limit=2.0,
             ignore_obs=roman_ignore,
         ),
         roman_surveys.gen_roman_off_season(
@@ -256,6 +274,7 @@ def get_scheduler() -> tuple[int, CoreScheduler]:
             exptimes=exptime,
             science_program=science_program,
             standard_mask_params=standard_mask_params,
+            extinction_limit=1.8,
             ignore_obs=roman_ignore,
         ),
     ]
@@ -275,6 +294,7 @@ def get_scheduler() -> tuple[int, CoreScheduler]:
         u_exptime=u_exptime,
         pair_time=pair_time,
         night_pattern=gaps_night_pattern,
+        extinction_limit=2.0,
         science_program=science_program,
         blob_survey_params=blob_survey_params,
         standard_mask_params=long_gaps_mask_params,
@@ -292,6 +312,7 @@ def get_scheduler() -> tuple[int, CoreScheduler]:
         exptime=exptime,
         u_exptime=u_exptime,
         pair_time=pair_time,
+        extinction_limit=2.0,
         science_program=science_program,
         blob_survey_params=blob_survey_params,
         standard_mask_params=blob_mask_params,
@@ -308,12 +329,16 @@ def get_scheduler() -> tuple[int, CoreScheduler]:
         bands=ei_bands,
         n_repeat=ei_repeat,
         max_elong=ei_elong_req,
+        extinction_limit=3.0,
         science_program=science_program,
         standard_mask_params=standard_mask_params,
     )
 
     # Define the greedy surveys (single-visit per call).
-    # Modify the max altitude limit.
+    # Modify the max altitude limit and TURN OFF the cloud mask.
+    # The greedy survey should dodge clouds (so this is turned on in
+    # the m5 basis function), but it should not prevent the greedy
+    # survey from executing if the sky is primarily cloudy.
     greedy_mask_params = copy.deepcopy(standard_mask_params)
     greedy_mask_params["max_alt"] = min(blob_max_alt, standard_mask_params["max_alt"])
     greedy = lsst_surveys.gen_greedy_surveys(
@@ -322,6 +347,7 @@ def get_scheduler() -> tuple[int, CoreScheduler]:
         exptime=exptime,
         u_exptime=u_exptime,
         footprints=footprints,
+        extinction_limit=None,
         science_program=science_program,
         standard_mask_params=greedy_mask_params,
     )
