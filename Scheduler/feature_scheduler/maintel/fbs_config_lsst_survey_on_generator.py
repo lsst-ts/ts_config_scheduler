@@ -53,7 +53,7 @@ def generate_qm(
     detailer_list.append(detailers.RotspUpdateDetailer(rot_limits=rot_tel_pos_limits))
     bf_list = []
     # This should get zenith masked without having to recalculate alt/az.
-    bf_list.append(bf.SlewtimeBasisFunction())
+    bf_list.append(bf.SlewtimeBasisFunction(nside=nside))
     # Do not observe into any clouds currently at the pointing.
     bf_list.append(
         bf.MaskCloudMapBasisFunction(nside=nside, extinction_limit=cloud_limit)
@@ -335,12 +335,15 @@ def get_scheduler() -> tuple[int, CoreScheduler]:
         greedy,
     ]
 
+    qm = generate_qm(rot_tel_pos_limits=camera_rot_limits, nside=nside)
+
     # Combine into CoreScheduler
     scheduler = CoreScheduler(
         surveys,
         nside=nside,
         survey_start_mjd=SURVEY_START_MJD,
         band_to_filter=band_to_filter,
+        queue_manager=qm,
     )
 
     return nside, scheduler
