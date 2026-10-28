@@ -31,10 +31,8 @@ import numpy as np
 import pandas as pd
 from lsst.ts.fbs.utils.maintel.lsst_surveys import (
     EXPTIME,
-    NEXP,
     SCIENCE_PROGRAM,
     U_EXPTIME,
-    U_NEXP,
 )
 from rubin_scheduler.data import get_data_dir
 from rubin_scheduler.utils import SURVEY_START_MJD
@@ -78,7 +76,7 @@ def define_ddf_seq() -> pd.DataFrame:
         },
     ]
 
-    shallow_squences = [
+    deep_squences = [
         {
             "u": 3,
             "season_length": 225,
@@ -113,7 +111,7 @@ def define_ddf_seq() -> pd.DataFrame:
         },
     ]
 
-    deep_sequences = [
+    ultra_deep_sequences = [
         {
             "u": 8,
             "season_length": 225,
@@ -158,7 +156,7 @@ def define_ddf_seq() -> pd.DataFrame:
         },
     ]
 
-    euclid_deep_seq = [
+    euclid_ultra_deep_seq = [
         {
             "u": 30,
             "season_length": 225,
@@ -210,20 +208,20 @@ def define_ddf_seq() -> pd.DataFrame:
         "EDFS_a": [0, 10],
     }
 
-    shallow_seasons = {
+    deep_seasons = {
         "COSMOS": [0, 4, 5, 6, 7, 8, 9, 10],
         "XMM_LSS": [1, 2, 3, 5, 6, 7, 8, 9],
         "ELAISS1": [1, 2, 3, 4, 6, 7, 8, 9],
         "ECDFS": [1, 2, 3, 4, 5, 7, 8, 9],
-        "EDFS_a": [2, 3, 4, 5, 6, 7, 8, 9],
+        "EDFS_a": [1, 3, 4, 5, 6, 7, 8, 9],
     }
 
-    deep_seasons = {
+    ultra_deep_seasons = {
         "COSMOS": [1, 2, 3],
         "XMM_LSS": [4],
         "ELAISS1": [5],
         "ECDFS": [6],
-        "EDFS_a": [1],
+        "EDFS_a": [2],
     }
 
     dataframes = []
@@ -244,22 +242,6 @@ def define_ddf_seq() -> pd.DataFrame:
                     row[key] = seq[key]
                 dataframes.append(pd.DataFrame.from_dict(row, orient="index").T)
 
-    for ddf_name in shallow_seasons:
-        for season in shallow_seasons[ddf_name]:
-            dict_for_df = {
-                "ddf_name": ddf_name,
-                "season": season,
-                "even_odd": "None",
-            }
-            for key in "ugrizy":
-                dict_for_df[key] = 0
-
-            for seq in shallow_squences:
-                row = copy.copy(dict_for_df)
-                for key in seq:
-                    row[key] = seq[key]
-                dataframes.append(pd.DataFrame.from_dict(row, orient="index").T)
-
     for ddf_name in deep_seasons:
         for season in deep_seasons[ddf_name]:
             dict_for_df = {
@@ -269,14 +251,30 @@ def define_ddf_seq() -> pd.DataFrame:
             }
             for key in "ugrizy":
                 dict_for_df[key] = 0
+
+            for seq in deep_squences:
+                row = copy.copy(dict_for_df)
+                for key in seq:
+                    row[key] = seq[key]
+                dataframes.append(pd.DataFrame.from_dict(row, orient="index").T)
+
+    for ddf_name in ultra_deep_seasons:
+        for season in ultra_deep_seasons[ddf_name]:
+            dict_for_df = {
+                "ddf_name": ddf_name,
+                "season": season,
+                "even_odd": "None",
+            }
+            for key in "ugrizy":
+                dict_for_df[key] = 0
             if ddf_name == "EDFS_a":
-                for seq in euclid_deep_seq:
+                for seq in euclid_ultra_deep_seq:
                     row = copy.copy(dict_for_df)
                     for key in seq:
                         row[key] = seq[key]
                     dataframes.append(pd.DataFrame.from_dict(row, orient="index").T)
             else:
-                for seq in deep_sequences:
+                for seq in ultra_deep_sequences:
                     row = copy.copy(dict_for_df)
                     for key in seq:
                         row[key] = seq[key]
@@ -290,7 +288,6 @@ def define_ddf_seq() -> pd.DataFrame:
 
 def gen_ddf_presched_observations(
     expt: dict | None = None,
-    nexp: dict | None = None,
     survey_start: float = SURVEY_START_MJD,
     survey_length: int = 10,
     science_program: str = SCIENCE_PROGRAM,
@@ -305,9 +302,6 @@ def gen_ddf_presched_observations(
     expt : `dict`  { `str` : `float` } or None
         Exposure time for DDF visits.
         Default of None uses defaults of EXPTIME/U_EXPTIME.
-    nexp : `dict` { `str` : `int` } or None
-        Number of exposures per visit.
-        Default of None uses defaults of NEXP/U_NEXP.
     survey_start : `float`
         Start MJD of the survey. Used for prescheduling DDF visits.
     survey_length : `float`
@@ -329,8 +323,6 @@ def gen_ddf_presched_observations(
             "z": EXPTIME,
             "y": EXPTIME,
         }
-    if nexp is None:
-        nexp = {"u": U_NEXP, "g": NEXP, "r": NEXP, "i": NEXP, "z": NEXP, "y": NEXP}
 
     if save_path is None:
         save_path = Path(get_data_dir(), "scheduler")
@@ -355,7 +347,6 @@ def gen_ddf_presched_observations(
     obs_array = ddf_presched.generate_ddf_scheduled_obs(
         ddf_dataframe,
         expt=expt,
-        nsnaps=nexp,
         survey_start_mjd=survey_start,
         survey_length=survey_length,
         science_program=science_program,
@@ -367,7 +358,7 @@ def gen_ddf_presched_observations(
         obs_array=obs_array.view(np.ndarray),
         hash_digest=hash_digest,
         expt=expt,
-        nexp=nexp,
+        nexp=1,
         survey_start=survey_start,
         survey_length=survey_length,
         science_program=science_program,
