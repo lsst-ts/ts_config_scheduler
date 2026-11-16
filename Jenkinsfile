@@ -9,7 +9,8 @@ DevelopPipeline(
         "lsst-ts/ts_fbs_utils",
         "lsst-ts/ts_observing",  // For the scheduler observing blocks test.
         // ts_scheduler has too many dependencies
-    ]
+    ],
+    mount_rubin_sim_data: true,
 )
 
 
