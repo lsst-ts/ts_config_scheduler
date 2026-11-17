@@ -219,7 +219,7 @@ def get_scheduler() -> tuple[int, CoreScheduler]:
     # This hash is provided by the script that
     # generates the pre-computed data. Execute it and paste
     # the provided value here.
-    expected_hex_digest = "39563ad"
+    expected_hex_digest = "f8e4d75"
     pre_comp_file = (
         pathlib.Path(get_data_dir())
         / "scheduler"
@@ -400,6 +400,18 @@ def get_scheduler() -> tuple[int, CoreScheduler]:
         science_program=science_program,
         safety_mask_params=safety_mask_params,
     )
+
+    # In all of the pairs-related surveys with u visits,
+    # ensure the u-band exptime detailer comes last, after TakeAsPairs.
+    # Remove this after fixed in ts_fbs_utils.
+    for tier in [blobs, short_blobs]:
+        for survey in tier:
+            d = survey.detailers
+            dm = [di for di in d if isinstance(di, detailers.BandNexp)]
+            if len(dm) > 0:
+                d.remove(dm[0])
+                d.insert(-1, dm[0])
+                survey.detailers = d
 
     # Arrange the surveys in tiers.
     surveys = [

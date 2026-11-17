@@ -1,0 +1,226 @@
+{
+  "name": "BLOCK-T770",
+  "id": "cf5f634d-a05d-4cc7-85bd-81b6c29e6cb1",
+  "program": "BLOCK-T770",
+  "constraints": [],
+  "scripts": [
+    {
+      "name": "maintel/change_filter_lsstcam.py",
+      "standard": true,
+      "parameters": {
+        "filter": "r_57"
+      }
+    },
+    {
+      "name": "maintel/track_target.py",
+      "standard": true,
+      "parameters": {
+        "slew_icrs": {
+          "ra": "22:08:14.57",
+          "dec": "-46:57:54.5"
+        },
+        "target_name": "Alnair",
+        "rot_value": 0,
+        "rot_type": "PhysicalSky"
+      }
+    },
+    {
+      "name": "maintel/offset_mtcs.py",
+      "standard": true,
+      "parameters": {
+        "offset_azel": {
+          "az": 7236.0,
+          "el": 0.0
+        },
+        "relative": false
+      }
+    },
+    {
+      "name": "maintel/take_image_lsstcam.py",
+      "standard": true,
+      "parameters": {
+        "nimages": 2,
+        "exp_times": 30.0,
+        "reason": "BLOCK-T770",
+        "image_type": "ACQ",
+        "program": "BLOCK-T770"
+      }
+    },
+    {
+      "name": "maintel/track_target.py",
+      "standard": true,
+      "parameters": {
+        "slew_icrs": {
+          "ra": "22:18:30.31",
+          "dec": "-60:15:50.2"
+        },
+        "target_name": "HIP110130",
+        "rot_value": 0,
+        "rot_type": "PhysicalSky"
+      }
+    },
+    {
+      "name": "maintel/offset_mtcs.py",
+      "standard": true,
+      "parameters": {
+        "offset_azel": {
+          "az": 7236.0,
+          "el": 0.0
+        },
+        "relative": false
+      }
+    },
+    {
+      "name": "maintel/take_image_lsstcam.py",
+      "standard": true,
+      "parameters": {
+        "nimages": 2,
+        "exp_times": 30.0,
+        "reason": "BLOCK-T770",
+        "image_type": "ACQ",
+        "program": "BLOCK-T770"
+      }
+    },
+    {
+      "name": "maintel/track_target.py",
+      "standard": true,
+      "parameters": {
+        "slew_icrs": {
+          "ra": "20:00:34.17",
+          "dec": "-72:54:57.4"
+        },
+        "target_name": "HIP98495",
+        "rot_value": 0,
+        "rot_type": "PhysicalSky"
+      }
+    },
+    {
+      "name": "maintel/offset_mtcs.py",
+      "standard": true,
+      "parameters": {
+        "offset_azel": {
+          "az": 7236.0,
+          "el": 0.0
+        },
+        "relative": false
+      }
+    },
+    {
+      "name": "maintel/take_image_lsstcam.py",
+      "standard": true,
+      "parameters": {
+        "nimages": 2,
+        "exp_times": 30.0,
+        "reason": "BLOCK-T770",
+        "image_type": "ACQ",
+        "program": "BLOCK-T770"
+      }
+    },
+    {
+      "name": "maintel/track_target.py",
+      "standard": true,
+      "parameters": {
+        "slew_icrs": {
+          "ra": "22:24:57.31",
+          "dec": "-57:48:14.3"
+        },
+        "target_name": "HIP110649",
+        "rot_value": 0,
+        "rot_type": "PhysicalSky"
+      }
+    },
+    {
+      "name": "maintel/offset_mtcs.py",
+      "standard": true,
+      "parameters": {
+        "offset_azel": {
+          "az": 7236.0,
+          "el": 0.0
+        },
+        "relative": false
+      }
+    },
+    {
+      "name": "maintel/take_image_lsstcam.py",
+      "standard": true,
+      "parameters": {
+        "nimages": 2,
+        "exp_times": 30.0,
+        "reason": "BLOCK-T770",
+        "image_type": "ACQ",
+        "program": "BLOCK-T770"
+      }
+    },
+    {
+      "name": "maintel/track_target.py",
+      "standard": true,
+      "parameters": {
+        "slew_icrs": {
+          "ra": "22:00:24.56",
+          "dec": "-55:53:14.6"
+        },
+        "target_name": "HIP108626",
+        "rot_value": 0,
+        "rot_type": "PhysicalSky"
+      }
+    },
+    {
+      "name": "maintel/offset_mtcs.py",
+      "standard": true,
+      "parameters": {
+        "offset_azel": {
+          "az": 7236.0,
+          "el": 0.0
+        },
+        "relative": false
+      }
+    },
+    {
+      "name": "maintel/take_image_lsstcam.py",
+      "standard": true,
+      "parameters": {
+        "nimages": 2,
+        "exp_times": 30.0,
+        "reason": "BLOCK-T770",
+        "image_type": "ACQ",
+        "program": "BLOCK-T770"
+      }
+    },
+    {
+      "name": "maintel/track_target.py",
+      "standard": true,
+      "parameters": {
+        "slew_icrs": {
+          "ra": "22:27:21.68",
+          "dec": "-58:00:16.0"
+        },
+        "target_name": "HIP110842",
+        "rot_value": 0,
+        "rot_type": "PhysicalSky"
+      }
+    },
+    {
+      "name": "maintel/offset_mtcs.py",
+      "standard": true,
+      "parameters": {
+        "offset_azel": {
+          "az": 7236.0,
+          "el": 0.0
+        },
+        "relative": false
+      }
+    },
+    {
+      "name": "maintel/take_image_lsstcam.py",
+      "standard": true,
+      "parameters": {
+        "nimages": 2,
+        "exp_times": 30.0,
+        "reason": "BLOCK-T770",
+        "image_type": "ACQ",
+        "program": "BLOCK-T770"
+      }
+    }
+  ],
+  "configuration_schema": ""
+}

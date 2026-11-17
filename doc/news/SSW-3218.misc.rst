@@ -1,0 +1,1 @@
+Reduced predicted schedule window to 0.5 hour.
