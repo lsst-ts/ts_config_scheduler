@@ -6,6 +6,27 @@ Version History
 
 .. towncrier release notes start
 
+v0.5.2 (2026-11-17)
+===================
+
+Bug Fixes
+---------
+
+- Patch detailer order for pairs_u<g,r> surveys. (`LSST-84 <https://rubinobs.atlassian.net//browse/LSST-84>`_)
+
+
+Other Changes and Additions
+---------------------------
+
+- Added new BLOCK-T770 observing block for MainTel horseshoe stray light tests, using LSSTCam in the r_57 filter with a sequence of az/el offsets around the bright star Alnair. (`BLOCK-T770 <https://rubinobs.atlassian.net//browse/BLOCK-T770>`_)
+- Reduced the MTScheduler ToO client ``delta_time`` from 691200 s (8 days) to 600 s (10 minutes) in the v10 base configuration. (`BLOCK-T770.1 <https://rubinobs.atlassian.net//browse/BLOCK-T770.1>`_)
+- Move EDFS ultradeep ddf season to year 2, instead of year 1 of the survey.
+  Update ddf hash accordingly in fbs_config_lsst_survey configurations. (`LSST-76 <https://rubinobs.atlassian.net//browse/LSST-76>`_)
+- Removing Electrometer:103 from CalSys scripts while it is not in service. Also added FiberSpectrographs back into BLOCK-T399. (`RSO-958 <https://rubinobs.atlassian.net//browse/RSO-958>`_)
+- In Block-T601, default of use_electrometer = False. (`RSO-958.1 <https://rubinobs.atlassian.net//browse/RSO-958.1>`_)
+- Reduced predicted schedule window to 0.5 hour. (`SSW-3218 <https://rubinobs.atlassian.net//browse/SSW-3218>`_)
+
+
 v0.5.1 (2026-09-23)
 ===================
 
