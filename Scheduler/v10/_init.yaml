@@ -337,7 +337,7 @@ maintel:
   n_targets: 2
   observing_script: standard_visit.py
   observing_script_is_standard: true
-  predicted_scheduler_window: 2.0
+  predicted_scheduler_window: 0.5
   startup_database: ' '
   startup_type: HOT
   telemetry:
