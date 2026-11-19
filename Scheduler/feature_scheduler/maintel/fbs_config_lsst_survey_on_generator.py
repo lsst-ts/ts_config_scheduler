@@ -459,18 +459,6 @@ def get_scheduler(for_simulation=False) -> tuple[int, CoreScheduler]:
         standard_mask_params=greedy_mask_params,
     )
 
-    # In all of the pairs-related surveys with u visits,
-    # ensure the u-band exptime detailer comes last, after TakeAsPairs.
-    # Remove this after fixed in ts_fbs_utils.
-    for tier in [blobs, short_blobs]:
-        for survey in tier:
-            d = survey.detailers
-            dm = [di for di in d if isinstance(di, detailers.BandNexp)]
-            if len(dm) > 0:
-                d.remove(dm[0])
-                d.insert(-1, dm[0])
-                survey.detailers = d
-
     # Arrange the surveys in tiers.
     surveys = [
         toos,
