@@ -1,0 +1,1 @@
+Updated maintel observatory model rotator configuration to use follow_sky=false.
