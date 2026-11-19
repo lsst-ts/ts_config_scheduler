@@ -1,0 +1,1 @@
+Updated auxtel observatory model rotator configuration to have the right limits and to use follow_sky=false.
