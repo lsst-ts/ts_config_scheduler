@@ -6,6 +6,17 @@ Version History
 
 .. towncrier release notes start
 
+v0.5.3 (2026-11-19)
+===================
+
+Other Changes and Additions
+---------------------------
+
+- Updated maintel observatory model rotator configuration to use follow_sky=false. (`SSW-3218 <https://rubinobs.atlassian.net//browse/SSW-3218>`_)
+- Updated ocs observatory model rotator configuration to use follow_sky=false. (`SSW-3218 <https://rubinobs.atlassian.net//browse/SSW-3218>`_)
+- Updated auxtel observatory model rotator configuration to have the right limits and to use follow_sky=false. (`SSW-3218 <https://rubinobs.atlassian.net//browse/SSW-3218>`_)
+
+
 v0.5.2 (2026-11-17)
 ===================
 
