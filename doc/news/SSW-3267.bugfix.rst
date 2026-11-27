@@ -1,1 +1,0 @@
-In ``Scheduler/ddf_gen/gen_ddf_presched_observations.py``, explicitly passed exposure times and number of snaps when generating ddf pre-scheduled observations. This fixed an issue where 15s exposures with 2 snaps were generated for the DDF fields.

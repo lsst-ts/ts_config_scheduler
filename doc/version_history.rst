@@ -6,6 +6,15 @@ Version History
 
 .. towncrier release notes start
 
+v0.5.4 (2026-11-27)
+===================
+
+Bug Fixes
+---------
+
+- In ``Scheduler/ddf_gen/gen_ddf_presched_observations.py``, explicitly passed exposure times and number of snaps when generating ddf pre-scheduled observations. This fixed an issue where 15s exposures with 2 snaps were generated for the DDF fields. (`SSW-3267 <https://rubinobs.atlassian.net//browse/SSW-3267>`_)
+
+
 v0.5.3 (2026-11-19)
 ===================
 
