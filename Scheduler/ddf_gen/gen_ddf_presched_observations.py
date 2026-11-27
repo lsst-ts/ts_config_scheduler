@@ -346,7 +346,8 @@ def gen_ddf_presched_observations(
 
     obs_array = ddf_presched.generate_ddf_scheduled_obs(
         ddf_dataframe,
-        expt=expt,
+        expt={"u": 38.0, "g": 30.0, "r": 30.0, "i": 30.0, "z": 30.0, "y": 30.0},
+        nsnaps={"u": 1, "g": 1, "r": 1, "i": 1, "z": 1, "y": 1},
         survey_start_mjd=survey_start,
         survey_length=survey_length,
         science_program=science_program,

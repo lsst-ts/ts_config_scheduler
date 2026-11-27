@@ -190,7 +190,7 @@ def get_scheduler() -> tuple[int, CoreScheduler]:
     # This hash is provided by the script that
     # generates the pre-computed data. Execute it and paste
     # the provided value here.
-    expected_hex_digest = "f8e4d75"
+    expected_hex_digest = "d828bda"
     pre_comp_file = (
         pathlib.Path(get_data_dir())
         / "scheduler"
